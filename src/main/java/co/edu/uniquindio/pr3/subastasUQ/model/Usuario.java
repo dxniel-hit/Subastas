@@ -2,15 +2,13 @@ package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 
-public class Usuario {
+public class Usuario extends Persona{
 
     //Atributos de la clase
     private String usuario;
     private String contrasenia;
     private Boolean isAutenticado;
     private TipoUsuario tipoUsuario;
-    private Anuncio anuncio;
-    private SubastasQuindio subastasQuindio;
 
 
 
@@ -20,7 +18,8 @@ public class Usuario {
 
     }
 
-    public Usuario(String usuario, String contrasenia, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+    public Usuario(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+        super(nombres, apellidos, identificacion, edad);
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.isAutenticado = isAutenticado;
@@ -59,6 +58,18 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    //toString()
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "usuario='" + usuario + '\'' +
+                ", contrasenia='" + contrasenia + '\'' +
+                ", isAutenticado=" + isAutenticado +
+                ", tipoUsuario=" + tipoUsuario +
+                '}';
     }
 }
 

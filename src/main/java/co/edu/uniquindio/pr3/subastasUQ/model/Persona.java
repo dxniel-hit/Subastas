@@ -53,4 +53,15 @@ public abstract class Persona {
     public void setEdad(Integer edad) {
         this.edad = edad;
     }
+
+    //toString()
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", identificacion='" + identificacion + '\'' +
+                ", edad=" + edad +
+                '}';
+    }
 }
