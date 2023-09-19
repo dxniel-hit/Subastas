@@ -1,4 +1,4 @@
-package co.edu.uniquindio.pr3.subastasUQ;
+package co.edu.uniquindio.pr3.subastasUQ.application;
 
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;

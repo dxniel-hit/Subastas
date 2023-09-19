@@ -11,6 +11,7 @@ public class Producto {
     private Double valorInicial;
     private TipoProducto tipoProducto;
     private SubastasQuindio subastasQuindio;
+    private boolean isAnunciado;
 
 
 
