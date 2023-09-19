@@ -1,4 +1,4 @@
-package com.uq.pr3.model;
+package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package com.uq.pr3.model.interfaces;
+package co.edu.uniquindio.pr3.subastasUQ.model.interfaces;
 
 public interface IComprador {
 
-    boolean realizarPuja();
+    public boolean realizarPuja();
 
-    boolean verificarCantidadPujas();
+    public boolean verificarCantidadPujas();
 
-    boolean eliminarPuja();
+    public boolean eliminarPuja();
 }

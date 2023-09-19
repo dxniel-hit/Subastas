@@ -1,4 +1,4 @@
-package com.uq.pr3.model.enumerations;
+package co.edu.uniquindio.pr3.subastasUQ.model.enumerations;
 
 public enum TipoUsuario {
     ANUNCIANTE,

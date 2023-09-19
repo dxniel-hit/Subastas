@@ -1,21 +1,21 @@
-package com.uq.pr3.model.interfaces;
+package co.edu.uniquindio.pr3.subastasUQ.model.interfaces;
 
-import com.uq.pr3.model.Anuncio;
-import com.uq.pr3.model.Producto;
+import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
+import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
 
 public interface IAnunciante {
 
-    Anuncio crearAnuncio();
+    public Anuncio crearAnuncio();
 
-    void imprimirAnuncio();
+    public void imprimirAnuncio();
 
-    boolean actualizarAnuncio();
+    public boolean actualizarAnuncio();
 
-    Producto crearProducto();
+    public Producto crearProducto();
 
-    void imprimirProducto();
+    public void imprimirProducto();
 
-    boolean actualizarProducto();
+    public boolean actualizarProducto();
 
-    boolean eliminarProducto();
+    public boolean eliminarProducto();
 }

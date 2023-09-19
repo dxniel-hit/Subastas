@@ -1,10 +1,10 @@
-package com.uq.pr3.model.enumerations;
+package co.edu.uniquindio.pr3.subastasUQ.model.enumerations;
 
 public enum TipoProducto {
     TECNOLOGIA,
     HOGAR,
     DEPORTES,
     VEHICULOS,
-    BIENRAIZ
+    BIEN_RAIZ
 }
 

@@ -1,6 +1,6 @@
-package com.uq.pr3.model;
+package co.edu.uniquindio.pr3.subastasUQ.model;
 
-import com.uq.pr3.model.enumerations.TipoProducto;
+import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 
 public class Producto {
 

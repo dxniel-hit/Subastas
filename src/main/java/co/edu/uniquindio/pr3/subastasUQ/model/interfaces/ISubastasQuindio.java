@@ -1,26 +1,26 @@
-package com.uq.pr3.model.interfaces;
+package co.edu.uniquindio.pr3.subastasUQ.model.interfaces;
 
 
-import com.uq.pr3.model.Anunciante;
-import com.uq.pr3.model.Comprador;
+import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
+import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
 
 public interface ISubastasQuindio {
 
-    Anunciante crearAnunciante();
+    public Anunciante crearAnunciante();
 
-    void imprimirAnunciante();
+    public void imprimirAnunciante();
 
-    boolean eliminarAnunciante();
+    public boolean eliminarAnunciante();
 
-    boolean actualizarAnunciante();
+    public boolean actualizarAnunciante();
 
-    Comprador crearComprador();
+    public Comprador crearComprador();
 
-    void imprimirComprador();
+    public void imprimirComprador();
 
-    boolean eliminarComprador();
+    public boolean eliminarComprador();
 
-    boolean actualizarComprador();
+    public boolean actualizarComprador();
 
 
 }
