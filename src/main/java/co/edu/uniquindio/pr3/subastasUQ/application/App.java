@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.SubastasQuindioViewController;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Application extends javafx.application.Application {
+public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SubastasQuindioView.fxml"));
