@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="528.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MisAnunciosViewController">
+   <children>
+      <SplitPane dividerPositions="0.31496062992125984" layoutX="15.0" layoutY="8.0" orientation="VERTICAL" prefHeight="510.0" prefWidth="689.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="179.0" prefWidth="634.0">
+               <children>
+                  <Label layoutX="9.0" layoutY="8.0" text="Información del Anuncio">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="14.0" layoutY="32.0" prefHeight="5.0" prefWidth="597.0" />
+                  <Label layoutX="14.0" layoutY="46.0" text="Codigo:" />
+                  <Label layoutX="313.0" layoutY="46.0" text="Fecha Inicio:" />
+                  <TextField fx:id="inputCodigo" layoutX="99.0" layoutY="42.0" prefHeight="25.0" prefWidth="198.0" promptText="Ingrese el codigo del anuncio:" />
+                  <Separator layoutX="14.0" layoutY="108.0" prefHeight="5.0" prefWidth="597.0" />
+                  <Button fx:id="btnNuevo" layoutX="103.0" layoutY="121.0" mnemonicParsing="false" onAction="#nuevoAnuncioEvent" prefHeight="25.0" prefWidth="109.0" text="NUEVO" />
+                  <Button fx:id="btnAgregar" layoutX="408.0" layoutY="121.0" mnemonicParsing="false" onAction="#agregarAnuncioEvent" prefHeight="25.0" prefWidth="133.0" text="AGREGAR" />
+                  <Button fx:id="btnActualizar" layoutX="255.0" layoutY="121.0" mnemonicParsing="false" onAction="#actualizarAnuncioEvent" prefHeight="25.0" prefWidth="116.0" text="ACTUALIZAR" />
+                  <DatePicker layoutX="429.0" layoutY="42.0" prefHeight="25.0" prefWidth="198.0" promptText="Fecha de inicio del anuncio" />
+                  <Label layoutX="14.0" layoutY="75.0" text="Fecha Final:" />
+                  <DatePicker layoutX="98.0" layoutY="71.0" prefHeight="25.0" prefWidth="198.0" promptText="Fecha final del anuncio" />
+                  <Label layoutX="313.0" layoutY="75.0" text="Nombre Anunciante:" />
+                  <TextField fx:id="inputCodigo1" layoutX="429.0" layoutY="71.0" prefHeight="25.0" prefWidth="198.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="623.0">
+               <children>
+                  <Label layoutX="13.0" layoutY="115.0" text="Listado de Mis Productos">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tableProducto" layoutX="14.0" layoutY="135.0" onMouseClicked="#seleccionarProductoEvent" prefHeight="82.0" prefWidth="590.0">
+                    <columns>
+                      <TableColumn fx:id="columnCodigoProducto" prefWidth="74.0" text="Código" />
+                        <TableColumn fx:id="columnNombreProducto" prefWidth="84.0" text="Nombre" />
+                      <TableColumn fx:id="columnValorInicialProducto" prefWidth="100.0" text="Valor Inicial" />
+                        <TableColumn fx:id="columnTipoProductoProducto" prefWidth="134.0" text="Tipo Producto" />
+                        <TableColumn fx:id="columnDescripcionProducto" minWidth="5.0" prefWidth="120.0" text="Descripción" />
+                        <TableColumn fx:id="columnImagenProducto" prefWidth="77.0" text="Imagen" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnEliminar" layoutX="614.0" layoutY="81.0" mnemonicParsing="false" onAction="#eliminarAnuncioEvent" prefHeight="25.0" prefWidth="65.0" text="Eliminar" />
+                  <Label layoutX="13.0" layoutY="5.0" text="Listado de Mis Anuncios">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tableMisAnuncios" layoutX="14.0" layoutY="24.0" onMouseClicked="#seleccionarMiAnuncioEvent" prefHeight="82.0" prefWidth="590.0">
+                     <columns>
+                        <TableColumn fx:id="columnCodigoAnuncio" prefWidth="113.0" text="Código" />
+                        <TableColumn fx:id="columnInicioAnuncio" prefWidth="82.0" text="Inicio" />
+                        <TableColumn fx:id="columnFinalAnuncio" prefWidth="90.0" text="Final" />
+                        <TableColumn fx:id="columnNombreAnuncianteAnuncio" prefWidth="151.0" text="Nombre Anunciante" />
+                        <TableColumn fx:id="ColumnProductoAnuncio" minWidth="5.0" prefWidth="153.0" text="Producto" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="225.0" text="Listado de Pujas en Anuncio">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tablePujas" layoutX="14.0" layoutY="248.0" onMouseClicked="#seleccionarPujaEvent" prefHeight="89.0" prefWidth="590.0">
+                     <columns>
+                        <TableColumn fx:id="columnAnuncioPuja" prefWidth="179.0" text="Anuncio" />
+                        <TableColumn fx:id="columnCompradorPuja" prefWidth="221.0" text="Comprador" />
+                        <TableColumn fx:id="columnValorPuja" prefWidth="189.0" text="Valor" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="614.0" layoutY="312.0" mnemonicParsing="false" onAction="#venderAccion" prefHeight="25.0" prefWidth="65.0" text="VENDER" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

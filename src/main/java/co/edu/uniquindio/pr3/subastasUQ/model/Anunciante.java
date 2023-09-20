@@ -16,8 +16,8 @@ public class Anunciante extends Usuario{
 
     }
 
-    public Anunciante(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, Boolean isAutenticado, TipoUsuario tipoUsuario) {
-        super(nombres, apellidos, identificacion, edad, usuario, contrasenia, isAutenticado, tipoUsuario);
+    public Anunciante(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+        super(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, tipoUsuario);
         this.listaAnuncios = new ArrayList<Anuncio>();
         this.listaProductos = new ArrayList<Producto>();
     }

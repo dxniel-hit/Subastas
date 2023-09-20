@@ -4,6 +4,7 @@ import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Comprador extends Usuario{
 
@@ -17,8 +18,8 @@ public class Comprador extends Usuario{
 
     }
 
-    public Comprador(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, Boolean isAutenticado, TipoUsuario tipoUsuario) {
-        super(nombres, apellidos, identificacion, edad, usuario, contrasenia, isAutenticado, tipoUsuario);
+    public Comprador(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+        super(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, tipoUsuario);
         this.listaPujas = new ArrayList<Puja>();
         this.cantidadDeVecesPujada = new ArrayList<Integer>();
         this.listaCompras = new ArrayList<Compra>();
@@ -45,7 +46,6 @@ public class Comprador extends Usuario{
     }
 
     //toString()
-
     @Override
     public String toString() {
         return "Comprador{" +
@@ -53,5 +53,10 @@ public class Comprador extends Usuario{
                 ", cantidadDeVecesPujada=" + cantidadDeVecesPujada +
                 ", listaCompras=" + listaCompras +
                 '}';
+    }
+
+    //Metodos propios de la clase Comprador
+    public int devolverNumeroPujasEnAnuncio(String codigoAnuncio){
+        return (int) listaPujas.stream().filter(p -> p.getAnuncio().getCodigo().equals(codigoAnuncio)).count();
     }
 }

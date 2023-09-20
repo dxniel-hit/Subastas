@@ -80,10 +80,10 @@ public class SubastasQuindio implements ISubastasQuindio {
     }
 
     @Override
-    public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException {
+    public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException {
         if(obtenerAnunciante(identificacion)!=null) throw new AnuncianteException("El Usuario de Anunciante ya se encuentra creado");
         if(verificarUsuario(usuario)) throw new UsuarioEnUsoException();
-        Anunciante nuevoAnunciante = new Anunciante(nombres, apellidos, identificacion, edad, usuario, contrasenia, isAutenticado, TipoUsuario.ANUNCIANTE);
+        Anunciante nuevoAnunciante = new Anunciante(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, TipoUsuario.ANUNCIANTE);
         listaUsuarios.add(nuevoAnunciante);
         return true;
     }
@@ -109,20 +109,21 @@ public class SubastasQuindio implements ISubastasQuindio {
     }
 
     @Override
-    public boolean actualizarAnunciante(String nombres, String apellidos, String identificacion, int edad) throws AnuncianteException {
+    public boolean actualizarAnunciante(String nombres, String apellidos, String identificacion, int edad, String email) throws AnuncianteException {
         Anunciante a = obtenerAnunciante(identificacion);
         if(a==null) throw new AnuncianteException("El Usuario de Anunciante No se encuentra creado");
         a.setNombres(nombres);
         a.setApellidos(apellidos);
         a.setEdad(edad);
+        a.setEmail(email);
         return true;
     }
 
     @Override
-    public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException {
+    public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException {
         if(obtenerComprador(identificacion)!=null) throw new CompradorException("El Usuario de Comprador ya se encuentra creado");
         if(verificarUsuario(usuario)) throw new UsuarioEnUsoException();
-        Comprador nuevoComprador = new Comprador(nombres, apellidos, identificacion, edad, usuario, contrasenia, isAutenticado, TipoUsuario.COMPRADOR);
+        Comprador nuevoComprador = new Comprador(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, TipoUsuario.COMPRADOR);
         listaUsuarios.add(nuevoComprador);
         return true;
     }
@@ -147,12 +148,13 @@ public class SubastasQuindio implements ISubastasQuindio {
     }
 
     @Override
-    public boolean actualizarComprador(String nombres, String apellidos, String identificacion, int edad) throws CompradorException {
+    public boolean actualizarComprador(String nombres, String apellidos, String identificacion, int edad, String email) throws CompradorException {
         Comprador c = obtenerComprador(identificacion);
         if(c==null) throw new CompradorException("El Usuario de Comprador No se encuentra creado");
         c.setNombres(nombres);
         c.setApellidos(apellidos);
         c.setEdad(edad);
+        c.setEmail(email);
         return true;
     }
 

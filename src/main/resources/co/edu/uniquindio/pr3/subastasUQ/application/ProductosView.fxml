@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="528.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.ProductosViewController">
+   <children>
+      <SplitPane dividerPositions="0.5807086614173228" layoutX="15.0" layoutY="8.0" orientation="VERTICAL" prefHeight="510.0" prefWidth="625.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="730.0">
+               <children>
+                  <Label layoutX="9.0" layoutY="8.0" text="Información del Producto">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="14.0" layoutY="32.0" prefHeight="5.0" prefWidth="597.0" />
+                  <Label layoutX="14.0" layoutY="46.0" text="Codigo:" />
+                  <Label layoutX="14.0" layoutY="80.0" text="Nombre:" />
+                  <TextField fx:id="inputCodigo" layoutX="99.0" layoutY="42.0" prefHeight="25.0" prefWidth="257.0" promptText="Ingrese el codigo del producto:" />
+                  <TextField fx:id="inputNombre" layoutX="99.0" layoutY="76.0" prefHeight="25.0" prefWidth="257.0" promptText="Ingrese el nombre del producto" />
+                  <Separator layoutX="14.0" layoutY="247.0" prefHeight="5.0" prefWidth="580.0" />
+                  <Button fx:id="btnNuevo" layoutX="91.0" layoutY="259.0" mnemonicParsing="false" onAction="#nuevoProductoEvent" prefHeight="25.0" prefWidth="109.0" text="NUEVO" />
+                  <Button fx:id="btnAgregar" layoutX="403.0" layoutY="259.0" mnemonicParsing="false" onAction="#agregarProductoEvent" prefHeight="25.0" prefWidth="133.0" text="AGREGAR" />
+                  <Button fx:id="btnActualizar" layoutX="246.0" layoutY="259.0" mnemonicParsing="false" onAction="#actualizarProductoEvent" prefHeight="25.0" prefWidth="116.0" text="ACTUALIZAR" />
+                  <Label layoutX="14.0" layoutY="189.0" text="Descripción:" />
+                  <Label layoutX="13.0" layoutY="150.0" text="Tipo Producto:" />
+                  <ComboBox fx:id="comboTipoProducto" layoutX="100.0" layoutY="146.0" onAction="#refrescarAtributosTipoProducto" prefHeight="25.0" prefWidth="257.0" />
+                  <TextArea fx:id="inputDescripcion" layoutX="100.0" layoutY="189.0" prefHeight="50.0" prefWidth="257.0" />
+                  <Label layoutX="14.0" layoutY="114.0" text="Valor Inicial:" />
+                  <TextField fx:id="inputValorInicial" layoutX="100.0" layoutY="110.0" prefHeight="25.0" prefWidth="257.0" promptText="Ingrese el valor inicial del producto:" />
+                  <ImageView fx:id="imageViewProducto" fitHeight="85.0" fitWidth="116.0" layoutX="390.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button layoutX="391.0" layoutY="134.0" mnemonicParsing="false" onAction="#seleccionarImagenAction" prefHeight="25.0" prefWidth="145.0" text="SELECCIONAR IMAGEN" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="623.0">
+               <children>
+                  <Label layoutX="13.0" layoutY="9.0" text="Listado de Productos">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="17.0" layoutY="33.0" prefHeight="5.0" prefWidth="597.0" />
+                  <TableView fx:id="tableProducto" layoutX="14.0" layoutY="41.0" onMouseClicked="#seleccionarProductoEvent" prefHeight="128.0" prefWidth="590.0">
+                    <columns>
+                      <TableColumn fx:id="columnCodigo" prefWidth="74.0" text="Código" />
+                        <TableColumn fx:id="columnNombre" prefWidth="84.0" text="Nombre" />
+                      <TableColumn fx:id="columnValorInicial" prefWidth="100.0" text="Valor Inicial" />
+                        <TableColumn fx:id="columnTipoProducto" prefWidth="134.0" text="Tipo Producto" />
+                        <TableColumn fx:id="columnDescripcion" minWidth="5.0" prefWidth="120.0" text="Descripción" />
+                        <TableColumn fx:id="columnImagen" prefWidth="77.0" text="Imagen" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btnEliminar" layoutX="503.0" layoutY="179.0" mnemonicParsing="false" onAction="#eliminarProductoEvent" prefHeight="25.0" prefWidth="101.0" text="Eliminar" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

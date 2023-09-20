@@ -7,6 +7,7 @@ public class Usuario extends Persona{
     //Atributos de la clase
     private String usuario;
     private String contrasenia;
+    private String email;
     private Boolean isAutenticado;
     private TipoUsuario tipoUsuario;
 
@@ -18,10 +19,11 @@ public class Usuario extends Persona{
 
     }
 
-    public Usuario(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+    public Usuario(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
         super(nombres, apellidos, identificacion, edad);
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+        this.email = email;
         this.isAutenticado = isAutenticado;
         this.tipoUsuario = tipoUsuario;
     }
@@ -58,6 +60,14 @@ public class Usuario extends Persona{
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     //toString()

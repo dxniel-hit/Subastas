@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="464.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.AnunciosViewController">
+   <center>
+      <AnchorPane prefHeight="526.0" prefWidth="702.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="23.0" layoutY="24.0" prefHeight="30.0" prefWidth="180.0" text="Lista de Anuncios" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Label>
+            <TableView fx:id="anunciosTable" layoutX="23.0" layoutY="65.0" onMouseClicked="#seleccionarAnuncio" prefHeight="347.0" prefWidth="335.0">
+              <columns>
+                <TableColumn fx:id="codigoColumn" prefWidth="55.0" text="Codigo" />
+                <TableColumn fx:id="fechaInicioColumn" prefWidth="51.0" text="Inicio" />
+                  <TableColumn fx:id="fechaFinalColumn" prefWidth="52.0" text="Final" />
+                  <TableColumn fx:id="nombreAnuncianteColumn" prefWidth="91.0" text="Anunciante" />
+                  <TableColumn fx:id="productoColumn" prefWidth="85.0" text="Producto" />
+              </columns>
+            </TableView>
+            <Separator layoutX="366.0" layoutY="8.0" orientation="VERTICAL" prefHeight="447.0" prefWidth="10.0" />
+            <Label layoutX="382.0" layoutY="8.0" prefHeight="30.0" prefWidth="180.0" text="Detalle de la Subasta" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="380.0" layoutY="48.0" text="Codigo:" />
+            <TextField fx:id="inputCodigo" layoutX="451.0" layoutY="44.0" prefHeight="25.0" prefWidth="227.0" />
+            <Label layoutX="379.0" layoutY="81.0" text="Inicio:" />
+            <DatePicker fx:id="fechaInicioDate" layoutX="452.0" layoutY="77.0" prefHeight="25.0" prefWidth="226.0" />
+            <DatePicker fx:id="fechaFinalDate" layoutX="452.0" layoutY="111.0" prefHeight="25.0" prefWidth="226.0" />
+            <TextField fx:id="inputNombreAnunciante" layoutX="452.0" layoutY="145.0" prefHeight="25.0" prefWidth="226.0" />
+            <TextField fx:id="inputCodigoProducto" layoutX="453.0" layoutY="180.0" prefHeight="25.0" prefWidth="225.0" />
+            <Label layoutX="380.0" layoutY="115.0" text="Final:" />
+            <Label layoutX="379.0" layoutY="149.0" text="Anunciante:" />
+            <Label layoutX="380.0" layoutY="184.0" text="Producto:" />
+            <Separator layoutX="382.0" layoutY="221.0" prefHeight="5.0" prefWidth="311.0" />
+            <Label layoutX="382.0" layoutY="229.0" prefHeight="30.0" prefWidth="180.0" text="Realizar Puja" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="380.0" layoutY="268.0" text="Anuncio:" />
+            <TextField fx:id="inputAnuncio" layoutX="452.0" layoutY="264.0" prefHeight="25.0" prefWidth="227.0" />
+            <TextField fx:id="inputValorInicial" layoutX="452.0" layoutY="297.0" prefHeight="25.0" prefWidth="227.0" />
+            <Label layoutX="380.0" layoutY="301.0" prefHeight="17.0" prefWidth="72.0" text="Valor Inicial:" />
+            <TextField fx:id="inputIdentficacionComprador" layoutX="451.0" layoutY="332.0" prefHeight="25.0" prefWidth="227.0" />
+            <Label layoutX="380.0" layoutY="336.0" prefHeight="17.0" prefWidth="72.0" text="Comprador:" />
+            <TextField fx:id="inputValorPuja" layoutX="452.0" layoutY="367.0" prefHeight="25.0" prefWidth="227.0" />
+            <Label layoutX="380.0" layoutY="371.0" prefHeight="17.0" prefWidth="72.0" text="Valor Puja:" />
+            <Button layoutX="573.0" layoutY="412.0" mnemonicParsing="false" onAction="#realizarPujaAction" prefHeight="25.0" prefWidth="106.0" text="REALIZAR PUJA" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

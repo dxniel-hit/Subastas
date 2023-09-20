@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.RegistroViewController">
+   <bottom>
+      <AnchorPane prefHeight="418.0" prefWidth="473.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="27.0" layoutY="114.0" prefHeight="30.0" prefWidth="84.0" text="Nombres:" />
+            <TextField fx:id="inputNombres" layoutX="119.0" layoutY="117.0" prefHeight="25.0" prefWidth="319.0" />
+            <Label layoutX="27.0" layoutY="147.0" prefHeight="30.0" prefWidth="84.0" text="Apellidos:" />
+            <Button layoutX="27.0" layoutY="379.0" mnemonicParsing="false" onAction="#registrarAction" prefHeight="25.0" prefWidth="120.0" text="REGISTRAR" />
+            <ImageView fitHeight="81.0" fitWidth="97.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/usuario.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="27.0" layoutY="185.0" prefHeight="30.0" prefWidth="84.0" text="Identificacion:" />
+            <Label layoutX="27.0" layoutY="221.0" prefHeight="30.0" prefWidth="84.0" text="Edad:" />
+            <Label layoutX="27.0" layoutY="255.0" prefHeight="30.0" prefWidth="84.0" text="Usuario:" />
+            <Label layoutX="27.0" layoutY="289.0" prefHeight="30.0" prefWidth="84.0" text="Constraseña:" />
+            <PasswordField fx:id="inputContrasenia" layoutX="119.0" layoutY="292.0" prefHeight="25.0" prefWidth="325.0" />
+            <Label layoutX="27.0" layoutY="330.0" prefHeight="30.0" prefWidth="100.0" text="Tipo de Usuario:" />
+            <TextField fx:id="inputIdentificacion" layoutX="119.0" layoutY="187.0" prefHeight="25.0" prefWidth="322.0" />
+            <TextField fx:id="inputApellidos" layoutX="119.0" layoutY="151.0" prefHeight="25.0" prefWidth="320.0" />
+            <TextField fx:id="inputEdad" layoutX="119.0" layoutY="223.0" prefHeight="25.0" prefWidth="323.0" />
+            <TextField fx:id="inputUsuario" layoutX="119.0" layoutY="257.0" prefHeight="25.0" prefWidth="324.0" />
+            <ComboBox fx:id="comboTipoUsuario" layoutX="119.0" layoutY="332.0" prefHeight="25.0" prefWidth="326.0" />
+            <Label layoutX="119.0" layoutY="11.0" prefHeight="50.0" prefWidth="97.0" text="Regístrese">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <Label layoutX="120.0" layoutY="49.0" prefHeight="25.0" prefWidth="189.0" text="Es gratis y cualquiera puede unirse" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
