@@ -18,8 +18,8 @@ public class Comprador extends Usuario{
 
     }
 
-    public Comprador(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
-        super(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, tipoUsuario);
+    public Comprador(String nombres, String apellidos, String identificacion, Integer edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+        super(nombres, apellidos, identificacion, edad, subastasQuindio, usuario, contrasenia, email, isAutenticado, tipoUsuario);
         this.listaPujas = new ArrayList<Puja>();
         this.cantidadDeVecesPujada = new ArrayList<Integer>();
         this.listaCompras = new ArrayList<Compra>();

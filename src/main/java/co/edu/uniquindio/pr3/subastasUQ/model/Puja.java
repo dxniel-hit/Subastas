@@ -6,16 +6,18 @@ public class Puja {
     private Anuncio anuncio;
     private Comprador comprador;
     private Double valor;
+    private String fecha;
 
     //Constructores de la clase Puja
     public Puja(){
 
     }
 
-    public Puja(Anuncio anuncio, Comprador comprador, Double valor) {
+    public Puja(Anuncio anuncio, Comprador comprador, Double valor, String fecha) {
         this.anuncio = anuncio;
         this.comprador = comprador;
         this.valor = valor;
+        this.fecha = fecha;
     }
 
     //getters() & setters()
@@ -38,15 +40,21 @@ public class Puja {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+    public String getFecha() {
+        return fecha;
+    }
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     //toString()
-
     @Override
     public String toString() {
         return "Puja{" +
                 "anuncio=" + anuncio.getCodigo() +
                 ", comprador=" + comprador.getIdentificacion() +
                 ", valor=" + valor +
+                ", fecha=" + fecha +
                 '}';
     }
 }

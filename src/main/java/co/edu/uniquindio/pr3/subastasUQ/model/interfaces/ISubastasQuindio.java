@@ -6,10 +6,11 @@ import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
+import co.edu.uniquindio.pr3.subastasUQ.model.SubastasQuindio;
 
 public interface ISubastasQuindio {
 
-    public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException;
+    public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException;
 
     public void imprimirAnunciante(String identificacion) throws AnuncianteException;
 
@@ -17,7 +18,7 @@ public interface ISubastasQuindio {
 
     public boolean actualizarAnunciante(String nombre, String direccion, String identificacion, int edad, String email) throws AnuncianteException;
 
-    public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException;
+    public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException;
 
     public void imprimirComprador(String identificacion) throws CompradorException;
 

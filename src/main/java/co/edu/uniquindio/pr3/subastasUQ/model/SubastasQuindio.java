@@ -46,6 +46,24 @@ public class SubastasQuindio implements ISubastasQuindio {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    public List<Producto> getListaProductos() {
+        return listaProductos;
+    }
+    public void setListaProductos(List<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+    public List<Anuncio> getListaAnuncios() {
+        return listaAnuncios;
+    }
+    public void setListaAnuncios(List<Anuncio> listaAnuncios) {
+        this.listaAnuncios = listaAnuncios;
+    }
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------
     //Metodos de la Clase SubastasQuindio
@@ -74,16 +92,28 @@ public class SubastasQuindio implements ISubastasQuindio {
         return c;
     }
 
+    //Metodo para obtener un producto en la lista de productos de SubastasQuindio
+    public Producto obtenerProducto(String codigo) {
+        Producto producto = null;
+        try {
+            producto = listaProductos.stream().filter(p -> p.getCodigo().equals(codigo)).findFirst().get();
+        }
+        catch(Exception ignored) {
+
+        }
+        return producto;
+    }
+
     //Metodo para verificar si un usuario esta en uso
     public boolean verificarUsuario(String usuario) {
         return listaUsuarios.stream().anyMatch(u -> u.getUsuario().equals(usuario));
     }
 
     @Override
-    public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException {
+    public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException {
         if(obtenerAnunciante(identificacion)!=null) throw new AnuncianteException("El Usuario de Anunciante ya se encuentra creado");
         if(verificarUsuario(usuario)) throw new UsuarioEnUsoException();
-        Anunciante nuevoAnunciante = new Anunciante(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, TipoUsuario.ANUNCIANTE);
+        Anunciante nuevoAnunciante = new Anunciante(nombres, apellidos, identificacion, edad, this, usuario, contrasenia, email, isAutenticado, TipoUsuario.ANUNCIANTE);
         listaUsuarios.add(nuevoAnunciante);
         return true;
     }
@@ -120,10 +150,10 @@ public class SubastasQuindio implements ISubastasQuindio {
     }
 
     @Override
-    public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException {
+    public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException {
         if(obtenerComprador(identificacion)!=null) throw new CompradorException("El Usuario de Comprador ya se encuentra creado");
         if(verificarUsuario(usuario)) throw new UsuarioEnUsoException();
-        Comprador nuevoComprador = new Comprador(nombres, apellidos, identificacion, edad, usuario, contrasenia, email, isAutenticado, TipoUsuario.COMPRADOR);
+        Comprador nuevoComprador = new Comprador(nombres, apellidos, identificacion, edad, this, usuario, contrasenia, email, isAutenticado, TipoUsuario.COMPRADOR);
         listaUsuarios.add(nuevoComprador);
         return true;
     }

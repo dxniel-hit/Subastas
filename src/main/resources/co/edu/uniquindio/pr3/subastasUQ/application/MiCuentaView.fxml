@@ -49,6 +49,7 @@
             <Separator layoutX="9.0" layoutY="382.0" prefHeight="4.0" prefWidth="483.0" />
             <Button layoutX="17.0" layoutY="435.0" mnemonicParsing="false" onAction="#cambiarUsuarioEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR USUARIO" />
             <Button layoutX="260.0" layoutY="396.0" mnemonicParsing="false" onAction="#cambiarContraseniaEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR CONTRASEÑA" />
+            <Button layoutX="260.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesionEvent" prefHeight="25.0" prefWidth="226.0" text="CERRAR SESIÓN" />
          </children>
       </AnchorPane>
    </bottom>

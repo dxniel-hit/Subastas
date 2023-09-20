@@ -1,21 +1,27 @@
 package co.edu.uniquindio.pr3.subastasUQ.model.interfaces;
 
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
+import co.edu.uniquindio.pr3.subastasUQ.model.Compra;
 import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
+import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 
 public interface IAnunciante {
 
-    public Anuncio crearAnuncio();
+    public boolean crearAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, String codigoProducto) throws AnuncioException, ProductoException;
 
-    public void imprimirAnuncio();
+    public void imprimirAnuncio(String codigo) throws AnuncioException;
 
-    public boolean actualizarAnuncio();
+    public boolean actualizarAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, String codigoProducto) throws AnuncioException, ProductoException;
 
-    public Producto crearProducto();
+    public boolean eliminarAnuncio(String codigo) throws AnuncioException;
 
-    public void imprimirProducto();
+    public boolean crearProducto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) throws ProductoException;
 
-    public boolean actualizarProducto();
+    public void imprimirProducto(String codigo) throws ProductoException;
 
-    public boolean eliminarProducto();
+    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) throws ProductoException;
+
+    public boolean eliminarProducto(String codigo) throws ProductoException;
 }

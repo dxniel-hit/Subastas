@@ -5,6 +5,7 @@ import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 public class Usuario extends Persona{
 
     //Atributos de la clase
+    private SubastasQuindio subastasQuindio;
     private String usuario;
     private String contrasenia;
     private String email;
@@ -19,8 +20,9 @@ public class Usuario extends Persona{
 
     }
 
-    public Usuario(String nombres, String apellidos, String identificacion, Integer edad, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+    public Usuario(String nombres, String apellidos, String identificacion, Integer edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
         super(nombres, apellidos, identificacion, edad);
+        this.subastasQuindio = subastasQuindio;
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.email = email;
@@ -30,6 +32,12 @@ public class Usuario extends Persona{
 
     //Getters y setters
 
+    public SubastasQuindio getSubastasQuindio() {
+        return subastasQuindio;
+    }
+    public void setSubastasQuindio(SubastasQuindio subastasQuindio) {
+        this.subastasQuindio = subastasQuindio;
+    }
     public String getUsuario() {
         return usuario;
     }

@@ -44,5 +44,9 @@ public class MiCuentaViewController {
 
     }
 
+    @FXML
+    void cerrarSesionEvent(ActionEvent event) {
+
+    }
 }
 
