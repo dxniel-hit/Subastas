@@ -1,16 +1,21 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class SubastasQuindioViewController {
 
-    private Stage stage;
+    @FXML
+    private Font x1;
 
-    public void setStage(Stage primaryStage) {
-        this.stage = primaryStage;
-    }
+    @FXML
+    private Color x2;
 
-    public void show() {
-        stage.show();
-    }
+    @FXML
+    private Font x3;
+
+    @FXML
+    private Color x4;
+
 }
