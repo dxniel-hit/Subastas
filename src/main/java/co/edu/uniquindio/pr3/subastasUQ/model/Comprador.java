@@ -1,12 +1,15 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.PujaException;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
+import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IComprador;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Comprador extends Usuario{
+public class Comprador extends Usuario implements IComprador {
 
     //Atributos de la clase
     private List<Puja> listaPujas;
@@ -58,5 +61,30 @@ public class Comprador extends Usuario{
     //Metodos propios de la clase Comprador
     public int devolverNumeroPujasEnAnuncio(String codigoAnuncio){
         return (int) listaPujas.stream().filter(p -> p.getAnuncio().getCodigo().equals(codigoAnuncio)).count();
+    }
+
+    @Override
+    public boolean realizarPuja(String codigoAnuncio, Double valor, String fecha) throws PujaException {
+        Anuncio a = getSubastasQuindio().obtenerAnuncio(codigoAnuncio);
+        if(a==null) throw new PujaException("El Anuncio No se encuentra creado");
+        if(!verificarCantidadPujas(codigoAnuncio)) throw new PujaException("Ya se han realizado 3 pujas por el anujncio");
+        Puja p = new Puja(a, this, valor, fecha);
+        return true;
+    }
+
+    @Override
+    public boolean verificarCantidadPujas(String codigoAnuncio) throws PujaException {
+        return devolverNumeroPujasEnAnuncio(codigoAnuncio) <= 3;
+    }
+
+    @Override
+    public boolean eliminarPuja(String codigoAnuncio, Double valor, String fecha) {
+        try{
+            listaPujas.remove(new Puja(getSubastasQuindio().obtenerAnuncio(codigoAnuncio), this, valor, fecha));
+
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 }

@@ -14,7 +14,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SubastasQuindioViewController {
+public class SubastasQuindioViewController implements Initializable{
 
     //Atributos
     Stage stage;
@@ -45,6 +45,18 @@ public class SubastasQuindioViewController {
         this.stage = stage;
     }
 
+    //Metodo par deshabilitar las pestañas para sesión no iniciada
+    public void dehabilitarPestanias(){
+        productosTab.setDisable(true);
+        misAnunciosTab.setDisable(true);
+        misPujasTab.setDisable(true);
+        miCuentaTab.setDisable(true);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        dehabilitarPestanias();
+    }
 
 }
 

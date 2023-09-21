@@ -104,6 +104,18 @@ public class SubastasQuindio implements ISubastasQuindio {
         return producto;
     }
 
+    //Metodo para obtener un Anuncio en la lista de anuncios de SubastasQuindio
+    public Anuncio obtenerAnuncio(String codigo) {
+        Anuncio anuncio = null;
+        try {
+            anuncio = listaAnuncios.stream().filter(a -> a.getCodigo().equals(codigo)).findFirst().get();
+        }
+        catch(Exception ignored) {
+
+        }
+        return anuncio;
+    }
+
     //Metodo para verificar si un usuario esta en uso
     public boolean verificarUsuario(String usuario) {
         return listaUsuarios.stream().anyMatch(u -> u.getUsuario().equals(usuario));
@@ -113,6 +125,7 @@ public class SubastasQuindio implements ISubastasQuindio {
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException {
         if(obtenerAnunciante(identificacion)!=null) throw new AnuncianteException("El Usuario de Anunciante ya se encuentra creado");
         if(verificarUsuario(usuario)) throw new UsuarioEnUsoException();
+        if(edad<18) throw new AnuncianteException("Debe ser mayor de edad para registrarse");
         Anunciante nuevoAnunciante = new Anunciante(nombres, apellidos, identificacion, edad, this, usuario, contrasenia, email, isAutenticado, TipoUsuario.ANUNCIANTE);
         listaUsuarios.add(nuevoAnunciante);
         return true;
@@ -142,6 +155,7 @@ public class SubastasQuindio implements ISubastasQuindio {
     public boolean actualizarAnunciante(String nombres, String apellidos, String identificacion, int edad, String email) throws AnuncianteException {
         Anunciante a = obtenerAnunciante(identificacion);
         if(a==null) throw new AnuncianteException("El Usuario de Anunciante No se encuentra creado");
+        if(edad<18) throw new AnuncianteException("Debe ser mayor de edad para registrarse");
         a.setNombres(nombres);
         a.setApellidos(apellidos);
         a.setEdad(edad);
@@ -153,6 +167,7 @@ public class SubastasQuindio implements ISubastasQuindio {
     public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado) throws CompradorException, UsuarioEnUsoException {
         if(obtenerComprador(identificacion)!=null) throw new CompradorException("El Usuario de Comprador ya se encuentra creado");
         if(verificarUsuario(usuario)) throw new UsuarioEnUsoException();
+        if(edad<18) throw new CompradorException("Debe ser mayor de edad para registrarse");
         Comprador nuevoComprador = new Comprador(nombres, apellidos, identificacion, edad, this, usuario, contrasenia, email, isAutenticado, TipoUsuario.COMPRADOR);
         listaUsuarios.add(nuevoComprador);
         return true;
@@ -181,6 +196,7 @@ public class SubastasQuindio implements ISubastasQuindio {
     public boolean actualizarComprador(String nombres, String apellidos, String identificacion, int edad, String email) throws CompradorException {
         Comprador c = obtenerComprador(identificacion);
         if(c==null) throw new CompradorException("El Usuario de Comprador No se encuentra creado");
+        if(edad<18) throw new CompradorException("Debe ser mayor de edad para registrarse");
         c.setNombres(nombres);
         c.setApellidos(apellidos);
         c.setEdad(edad);

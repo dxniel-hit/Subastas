@@ -56,16 +56,9 @@ public class Anunciante extends Usuario implements IAnunciante {
     //------------------------------------------------------------------------------------------------------------------------------------
     //Metodos propios de la clase Anunciante
 
-    //Metodo para obtener un Anunciante en la lista de Usuarios de SubastasQuindio
+    //Metodo para obtener un Anuncio en la lista de Anuncios del Anunciante
     public Anuncio obtenerAnuncio(String codigo) {
-        Anuncio anuncio = null;
-        try {
-            anuncio = getSubastasQuindio().getListaAnuncios().stream().filter(a -> a.getCodigo().equals(codigo)).findFirst().get();
-        }
-        catch(Exception ignored) {
-
-        }
-        return anuncio;
+        return getSubastasQuindio().obtenerAnuncio(codigo);
     }
 
     //Metodo para obtener un producto en la lista de productos del Anunciante

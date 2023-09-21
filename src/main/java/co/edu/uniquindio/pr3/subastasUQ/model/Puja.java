@@ -1,5 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
+import java.util.Objects;
+
 public class Puja {
 
     //Atributos de la clase
@@ -57,4 +59,19 @@ public class Puja {
                 ", fecha=" + fecha +
                 '}';
     }
+
+    //hasCode() & equals()
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Puja puja)) return false;
+        return Objects.equals(getAnuncio(), puja.getAnuncio()) && Objects.equals(getComprador(), puja.getComprador()) && Objects.equals(getValor(), puja.getValor()) && Objects.equals(getFecha(), puja.getFecha());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAnuncio(), getComprador(), getValor(), getFecha());
+    }
+
 }
