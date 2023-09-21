@@ -8,6 +8,7 @@ import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.ISubastasQuindio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class SubastasQuindio implements ISubastasQuindio {
 
@@ -67,6 +68,14 @@ public class SubastasQuindio implements ISubastasQuindio {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------
     //Metodos de la Clase SubastasQuindio
+
+    //Metodo para encontrar la posicion de un usuario en la lista de Usuarios de SubastasQuindio
+    public int encontrarPosUsuario(String usuario) {
+        return IntStream.range(0, listaUsuarios.size())
+                .filter(i -> listaUsuarios.get(i).getUsuario().equals(usuario))
+                .findFirst()
+                .orElse(-1);
+    }
 
     //Metodo para obtener un Anunciante en la lista de Usuarios de SubastasQuindio
     public Anunciante obtenerAnunciante(String identificacion) {
@@ -232,5 +241,16 @@ public class SubastasQuindio implements ISubastasQuindio {
             c.setContrasenia(nuevaContrasenia);
         }
         return "Usuario cambiado correctamente";
+    }
+
+    //Metodos para autenticar y desautenticar un usuario una vez inicia sesión
+    public void autenticarUsuario(String usuario){
+        Usuario u = listaUsuarios.get(encontrarPosUsuario(usuario));
+        u.setAutenticado(true);
+    }
+
+    public void desAutenticarUsuario(String usuario){
+        Usuario u = listaUsuarios.get(encontrarPosUsuario(usuario));
+        u.setAutenticado(false);
     }
 }

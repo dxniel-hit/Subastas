@@ -15,12 +15,12 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MiCuentaViewController">
    <bottom>
-      <AnchorPane prefHeight="484.0" prefWidth="503.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="516.0" prefWidth="503.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="27.0" layoutY="114.0" prefHeight="30.0" prefWidth="84.0" text="Nombres:" />
             <TextField fx:id="inputNombres" layoutX="119.0" layoutY="117.0" prefHeight="25.0" prefWidth="319.0" />
             <Label layoutX="27.0" layoutY="147.0" prefHeight="30.0" prefWidth="84.0" text="Apellidos:" />
-            <Button layoutX="17.0" layoutY="396.0" mnemonicParsing="false" onAction="#actualizarInformacionEvent" prefHeight="25.0" prefWidth="224.0" text="ACTUALIZAR INFORMACIÓN GENERAL" />
+            <Button layoutX="17.0" layoutY="416.0" mnemonicParsing="false" onAction="#actualizarInformacionEvent" prefHeight="25.0" prefWidth="224.0" text="ACTUALIZAR INFORMACIÓN GENERAL" />
             <ImageView fitHeight="81.0" fitWidth="97.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/usuario.png" />
@@ -31,12 +31,12 @@
             <Label layoutX="27.0" layoutY="255.0" prefHeight="30.0" prefWidth="84.0" text="Usuario:" />
             <Label layoutX="27.0" layoutY="289.0" prefHeight="30.0" prefWidth="84.0" text="Constraseña:" />
             <PasswordField fx:id="inputContrasenia" layoutX="119.0" layoutY="292.0" prefHeight="25.0" prefWidth="325.0" />
-            <Label layoutX="27.0" layoutY="330.0" prefHeight="30.0" prefWidth="100.0" text="Tipo de Usuario:" />
+            <Label layoutX="27.0" layoutY="360.0" prefHeight="30.0" prefWidth="100.0" text="Tipo de Usuario:" />
             <TextField fx:id="inputIdentificacion" layoutX="119.0" layoutY="187.0" prefHeight="25.0" prefWidth="322.0" />
             <TextField fx:id="inputApellidos" layoutX="119.0" layoutY="151.0" prefHeight="25.0" prefWidth="320.0" />
             <TextField fx:id="inputEdad" layoutX="119.0" layoutY="223.0" prefHeight="25.0" prefWidth="323.0" />
             <TextField fx:id="inputUsuario" layoutX="119.0" layoutY="257.0" prefHeight="25.0" prefWidth="324.0" />
-            <ComboBox fx:id="comboTipoUsuario" layoutX="119.0" layoutY="332.0" prefHeight="25.0" prefWidth="326.0" />
+            <ComboBox fx:id="comboTipoUsuario" layoutX="119.0" layoutY="362.0" prefHeight="25.0" prefWidth="326.0" />
             <Label layoutX="119.0" layoutY="11.0" prefHeight="50.0" prefWidth="240.0" text="Información de la Cuenta">
                <font>
                   <Font size="20.0" />
@@ -46,10 +46,13 @@
                </effect>
             </Label>
             <Label layoutX="120.0" layoutY="49.0" prefHeight="25.0" prefWidth="253.0" text="Puede modificar la información de su cuenta" />
-            <Separator layoutX="9.0" layoutY="382.0" prefHeight="4.0" prefWidth="483.0" />
-            <Button layoutX="17.0" layoutY="435.0" mnemonicParsing="false" onAction="#cambiarUsuarioEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR USUARIO" />
-            <Button layoutX="260.0" layoutY="396.0" mnemonicParsing="false" onAction="#cambiarContraseniaEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR CONTRASEÑA" />
-            <Button layoutX="260.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesionEvent" prefHeight="25.0" prefWidth="226.0" text="CERRAR SESIÓN" />
+            <Separator layoutX="10.0" layoutY="403.0" prefHeight="4.0" prefWidth="483.0" />
+            <Button layoutX="16.0" layoutY="448.0" mnemonicParsing="false" onAction="#cambiarUsuarioEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR USUARIO" />
+            <Button layoutX="260.0" layoutY="416.0" mnemonicParsing="false" onAction="#cambiarContraseniaEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR CONTRASEÑA" />
+            <Button layoutX="261.0" layoutY="448.0" mnemonicParsing="false" onAction="#cerrarSesionEvent" prefHeight="25.0" prefWidth="226.0" text="CERRAR SESIÓN" />
+            <Button layoutX="262.0" layoutY="480.0" mnemonicParsing="false" onAction="#eliminarCuentaEvent" prefHeight="25.0" prefWidth="225.0" text="ELIMINAR CUENTA" />
+            <Label layoutX="27.0" layoutY="326.0" prefHeight="30.0" prefWidth="100.0" text="Email:" />
+            <TextField fx:id="inputEmail" layoutX="120.0" layoutY="327.0" prefHeight="25.0" prefWidth="324.0" />
          </children>
       </AnchorPane>
    </bottom>

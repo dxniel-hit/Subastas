@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 
+import co.edu.uniquindio.pr3.subastasUQ.controllers.SubastasQuindioController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SubastasQuindioViewController implements Initializable{
+
+    SubastasQuindioController subastasQuindioController;
 
     //Atributos
     Stage stage;
@@ -56,7 +59,21 @@ public class SubastasQuindioViewController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dehabilitarPestanias();
+        subastasQuindioController = new SubastasQuindioController();
+        subastasQuindioController.mfm.initSubastasQuindioViewController(this);
     }
 
+    public void habilitarPestaniasAnunciante() {
+        inicioTab.setDisable(true);
+        productosTab.setDisable(false);
+        misAnunciosTab.setDisable(false);
+        miCuentaTab.setDisable(false);
+    }
+
+    public void habilitarPestaniasComprador() {
+        inicioTab.setDisable(true);
+        misPujasTab.setDisable(false);
+        miCuentaTab.setDisable(false);
+    }
 }
 

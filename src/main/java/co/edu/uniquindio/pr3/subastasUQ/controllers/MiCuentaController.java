@@ -1,11 +1,12 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
-import co.edu.uniquindio.pr3.subastasUQ.controllers.services.IRegistroControllerService;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.services.IMiCuentaControllerService;
 
-public class RegistroController implements IRegistroControllerService {
+public class MiCuentaController implements IMiCuentaControllerService {
+
     public ModelFactoryController mfm;
 
-    public RegistroController(){
+    public MiCuentaController(){
         System.out.println("Llamando al singleton desde EmpleadoServiceController");
         mfm = ModelFactoryController.getInstance();
     }
