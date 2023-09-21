@@ -1,7 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
 public abstract class Persona {
-
     //Atributos de la clase
     private String nombres;
     private String apellidos;

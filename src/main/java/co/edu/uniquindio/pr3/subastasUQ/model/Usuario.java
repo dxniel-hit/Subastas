@@ -15,11 +15,9 @@ public class Usuario extends Persona{
 
 
     //Constructores de la clase
-
     public Usuario() {
 
     }
-
     public Usuario(String nombres, String apellidos, String identificacion, Integer edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
         super(nombres, apellidos, identificacion, edad);
         this.subastasQuindio = subastasQuindio;

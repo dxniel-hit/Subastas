@@ -14,7 +14,7 @@ public class ModelFactoryController {
 		private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
 	}
 
-	// M�todo para obtener la instancia de nuestra clase
+	// Metodo para obtener la instancia de nuestra clase
 	public static ModelFactoryController getInstance() {
 		return SingletonHolder.eINSTANCE;
 	}
