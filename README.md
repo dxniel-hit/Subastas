@@ -4,11 +4,11 @@ Programada construido en JavaFX que va a servir para subastar y pujar.
 
 ## ¿Qué falta para la primera entrega?
 
--Diseño de la interfaz, funcionamiento de UNA interfaz CRUD
+Decidir que CRUD usar, si el de usuario o el producto.
 
 ## Tabla de contenido
 
-Link del diagrama: https://shorturl.at/hKU02
+Link del diagrama: https://shorturl.at/bdwF6
 
 ## Instalación
 
