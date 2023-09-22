@@ -2,6 +2,9 @@ package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MiCuentaController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
@@ -50,27 +53,100 @@ public class MiCuentaViewController implements  Initializable{
 
     @FXML
     void actualizarInformacionEvent(ActionEvent event) {
-
+        String nombres = inputNombres.getText();
+        String apellidos = inputApellidos.getText();
+        String identificacion = inputIdentificacion.getText();
+        String edad = inputEdad.getText();
+        String email = inputEmail.getText();
+        TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
+        if(validarDatos(nombres, apellidos, identificacion, email, edad, tipoUsuario)) {
+            if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
+                try {
+                    boolean flag = miCuentaController.mfm.actualizarAnuciante(nombres, apellidos, identificacion, Integer.parseInt(edad), email);
+                    mostrarMensaje("Proceso Exitoso", "Cuenta de anunciante actualizada", "La cuenta de anunciante fue actualizada correctamente", Alert.AlertType.INFORMATION);
+                    setMiAnucianteInformation();
+                } catch (AnuncianteException e) {
+                    mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de anunciante", e.getMessage(), Alert.AlertType.WARNING);
+                }
+            }
+            if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
+                try {
+                    boolean flag = miCuentaController.mfm.actualizarComprador(nombres, apellidos, identificacion, Integer.parseInt(edad), email);
+                    mostrarMensaje("Proceso Exitoso", "Cuenta de Comprador actualizada", "La cuenta de comprador fue actualizada correctamente", Alert.AlertType.INFORMATION);
+                    setMiCompradorInformation();
+                } catch (CompradorException e) {
+                    mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de comprador", e.getMessage(), Alert.AlertType.WARNING);
+                }
+            }
+        }
     }
 
     @FXML
     void cambiarContraseniaEvent(ActionEvent event) {
-
+        String identifiacion = inputIdentificacion.getText();
+        TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
+        String nuevaContrasenia = inputContrasenia.getText();
+        try {
+            String mensaje = miCuentaController.mfm.cambiarContrasenia(identifiacion, tipoUsuario, nuevaContrasenia);
+            mostrarMensaje("Proceso Exitoso", "Contraseña actualizada", "La contraseña fue actualizada correctamente", Alert.AlertType.INFORMATION);
+        } catch (CompradorException | AnuncianteException e) {
+            mostrarMensaje("Error de Actualizacion", "No se puedo actualizar la contraseña", e.getMessage(), Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
     void cambiarUsuarioEvent(ActionEvent event) {
-
+        String identifiacion = inputIdentificacion.getText();
+        TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
+        String nuevoUsuario = inputUsuario.getText();
+        try {
+            String mensaje = miCuentaController.mfm.cambiarUsuario(identifiacion, tipoUsuario, nuevoUsuario);
+            mostrarMensaje("Proceso Exitoso", "Usuario actualizado", "El usuario fue actualizado correctamente", Alert.AlertType.INFORMATION);
+        } catch (CompradorException | AnuncianteException e) {
+            mostrarMensaje("Error de Actualizacion", "No se puedo actualizar el usuario", e.getMessage(), Alert.AlertType.WARNING);
+        } catch (UsuarioEnUsoException e) {
+            mostrarMensaje("Error de Usuario", "Usuario en Uso", e.getMessage(), Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
     void cerrarSesionEvent(ActionEvent event) {
+        resetCuenta();
+        miCuentaController.mfm.resetCuenta(inputUsuario.getText());
+        vaciarCasillas();
+    }
 
+    public void resetCuenta(){
+        this.miAnunciante = null;
+        this.miComprador = null;
     }
 
     @FXML
     void eliminarCuentaEvent(ActionEvent event) {
-
+        String identificacion = inputIdentificacion.getText();
+        TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
+        if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
+            try {
+                boolean flag = miCuentaController.mfm.eliminarAnunciante(identificacion);
+                mostrarMensaje("Proceso Exitoso", "Cuenta eliminada", "La cuenta fue eliminada correctamente", Alert.AlertType.INFORMATION);
+                vaciarCasillas();
+                miCuentaController.mfm.resetCuenta();
+                resetCuenta();
+            } catch (AnuncianteException e) {
+                mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
+            }
+        }
+        if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
+            try {
+                boolean flag = miCuentaController.mfm.eliminarComprador(identificacion);
+                mostrarMensaje("Proceso Exitoso", "Cuenta eliminada", "La cuenta fue eliminada correctamente", Alert.AlertType.INFORMATION);
+                vaciarCasillas();
+                miCuentaController.mfm.resetCuenta();
+                resetCuenta();
+            } catch (CompradorException e) {
+                mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
+            }
+        }
     }
 
     public void vaciarCasillas(){
@@ -79,7 +155,7 @@ public class MiCuentaViewController implements  Initializable{
         inputEmail.setText(null); comboTipoUsuario.getSelectionModel().clearSelection();
     }
 
-    private boolean validarDatos(String nombres, String apellidos, String identificacion, String usuario, String contrasenia, String correo, String edad, TipoUsuario tipoUsuario) {
+    private boolean validarDatos(String nombres, String apellidos, String identificacion, String correo, String edad, TipoUsuario tipoUsuario) {
         String mensaje = "";
 
         if(nombres == null || nombres.equals(""))
@@ -91,11 +167,6 @@ public class MiCuentaViewController implements  Initializable{
         if(identificacion == null || identificacion.equals(""))
             mensaje += "La identificacion es invalida \n";
 
-        if(usuario == null || usuario.equals(""))
-            mensaje += "El usuario es invalido \n";
-
-        if(contrasenia == null || contrasenia.equals(""))
-            mensaje += "La contrasenia es invalida \n";
 
         if(correo == null || correo.equals(""))
             mensaje += "El correo es invalido \n";
@@ -134,6 +205,8 @@ public class MiCuentaViewController implements  Initializable{
 
         if(miAnunciante!=null) setMiAnucianteInformation();
         if(miComprador!=null)setMiCompradorInformation();
+        inputIdentificacion.setDisable(true);
+        comboTipoUsuario.setDisable(true);
     }
 
     public void setMiAnucianteInformation(){

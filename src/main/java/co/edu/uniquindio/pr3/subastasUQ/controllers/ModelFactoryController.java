@@ -8,6 +8,7 @@ import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
 import co.edu.uniquindio.pr3.subastasUQ.model.SubastasQuindio;
 import co.edu.uniquindio.pr3.subastasUQ.model.Usuario;
+import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.LoginViewController;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.MiCuentaViewController;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.RegistroViewController;
@@ -117,12 +118,49 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 		this.miSubastasQuindio.autenticarUsuario(miComprador.getUsuario());
 	}
 
+	public void resetCuenta(String usuario) {
+		this.miAnunciante = null;
+		this.miComprador = null;
+		this.miSubastasQuindio.desAutenticarUsuario(usuario);
+		this.subastasQuindioViewController.dehabilitarPestanias();
+	}
+
+	public void resetCuenta() {
+		this.miAnunciante = null;
+		this.miComprador = null;
+		this.subastasQuindioViewController.dehabilitarPestanias();
+	}
+
 	public void habilitarPestaniasAnunciante() {
 		subastasQuindioViewController.habilitarPestaniasAnunciante();
 	}
 
 	public void habilitarPestaniasComprador() {
 		subastasQuindioViewController.habilitarPestaniasComprador();
+	}
+
+	public boolean actualizarAnuciante(String nombres, String apellidos, String identificacion, int edad, String email) throws AnuncianteException {
+		return miSubastasQuindio.actualizarAnunciante(nombres, apellidos, identificacion, edad, email);
+	}
+
+	public boolean actualizarComprador(String nombres, String apellidos, String identificacion, int edad, String email) throws CompradorException {
+		return miSubastasQuindio.actualizarComprador(nombres, apellidos, identificacion, edad, email);
+	}
+
+	public String cambiarContrasenia(String identifiacion, TipoUsuario tipoUsuario, String nuevaContrasenia) throws CompradorException, AnuncianteException {
+		return miSubastasQuindio.cambiarContrasenia(identifiacion, tipoUsuario, nuevaContrasenia);
+	}
+
+	public String cambiarUsuario(String identifiacion, TipoUsuario tipoUsuario, String nuevoUsuario) throws UsuarioEnUsoException, CompradorException, AnuncianteException {
+		return miSubastasQuindio.cambiarUsuario(identifiacion, tipoUsuario, nuevoUsuario);
+	}
+
+	public boolean eliminarAnunciante(String identificacion) throws AnuncianteException {
+		return miSubastasQuindio.eliminarAnunciante(identificacion);
+	}
+
+	public boolean eliminarComprador(String identificacion) throws CompradorException {
+		return miSubastasQuindio.eliminarComprador(identificacion);
 	}
 
 	//-----------------------------------------------------------------------------------------------------------------------------------------

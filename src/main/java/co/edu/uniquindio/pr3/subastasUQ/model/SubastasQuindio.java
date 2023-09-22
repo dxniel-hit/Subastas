@@ -226,7 +226,7 @@ public class SubastasQuindio implements ISubastasQuindio {
             if(verificarUsuario(nuevoUsuario)) throw new UsuarioEnUsoException();
             c.setUsuario(nuevoUsuario);
         }
-        return "Usuario cambiado correctamente";
+        return "Usuario actualizado correctamente";
     }
 
     public String cambiarContrasenia(String identificacion, TipoUsuario tipoUsuario, String nuevaContrasenia) throws AnuncianteException, CompradorException {
@@ -240,7 +240,7 @@ public class SubastasQuindio implements ISubastasQuindio {
             if(c==null) throw new CompradorException("El Usuario de Comprador No se encenutra creado");
             c.setContrasenia(nuevaContrasenia);
         }
-        return "Usuario cambiado correctamente";
+        return "Contraseña actualizada correctamente";
     }
 
     //Metodos para autenticar y desautenticar un usuario una vez inicia sesión

@@ -61,23 +61,23 @@ public class RegistroViewController implements Initializable {
             if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
                 try {
                     boolean flag = registroController.mfm.crearAnunciante(nombres, apellidos, identificacion, Integer.parseInt(edad), usuario, contrasenia, email);
-                    mostrarMensaje("Proceso Exitoso", "Usuaro de Anunciante creado", "El usuario para anunciante fue creado exitosamente", Alert.AlertType.INFORMATION);
+                    mostrarMensaje("Proceso Exitoso", "Cuenta de Anunciante creado", "El usuario para anunciante fue creado exitosamente", Alert.AlertType.INFORMATION);
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {
                     mostrarMensaje("Error de Usuario", "Usuario en Uso", e.getMessage(), Alert.AlertType.WARNING);
                 } catch (AnuncianteException e) {
-                    mostrarMensaje("Error de Creacion", "No se puede crear el usuario", e.getMessage(), Alert.AlertType.WARNING);
+                    mostrarMensaje("Error de Creacion", "No se puede crear la cuenta", e.getMessage(), Alert.AlertType.WARNING);
                 }
             }
             if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
                 try {
                     boolean flag = registroController.mfm.crearComprador(nombres, apellidos, identificacion, Integer.parseInt(edad), usuario, contrasenia, email);
-                    mostrarMensaje("Proceso Exitoso", "Usuaro de Comprador creado", "El usuario para comprador fue creado exitosamente", Alert.AlertType.INFORMATION);
+                    mostrarMensaje("Proceso Exitoso", "Cuenta de Comprador creado", "El usuario para comprador fue creado exitosamente", Alert.AlertType.INFORMATION);
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {
                     mostrarMensaje("Error de Usuario", "Usuario en Uso", e.getMessage(), Alert.AlertType.WARNING);
                 } catch (CompradorException e) {
-                    mostrarMensaje("Error de Creacion", "No se puede crear el usuario", e.getMessage(), Alert.AlertType.WARNING);
+                    mostrarMensaje("Error de Creacion", "No se puede crear la cuenta", e.getMessage(), Alert.AlertType.WARNING);
                 }
             }
         }

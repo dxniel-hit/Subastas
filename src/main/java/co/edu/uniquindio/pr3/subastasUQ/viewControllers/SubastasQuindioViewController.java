@@ -50,6 +50,7 @@ public class SubastasQuindioViewController implements Initializable{
 
     //Metodo par deshabilitar las pestañas para sesión no iniciada
     public void dehabilitarPestanias(){
+        inicioTab.setDisable(false);
         productosTab.setDisable(true);
         misAnunciosTab.setDisable(true);
         misPujasTab.setDisable(true);
