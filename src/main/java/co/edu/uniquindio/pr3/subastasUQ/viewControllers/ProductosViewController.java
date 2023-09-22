@@ -1,68 +1,60 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
+import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import java.util.ArrayList;
 
 public class ProductosViewController {
 
     @FXML
-    private TextField inputCodigo;
-
-    @FXML
-    private TextField inputNombre;
-
-    @FXML
-    private Button btnNuevo;
-
-    @FXML
-    private Button btnAgregar;
+    private ListView<?> ListViewListaProductos;
 
     @FXML
     private Button btnActualizar;
 
     @FXML
+    private Button btnAgregar;
+
+    @FXML
+    private Button btnEliminar;
+
+    @FXML
+    private Button btnNuevo;
+
+    @FXML
     private ComboBox<?> comboTipoProducto;
-
-    @FXML
-    private TextArea inputDescripcion;
-
-    @FXML
-    private TextField inputValorInicial;
 
     @FXML
     private ImageView imageViewProducto;
 
     @FXML
-    private TableView<?> tableProducto;
+    private TextField inputCodigo;
 
     @FXML
-    private TableColumn<?, ?> columnCodigo;
+    private TextArea inputDescripcion;
 
     @FXML
-    private TableColumn<?, ?> columnNombre;
+    private TextField inputNombre;
 
     @FXML
-    private TableColumn<?, ?> columnValorInicial;
+    private TextField inputValorInicial;
 
-    @FXML
-    private TableColumn<?, ?> columnTipoProducto;
+    //Atributos de la clase
 
-    @FXML
-    private TableColumn<?, ?> columnDescripcion;
+    private static ArrayList<Producto> productos;
 
-    @FXML
-    private TableColumn<?, ?> columnImagen;
 
-    @FXML
-    private Button btnEliminar;
+
+    //Métodos de la clase
+
+    public static ArrayList<Producto> getProductos(){
+        return productos;
+    }
 
     @FXML
     void actualizarProductoEvent(ActionEvent event) {
@@ -91,11 +83,6 @@ public class ProductosViewController {
 
     @FXML
     void seleccionarImagenAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void seleccionarProductoEvent(MouseEvent event) {
 
     }
 

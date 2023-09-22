@@ -1,7 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MiCuentaController;
-import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
@@ -46,7 +45,7 @@ public class MiCuentaViewController implements  Initializable{
     private TextField inputUsuario;
 
     @FXML
-    private ComboBox comboTipoUsuario;
+    private ComboBox<String> comboTipoUsuario;
 
     @FXML
     private TextField inputEmail;

@@ -1,7 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
-import co.edu.uniquindio.pr3.subastasUQ.controllers.services.IRegistroControllerService;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
@@ -45,7 +44,7 @@ public class RegistroViewController implements Initializable {
     private TextField inputEmail;
 
     @FXML
-    private ComboBox comboTipoUsuario;
+    private ComboBox<String> comboTipoUsuario;
 
     @FXML
     void registrarAction(ActionEvent event) {

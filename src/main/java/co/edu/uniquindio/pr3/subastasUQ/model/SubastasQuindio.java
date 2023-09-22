@@ -243,6 +243,10 @@ public class SubastasQuindio implements ISubastasQuindio {
         return "Contraseña actualizada correctamente";
     }
 
+    //CRUD de Producto
+
+    
+
     //Metodos para autenticar y desautenticar un usuario una vez inicia sesión
     public void autenticarUsuario(String usuario){
         Usuario u = listaUsuarios.get(encontrarPosUsuario(usuario));

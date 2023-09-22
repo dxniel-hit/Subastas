@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
+import javafx.scene.image.Image;
 
 public class Producto {
 
@@ -8,20 +9,21 @@ public class Producto {
     private String codigo;
     private String nombre;
     private String descripcion;
-    private String direccionImagen;
+    private Image image;
     private Double valorInicial;
     private TipoProducto tipoProducto;
     private boolean isAnunciado;
 
     //Metodos constructor de la clase
-    public Producto(){
+    public Producto() {
 
     }
-    public Producto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) {
+
+    public Producto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.direccionImagen = direccionImagen;
+        this.image = image;
         this.valorInicial = valorInicial;
         this.tipoProducto = tipoProducto;
         this.isAnunciado = false;
@@ -31,45 +33,60 @@ public class Producto {
     public String getCodigo() {
         return codigo;
     }
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getDescripcion() {
         return descripcion;
     }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public String getDireccionImagen() {
-        return direccionImagen;
+
+    public Image getImage() {
+        return image;
     }
-    public void setDireccionImagen(String direccionImagen) {
-        this.direccionImagen = direccionImagen;
+
+    public void setImage(Image image) {
+        this.image = image;
     }
+
     public Double getValorInicial() {
         return valorInicial;
     }
+
     public void setValorInicial(Double valorInicial) {
         this.valorInicial = valorInicial;
     }
+
     public TipoProducto getTipoProducto() {
         return tipoProducto;
     }
+
     public void setTipoProducto(TipoProducto tipoProducto) {
         this.tipoProducto = tipoProducto;
     }
+
     public boolean isAnunciado() {
         return isAnunciado;
     }
+
     public void setAnunciado(boolean anunciado) {
         isAnunciado = anunciado;
     }
+
+
 
     //toString()
     @Override
@@ -78,7 +95,7 @@ public class Producto {
                 "codigo='" + codigo + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", direccionImagen='" + direccionImagen + '\'' +
+                ", imagen='" + image + '\'' +
                 ", valorInicial=" + valorInicial +
                 ", tipoProducto=" + tipoProducto +
                 ", isAnunciado=" + isAnunciado +
@@ -88,11 +105,11 @@ public class Producto {
     //-------------------------------------------------------------------------------------------------------------------------------
     //Metodos propios de la clase
 
-    public void anunciarProducto(){
+    public void anunciarProducto() {
         setAnunciado(true);
     }
 
-    public void desAnunciarProducto(){
+    public void desAnunciarProducto() {
         setAnunciado(false);
     }
 }

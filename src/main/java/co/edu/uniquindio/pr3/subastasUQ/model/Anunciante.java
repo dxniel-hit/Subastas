@@ -6,6 +6,7 @@ import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IAnunciante;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     private List<Producto> listaProductos;
 
     //Constructores
-    public Anunciante(){
+    public Anunciante() {
 
     }
 
@@ -66,8 +67,7 @@ public class Anunciante extends Usuario implements IAnunciante {
         Producto producto = null;
         try {
             producto = listaProductos.stream().filter(p -> p.getCodigo().equals(codigo)).findFirst().get();
-        }
-        catch(Exception ignored) {
+        } catch (Exception ignored) {
 
         }
         return producto;
@@ -75,9 +75,11 @@ public class Anunciante extends Usuario implements IAnunciante {
 
     @Override
     public boolean crearAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, String codigoProducto) throws AnuncioException, ProductoException {
-        if(obtenerAnuncio(codigo)!=null) throw new AnuncioException("El Anuncio con codigo: "+codigo+"ya se encuentra creado");
+        if (obtenerAnuncio(codigo) != null)
+            throw new AnuncioException("El Anuncio con codigo: " + codigo + "ya se encuentra creado");
         Producto p = obtenerProducto(codigoProducto);
-        if(p==null) throw new ProductoException("El Producto con codigo: "+codigoProducto+" "+"No ha sido creado por el anunciante");
+        if (p == null)
+            throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "No ha sido creado por el anunciante");
         Anuncio a = new Anuncio(codigo, fechaInicio, fechaFinal, nombreAnunciante, p, null);
         listaAnuncios.add(a);
         getSubastasQuindio().getListaAnuncios().add(a);
@@ -87,7 +89,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public void imprimirAnuncio(String codigo) throws AnuncioException {
         Anuncio a = obtenerAnuncio(codigo);
-        if(a==null) throw new AnuncioException("El Anuncio No se encuentra creado");
+        if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
         System.out.println("Detalles del Anuncio:");
         System.out.println("Codigo: " + a.getCodigo());
         System.out.println("Fecha Inicio: " + a.getFechaInicio());
@@ -98,29 +100,34 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public boolean actualizarAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, String codigoProducto) throws AnuncioException, ProductoException {
         Anuncio a = obtenerAnuncio(codigo);
-        if(a==null) throw new AnuncioException("El Anuncio No se encuentra creado");
+        if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
         Producto p = obtenerProducto(codigoProducto);
-        if(p==null) throw new ProductoException("El Producto con codigo: "+codigoProducto+" "+"No ha sido creado por el anunciante");
-        if(p.isAnunciado() && !a.getProducto().getCodigo().equals(codigoProducto)) throw new ProductoException("El Producto con codigo: "+codigoProducto+" "+"ya se encuentra anunciado");
+        if (p == null)
+            throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "No ha sido creado por el anunciante");
+        if (p.isAnunciado() && !a.getProducto().getCodigo().equals(codigoProducto))
+            throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "ya se encuentra anunciado");
 
-        a.setFechaInicio(fechaInicio); a.setFechaFinal(fechaFinal);
-        a.setNombreAnunciante(nombreAnunciante); a.setProducto(p);
+        a.setFechaInicio(fechaInicio);
+        a.setFechaFinal(fechaFinal);
+        a.setNombreAnunciante(nombreAnunciante);
+        a.setProducto(p);
         return true;
     }
 
-    public boolean eliminarAnuncio(String codigo) throws AnuncioException{
+    public boolean eliminarAnuncio(String codigo) throws AnuncioException {
         Anuncio a = obtenerAnuncio(codigo);
-        if(a==null) throw new AnuncioException("El Anuncio No se encuentra creado");
+        if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
         getSubastasQuindio().getListaAnuncios().remove(a);
         listaAnuncios.remove(a);
         return true;
     }
 
     @Override
-    public boolean crearProducto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
+    public boolean crearProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
-        if(p!=null) throw new ProductoException("El Producto con codigo: "+codigo+" "+"ya se encuentra creado");
-        Producto producto = new Producto(codigo, nombre, descripcion, direccionImagen, valorInicial, tipoProducto);
+        if (p != null)
+            throw new ProductoException("El Producto con codigo: " + codigo + " " + "ya se encuentra creado");
+        Producto producto = new Producto(codigo, nombre, descripcion, image, valorInicial, tipoProducto);
         listaProductos.add(producto);
         getSubastasQuindio().getListaProductos().add(producto);
         return true;
@@ -129,7 +136,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public void imprimirProducto(String codigo) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
-        if(p==null) throw new ProductoException("El Producto con codigo: "+codigo+" no se encuentra creado");
+        if (p == null) throw new ProductoException("El Producto con codigo: " + codigo + " no se encuentra creado");
         System.out.println("Detalles del Producto:");
         System.out.println("Codigo: " + p.getCodigo());
         System.out.println("Nombre Producto: " + p.getNombre());
@@ -139,11 +146,14 @@ public class Anunciante extends Usuario implements IAnunciante {
     }
 
     @Override
-    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
+    public boolean actualizarProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
         Producto p = obtenerProducto(codigo);
-        if(p==null) throw new ProductoException("El Producto con codigo: "+codigo+" "+"No ha sido creado por el anunciante");
-        p.setNombre(nombre); p.setDescripcion(descripcion);
-        p.setDireccionImagen(direccionImagen); p.setValorInicial(valorInicial);
+        if (p == null)
+            throw new ProductoException("El Producto con codigo: " + codigo + " " + "No ha sido creado por el anunciante");
+        p.setNombre(nombre);
+        p.setDescripcion(descripcion);
+        p.setImage(image);
+        p.setValorInicial(valorInicial);
         p.setTipoProducto(tipoProducto);
         return true;
     }
@@ -151,7 +161,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public boolean eliminarProducto(String codigo) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
-        if(p==null) throw new ProductoException("El Producto No se encuentra creado");
+        if (p == null) throw new ProductoException("El Producto No se encuentra creado");
         getSubastasQuindio().getListaProductos().remove(p);
         listaProductos.remove(p);
         return true;
