@@ -1,9 +1,11 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
+import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IProducto;
 import javafx.scene.image.Image;
 
-public class Producto {
+public class Producto implements IProducto {
 
     //Atributos de la clase
     private String codigo;
@@ -87,7 +89,6 @@ public class Producto {
     }
 
 
-
     //toString()
     @Override
     public String toString() {
@@ -111,5 +112,29 @@ public class Producto {
 
     public void desAnunciarProducto() {
         setAnunciado(false);
+    }
+
+
+
+
+    @Override
+    public Producto crearProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
+        Producto p = new Producto(codigo,nombre,descripcion,image,valorInicial,tipoProducto);
+        return p;
+    }
+
+    @Override
+    public void imprimirProducto(String codigo) throws ProductoException {
+
+    }
+
+    @Override
+    public boolean actualizarProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarProducto(String codigo) throws ProductoException {
+        return false;
     }
 }

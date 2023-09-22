@@ -55,7 +55,7 @@ public class RegistroViewController implements Initializable {
         String usuario = inputUsuario.getText();
         String contrasenia = inputContrasenia.getText();
         String email = inputEmail.getText();
-        TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
+        TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem());
         if(validarDatos(nombres, apellidos, identificacion, usuario, contrasenia, email, edad, tipoUsuario)) {
             if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
                 try {
@@ -109,6 +109,7 @@ public class RegistroViewController implements Initializable {
         if(correo == null || correo.equals(""))
             mensaje += "El correo es invalido \n";
 
+        //regex watafa
         if(!edad.matches("\\d+"))
             mensaje += "La edad debe ser un numero \n";
 
