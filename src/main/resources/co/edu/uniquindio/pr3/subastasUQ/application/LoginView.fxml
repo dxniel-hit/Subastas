@@ -20,7 +20,7 @@
             <Button layoutX="192.0" layoutY="325.0" mnemonicParsing="false" onAction="#ingresarAction" prefHeight="25.0" prefWidth="120.0" text="INGRESAR" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="177.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/usuario.png" />
+                  <Image url="@../images/usuario.png" />
                </image>
             </ImageView>
          </children>

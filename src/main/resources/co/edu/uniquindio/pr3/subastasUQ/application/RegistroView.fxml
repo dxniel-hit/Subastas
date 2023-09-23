@@ -22,7 +22,7 @@
             <Button layoutX="25.0" layoutY="396.0" mnemonicParsing="false" onAction="#registrarAction" prefHeight="25.0" prefWidth="120.0" text="REGISTRAR" />
             <ImageView fitHeight="81.0" fitWidth="97.0" layoutX="17.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/usuario.png" />
+                  <Image url="@../images/usuario.png" />
                </image>
             </ImageView>
             <Label layoutX="27.0" layoutY="185.0" prefHeight="30.0" prefWidth="84.0" text="Identificacion:" />
