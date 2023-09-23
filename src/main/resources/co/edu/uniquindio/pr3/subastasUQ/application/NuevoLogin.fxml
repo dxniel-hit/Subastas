@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+            prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.NuevoLoginViewController">
+    <children>
+        <AnchorPane prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #669966;">
+            <children>
+                <ImageView fx:id="ImageVentanaInicio" fitHeight="224.0" fitWidth="272.0" layoutX="164.0" layoutY="108.0"
+                           pickOnBounds="true" preserveRatio="true"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="600.0" prefHeight="700.0" prefWidth="600.0">
+            <children>
+                <Label layoutX="175.0" layoutY="103.0" text="Bienvenido">
+                    <font>
+                        <Font name="Rockwell" size="48.0"/>
+                    </font>
+                    <effect>
+                        <Glow/>
+                    </effect>
+                </Label>
+                <Label layoutX="56.0" layoutY="175.0" prefHeight="96.0" prefWidth="501.0"
+                       text="Encuentre las mejores ofertas en los artículos que ama con nuestras subastas en línea."
+                       textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font name="Rockwell" size="22.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="TFNombreUsuario" layoutX="120.0" layoutY="324.0" prefHeight="26.0" prefWidth="360.0"
+                           promptText="Nombre de usuario"/>
+                <TextField fx:id="TFContrasenia" layoutX="120.0" layoutY="398.0" prefHeight="26.0" prefWidth="360.0"
+                           promptText="Contraseña"/>
+                <Hyperlink fx:id="HyperlinkContraseniaOlvido" layoutX="120.0" layoutY="434.0"
+                           onAction="#contraseniaOlvidada" text="¿Contraseña olvidada?"/>
+                <Button fx:id="ButtonIniciarSesion" layoutX="246.0" layoutY="478.0" mnemonicParsing="false"
+                        onAction="#iniciarSesion" prefHeight="46.0" prefWidth="109.0" style="-fx-background-radius: 16;"
+                        text="Iniciar sesion"/>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
