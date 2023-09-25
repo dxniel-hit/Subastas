@@ -1,6 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
-import co.edu.uniquindio.pr3.subastasUQ.controllers.services.IRegistroControllerService;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.*;
 
 public class RegistroController implements IRegistroControllerService {
     public ModelFactoryController mfm;

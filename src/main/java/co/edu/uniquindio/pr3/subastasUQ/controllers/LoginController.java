@@ -1,8 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
-import co.edu.uniquindio.pr3.subastasUQ.controllers.services.ILoginControllerService;
-
-public class LoginController implements ILoginControllerService {
+public class LoginController {
 
     public ModelFactoryController mfm;
 
