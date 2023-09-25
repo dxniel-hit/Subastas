@@ -32,7 +32,6 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     //Datos para la creación de productos en la aplicación
     //DTO
     Subasta miSubasta;
-    ArrayList<Producto> listaProductos = new ArrayList<Producto>();
     SubastaMappers mapper = SubastaMappers.INSTANCE;
     private Producto miProducto;
 
@@ -49,7 +48,6 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     private void cargarDatosBase() {
         miSubasta = new Subasta();
-        miSubasta.setListaProductos(listaProductos);
         miSubasta = SubastaUtils.inicializarDatos();
    }
 
