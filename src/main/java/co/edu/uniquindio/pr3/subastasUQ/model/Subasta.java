@@ -4,13 +4,13 @@ import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
-import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.ISubastasControllerService;
+import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.ISubasta;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Subasta implements ISubastasControllerService {
+public class Subasta implements ISubasta {
 
     //Atributos de la clase
     private String nombre;

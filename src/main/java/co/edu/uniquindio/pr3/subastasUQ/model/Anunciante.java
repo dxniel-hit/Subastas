@@ -2,6 +2,7 @@ package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
+import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IAnunciante;
 
@@ -111,6 +112,7 @@ public class Anunciante extends Usuario implements IAnunciante {
         return true;
     }
 
+    @Override
     public boolean eliminarAnuncio(String codigo) throws AnuncioException {
         Anuncio a = obtenerAnuncio(codigo);
         if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
@@ -119,49 +121,45 @@ public class Anunciante extends Usuario implements IAnunciante {
         return true;
     }
 
-//    @Override
-//    public boolean crearProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
-//        Producto p = getSubastasQuindio().obtenerProducto(codigo);
-//        if (p != null)
-//            throw new ProductoException("El Producto con codigo: " + codigo + " " + "ya se encuentra creado");
-//        Producto producto = new Producto(codigo, nombre, descripcion, image, valorInicial, tipoProducto);
-//        listaProductos.add(producto);
-//        getSubastasQuindio().getListaProductos().add(producto);
-//        return true;
-//    }
-//
-//    @Override
-//    public void imprimirProducto(String codigo) throws ProductoException {
-//        Producto p = getSubastasQuindio().obtenerProducto(codigo);
-//        if (p == null) throw new ProductoException("El Producto con codigo: " + codigo + " no se encuentra creado");
-//        System.out.println("Detalles del Producto:");
-//        System.out.println("Codigo: " + p.getCodigo());
-//        System.out.println("Nombre Producto: " + p.getNombre());
-//        System.out.println("Descripción: " + p.getDescripcion());
-//        System.out.println("Valor Inicial: " + p.getValorInicial());
-//        System.out.println("El Producto esta anunciado: " + p.isAnunciado());
-//    }
-//
-//    @Override
-//    public boolean actualizarProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
-//        Producto p = obtenerProducto(codigo);
-//        if (p == null)
-//            throw new ProductoException("El Producto con codigo: " + codigo + " " + "No ha sido creado por el anunciante");
-//        p.setNombre(nombre);
-//        p.setDescripcion(descripcion);
-//        p.setImage(image);
-//        p.setValorInicial(valorInicial);
-//        p.setTipoProducto(tipoProducto);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean eliminarProducto(String codigo) throws ProductoException {
-//        Producto p = getSubastasQuindio().obtenerProducto(codigo);
-//        if (p == null) throw new ProductoException("El Producto No se encuentra creado");
-//        getSubastasQuindio().getListaProductos().remove(p);
-//        listaProductos.remove(p);
-//        return true;
-//    }
+    @Override
+    public boolean crearProducto(String codigo, String nombre, String descripcion, String image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
+        Producto p = getSubastasQuindio().obtenerProducto(codigo);
+        if(p!=null) throw new ProductoException("El Producto con codigo: "+codigo+" "+"ya se encuentra creado");
+        Producto producto = new Producto(codigo, nombre, descripcion, image, valorInicial, tipoProducto);
+        listaProductos.add(producto);
+        getSubastasQuindio().getListaProductos().add(producto);
+        return true;
+    }
+
+    @Override
+    public void imprimirProducto(String codigo) throws ProductoException {
+        Producto p = getSubastasQuindio().obtenerProducto(codigo);
+        if(p==null) throw new ProductoException("El Producto con codigo: "+codigo+" no se encuentra creado");
+        System.out.println("Detalles del Producto:");
+        System.out.println("Codigo: " + p.getCodigo());
+        System.out.println("Nombre Producto: " + p.getNombre());
+        System.out.println("Descripción: " + p.getDescripcion());
+        System.out.println("Valor Inicial: " + p.getValorInicial());
+        System.out.println("El Producto esta anunciado: " + p.isAnunciado());
+    }
+
+    @Override
+    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
+        Producto p = obtenerProducto(codigo);
+        if(p==null) throw new ProductoException("El Producto con codigo: "+codigo+" "+"No ha sido creado por el anunciante");
+        p.setNombre(nombre); p.setDescripcion(descripcion);
+        p.setImage(image); p.setValorInicial(valorInicial);
+        p.setTipoProducto(tipoProducto);
+        return true;
+    }
+
+    @Override
+    public boolean eliminarProducto(String codigo) throws ProductoException {
+        Producto p = getSubastasQuindio().obtenerProducto(codigo);
+        if(p==null) throw new ProductoException("El Producto No se encuentra creado");
+        getSubastasQuindio().getListaProductos().remove(p);
+        listaProductos.remove(p);
+        return true;
+    }
 
 }

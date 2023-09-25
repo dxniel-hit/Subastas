@@ -1,20 +1,14 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
-import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IProductoControllerService;
-import javafx.scene.image.Image;
 
-import java.util.*;
-
-public class Producto implements IProductoControllerService {
+public class Producto {
 
     //Atributos de la clase
     private String codigo;
     private String nombre;
     private String descripcion;
-    private Image image;
+    private String image;
     private Double valorInicial;
     private TipoProducto tipoProducto;
     private Boolean isAnunciado;
@@ -24,15 +18,7 @@ public class Producto implements IProductoControllerService {
 
     }
 
-    public Producto(String codigo, String nombre, String descripcion, Double valorInicial, TipoProducto tipoProducto) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.valorInicial = valorInicial;
-        this.tipoProducto = tipoProducto;
-    }
-
-    public Producto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) {
+    public Producto(String codigo, String nombre, String descripcion, String image, Double valorInicial, TipoProducto tipoProducto) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -67,11 +53,11 @@ public class Producto implements IProductoControllerService {
         this.descripcion = descripcion;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -125,30 +111,4 @@ public class Producto implements IProductoControllerService {
         setAnunciado(false);
     }
 
-
-    @Override
-    public List<ProductoDTO> obtenerProductos() {
-        return null;
-    }
-
-    @Override
-    public Producto crearProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
-        Producto p = new Producto(codigo,nombre,descripcion,image,valorInicial,tipoProducto);
-        return p;
-    }
-
-    @Override
-    public void imprimirProducto(String codigo) throws ProductoException {
-
-    }
-
-    @Override
-    public boolean actualizarProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
-        return false;
-    }
-
-    @Override
-    public boolean eliminarProducto(String codigo) throws ProductoException {
-        return false;
-    }
 }

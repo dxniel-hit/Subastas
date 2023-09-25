@@ -18,5 +18,12 @@ public interface IAnunciante {
 
     public boolean eliminarAnuncio(String codigo) throws AnuncioException;
 
+    public boolean crearProducto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) throws ProductoException;
+
+    public void imprimirProducto(String codigo) throws ProductoException;
+
+    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String direccionImagen, Double valorInicial, TipoProducto tipoProducto) throws ProductoException;
+
+    public boolean eliminarProducto(String codigo) throws ProductoException;
 
 }

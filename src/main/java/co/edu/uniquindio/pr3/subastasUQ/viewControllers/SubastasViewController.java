@@ -5,7 +5,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class NuevoSubastasViewController {
+public class SubastasViewController {
 
     @FXML
     private Hyperlink hplIniciarSesion;

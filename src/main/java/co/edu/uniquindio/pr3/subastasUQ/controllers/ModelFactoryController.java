@@ -23,6 +23,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private RegistroViewController registroViewController;
     private LoginViewController loginViewController;
     private MiCuentaViewController miCuentaViewController;
+    private ProductosViewController productosViewController;
 
 
     //Datos para el manejo de usuarios segun la verificacion de usuario
@@ -33,27 +34,17 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     //DTO
     Subasta miSubasta;
     SubastaMappers mapper = SubastaMappers.INSTANCE;
-    private Producto miProducto;
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
-        cargarDatosBase();
+        inicializarDatos();
     }
+
     //Singleton (Garantiza instancia unica)
     private static class SingletonHolder {
         // El constructor de Singleton puede ser llamado desde aquí al ser protected
         private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
 
-    }
-
-    private void cargarDatosBase() {
-        miSubasta = new Subasta();
-        miSubasta = SubastaUtils.inicializarDatos();
-   }
-
-    @Override
-    public List<ProductoDTO> obtenerProductos() {
-        return mapper.getProductosDTO(miSubasta.getListaProductos());
     }
 
     // Método para obtener la instancia de nuestra clase
@@ -78,6 +69,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.miSubasta = miSubasta;
     }
 
+    public Anunciante getMiAnunciante() {
+        return miAnunciante;
+    }
+
+    public Comprador getMiComprador() {
+        return miComprador;
+    }
+
     public Subasta getMiSubastasQuindio() {
         return miSubasta;
     }
@@ -88,54 +87,74 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------
     //Funciones de subastasQuindio para el singleton
+
+    @Override
     public void initVentanaPrincipalViewController(VentanaPrincipalViewController ventanaPrincipalViewController) {
         this.ventanaPrincipalViewController = ventanaPrincipalViewController;
     }
 
+    @Override
     public void initRegistroViewController(RegistroViewController registroViewController) {
         this.registroViewController = registroViewController;
     }
 
+    @Override
     public void initLoginViewController(LoginViewController loginViewController) {
         this.loginViewController = loginViewController;
     }
 
+    @Override
     public void initMiCuentaViewController(MiCuentaViewController miCuentaViewController) {
         this.miCuentaViewController = miCuentaViewController;
     }
 
+    @Override
+    public void initProductosViewControlles(ProductosViewController productosViewController) {
+        this.productosViewController = productosViewController;
+    }
 
+    @Override
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, AnuncianteException {
         return this.miSubasta.crearAnunciante(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
     }
 
+    @Override
     public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, CompradorException {
         return this.miSubasta.crearComprador(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
     }
+
+    @Override
     public int encontrarPosUsuario(String usuario) {
         return this.miSubasta.encontrarPosUsuario(usuario);
     }
 
+    @Override
     public Usuario obtenerUsuario(int pos) {
         return this.miSubasta.getListaUsuarios().get(pos);
     }
 
+    @Override
     public Anunciante obtenerAnunciante(String identificacion) {
         return this.miSubasta.obtenerAnunciante(identificacion);
     }
 
+    @Override
     public Comprador obtenerComprador(String identificacion) {
         return this.miSubasta.obtenerComprador(identificacion);
     }
 
+    @Override
     public void setMiAnunciante(Anunciante miAnunciante) {
         this.miAnunciante = miAnunciante;
         this.miComprador = null;
         this.miCuentaViewController.setAnunciante(miAnunciante);
         this.miCuentaViewController.setMiAnucianteInformation();
         this.miSubasta.autenticarUsuario(miAnunciante.getUsuario());
+        this.productosViewController.setAnunciante(miAnunciante);
+        this.productosViewController.initView();
     }
 
+    @Override
     public void setMiComprador(Comprador miComprador) {
         this.miComprador = miComprador;
         this.miAnunciante = null;
@@ -144,55 +163,79 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.miSubasta.autenticarUsuario(miComprador.getUsuario());
     }
 
+    @Override
     public void resetCuenta(String usuario) {
         this.miAnunciante = null;
         this.miComprador = null;
+        this.miCuentaViewController.setAnunciante(null);
+        this.miCuentaViewController.setComprador(null);
+        this.productosViewController.setAnunciante(null);
         this.miSubasta.desAutenticarUsuario(usuario);
         this.ventanaPrincipalViewController.dehabilitarPestanias();
     }
 
+    @Override
     public void resetCuenta() {
         this.miAnunciante = null;
         this.miComprador = null;
         this.ventanaPrincipalViewController.dehabilitarPestanias();
     }
 
+    @Override
     public void habilitarPestaniasAnunciante() {
         ventanaPrincipalViewController.habilitarPestaniasAnunciante();
     }
 
+    @Override
     public void habilitarPestaniasComprador() {
         ventanaPrincipalViewController.habilitarPestaniasComprador();
     }
 
+    @Override
     public boolean actualizarAnuciante(String nombres, String apellidos, String identificacion, int edad, String email) throws AnuncianteException {
         return miSubasta.actualizarAnunciante(nombres, apellidos, identificacion, edad, email);
     }
 
+    @Override
     public boolean actualizarComprador(String nombres, String apellidos, String identificacion, int edad, String email) throws CompradorException {
         return miSubasta.actualizarComprador(nombres, apellidos, identificacion, edad, email);
     }
 
+    @Override
     public String cambiarContrasenia(String identifiacion, TipoUsuario tipoUsuario, String nuevaContrasenia) throws CompradorException, AnuncianteException {
         return miSubasta.cambiarContrasenia(identifiacion, tipoUsuario, nuevaContrasenia);
     }
 
+    @Override
     public String cambiarUsuario(String identifiacion, TipoUsuario tipoUsuario, String nuevoUsuario) throws UsuarioEnUsoException, CompradorException, AnuncianteException {
         return miSubasta.cambiarUsuario(identifiacion, tipoUsuario, nuevoUsuario);
     }
 
+    @Override
     public boolean eliminarAnunciante(String identificacion) throws AnuncianteException {
         return miSubasta.eliminarAnunciante(identificacion);
     }
 
+    @Override
     public boolean eliminarComprador(String identificacion) throws CompradorException {
         return miSubasta.eliminarComprador(identificacion);
     }
 
     //Métodos para crear un producto
 
-    public Producto crearProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
-        return this.miProducto.crearProducto(codigo, nombre, descripcion, image, valorInicial, tipoProducto);
+    public List<ProductoDTO> obtenerProductosAnunciante() {
+        if(miAnunciante!=null) return mapper.getProductosDTO(miAnunciante.getListaProductos());
+        return null;
+    }
+
+    public boolean agregarProducto(ProductoDTO productoDTO) {
+        Producto p = mapper.productoDTOtoProducto(productoDTO);
+        try {
+            return miAnunciante.crearProducto(p.getCodigo(), p.getNombre(), p.getDescripcion(), p.getImage(), p.getValorInicial(), p.getTipoProducto());
+        } catch (ProductoException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
 }

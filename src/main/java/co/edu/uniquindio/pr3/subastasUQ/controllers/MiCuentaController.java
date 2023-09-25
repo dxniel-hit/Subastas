@@ -1,6 +1,8 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
-public class MiCuentaController {
+import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IMiCuentaControllerService;
+
+public class MiCuentaController implements IMiCuentaControllerService {
 
     public ModelFactoryController mfm;
 

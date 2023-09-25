@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
       prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.NuevoSubastasViewController">
+      fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.SubastasViewController">
     <children>
         <TableView fx:id="tbvSubastas" layoutY="63.0" prefHeight="706.0" prefWidth="1102.0">
             <columns>
