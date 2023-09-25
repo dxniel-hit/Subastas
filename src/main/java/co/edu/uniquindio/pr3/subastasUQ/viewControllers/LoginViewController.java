@@ -91,9 +91,6 @@ public class LoginViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image image = new Image((getClass().getResource("/images/auction.png")).toExternalForm());
-        imageLogin.setImage(image);
-
         System.out.println("Invocación EmpleadoViewController");
         loginController = new LoginController();
         loginController.mfm.initLoginViewController(this);

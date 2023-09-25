@@ -142,9 +142,6 @@ public class RegistroViewController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("ANUNCIANTE", "COMPRADOR");
         comboTipoUsuario.setItems(list);
 
-        Image image = new Image((getClass().getResource("/images/auction.png")).toExternalForm());
-        imageRegistro.setImage(image);
-
         System.out.println("Invocación EmpleadoViewController");
         registroController = new RegistroController();
         registroController.mfm.initRegistroViewController(this);

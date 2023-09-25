@@ -7,11 +7,11 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.VentanaPrincipalViewController">
     <TabPane prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Tab fx:id="anunciosTab" text="Subastas">
-            <fx:include source="NewSubastasView.fxml" />
+            <fx:include source="SubastasView.fxml" />
         </Tab>
 
         <Tab fx:id="productosTab" text="Mis productos">
-            <fx:include source="NewProductosView.fxml" />
+            <fx:include source="ProductosView.fxml" />
         </Tab>
         <Tab fx:id="misAnunciosTab" text="Mis anuncios">
             <fx:include source="MisAnunciosView.fxml" />
