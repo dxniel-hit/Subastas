@@ -22,4 +22,8 @@ public class ProductoController implements IProductoControllerService {
     public boolean agregarProducto(ProductoDTO productoDto) {
         return mfm.agregarProducto(productoDto);
     }
+
+    public List<ProductoDTO> obtenerProductosAnunciante() {
+        return mfm.obtenerProductosAnunciante();
+    }
 }

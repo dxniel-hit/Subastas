@@ -12,6 +12,8 @@ import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.utils.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 import java.util.*;
@@ -151,7 +153,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.miCuentaViewController.setMiAnucianteInformation();
         this.miSubasta.autenticarUsuario(miAnunciante.getUsuario());
         this.productosViewController.setAnunciante(miAnunciante);
-        this.productosViewController.initView();
+
+        //se añaden los productos segun el anunciante
+        ObservableList<ProductoDTO> listaProductosDTO = FXCollections.observableArrayList();
+        listaProductosDTO.addAll(obtenerProductosAnunciante());
+        this.productosViewController.setListaProductosDTO(listaProductosDTO);
     }
 
     @Override
@@ -225,7 +231,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     public List<ProductoDTO> obtenerProductosAnunciante() {
         if(miAnunciante!=null) return mapper.getProductosDTO(miAnunciante.getListaProductos());
-        return null;
+        return new ArrayList<ProductoDTO>();
     }
 
     public boolean agregarProducto(ProductoDTO productoDTO) {

@@ -12,4 +12,6 @@ public interface IProductoControllerService {
 
     public boolean agregarProducto(ProductoDTO productoDto);
 
+    public List<ProductoDTO> obtenerProductosAnunciante();
+
 }

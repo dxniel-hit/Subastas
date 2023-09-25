@@ -86,7 +86,7 @@ public class ProductosViewController implements Initializable {
     private TableColumn<ProductoDTO, String> tbcPrecioProd;
 
     @FXML
-    private TableView<ProductoDTO> tbvProductos;
+    public TableView<ProductoDTO> tbvProductos;
 
     @FXML
     private TextArea txaDescripcionProducto;
@@ -121,14 +121,11 @@ public class ProductosViewController implements Initializable {
     public void setAnunciante(Anunciante anunciante){
         this.anunciante = anunciante;
         listaProductosDTO.removeAll();
-        if(this.anunciante!=null) listaProductosDTO.addAll(obtenerProductos());
-        System.out.println(listaProductosDTO);
+        tbvProductos.getItems().clear();
     }
 
     public void initView() {
         initDatabinding();
-        tbvProductos.getItems().removeAll();
-        tbvProductos.setItems(listaProductosDTO);
         listenerSelection();
     }
 
@@ -141,8 +138,8 @@ public class ProductosViewController implements Initializable {
         tbcPrecioProd.setCellValueFactory(celldata -> new SimpleStringProperty(String.valueOf(celldata.getValue().valorInicial())));
     }
 
-    private List<ProductoDTO> obtenerProductos() {
-        return productoControllerService.mfm.obtenerProductosAnunciante();
+    private void obtenerProductos() {
+        listaProductosDTO.addAll(productoControllerService.obtenerProductosAnunciante());
     }
 
     private void listenerSelection() {
@@ -269,6 +266,7 @@ public class ProductosViewController implements Initializable {
         if(validarDatos(txfCodigoProd.getText(), txfNombreProd.getText(), txaDescripcionProducto.getText(), imagenProducto, txfValorInicialProd.getText(), TipoProducto.valueOf(cmbTipoProd.getSelectionModel().getSelectedItem().toString()))){
             if(productoControllerService.agregarProducto(productoDto)){
                 listaProductosDTO.add(productoDto);
+                tbvProductos.setItems(listaProductosDTO);
                 mostrarMensaje("Notificación producto", "Producto creado", "El producto se ha creado con éxito", Alert.AlertType.INFORMATION);
                 limpiarCamposProducto();
             }else{
@@ -290,4 +288,8 @@ public class ProductosViewController implements Initializable {
         cmbTipoProd.getSelectionModel().clearSelection();
     }
 
+    public void setListaProductosDTO(ObservableList<ProductoDTO> listaProductosDTO) {
+        this.listaProductosDTO = listaProductosDTO;
+        this.tbvProductos.setItems(this.listaProductosDTO);
+    }
 }
