@@ -1,12 +1,9 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IAnunciante;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +19,8 @@ public class Anunciante extends Usuario implements IAnunciante {
 
     }
 
-    public Anunciante(String nombres, String apellidos, String identificacion, Integer edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
-        super(nombres, apellidos, identificacion, edad, subastasQuindio, usuario, contrasenia, email, isAutenticado, tipoUsuario);
+    public Anunciante(String nombres, String apellidos, String identificacion, Integer edad, Subasta subasta, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+        super(nombres, apellidos, identificacion, edad, subasta, usuario, contrasenia, email, isAutenticado, tipoUsuario);
         this.listaAnuncios = new ArrayList<Anuncio>();
         this.listaProductos = new ArrayList<Producto>();
     }

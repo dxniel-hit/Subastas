@@ -1,13 +1,11 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.PujaException;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IComprador;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Comprador extends Usuario implements IComprador {
 
@@ -21,8 +19,8 @@ public class Comprador extends Usuario implements IComprador {
 
     }
 
-    public Comprador(String nombres, String apellidos, String identificacion, Integer edad, SubastasQuindio subastasQuindio, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
-        super(nombres, apellidos, identificacion, edad, subastasQuindio, usuario, contrasenia, email, isAutenticado, tipoUsuario);
+    public Comprador(String nombres, String apellidos, String identificacion, Integer edad, Subasta subasta, String usuario, String contrasenia, String email, Boolean isAutenticado, TipoUsuario tipoUsuario) {
+        super(nombres, apellidos, identificacion, edad, subasta, usuario, contrasenia, email, isAutenticado, tipoUsuario);
         this.listaPujas = new ArrayList<Puja>();
         this.cantidadDeVecesPujada = new ArrayList<Integer>();
         this.listaCompras = new ArrayList<Compra>();

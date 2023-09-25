@@ -1,11 +1,14 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
+import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
-import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IProducto;
+import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IProductoControllerService;
 import javafx.scene.image.Image;
 
-public class Producto implements IProducto {
+import java.util.*;
+
+public class Producto implements IProductoControllerService {
 
     //Atributos de la clase
     private String codigo;
@@ -14,11 +17,19 @@ public class Producto implements IProducto {
     private Image image;
     private Double valorInicial;
     private TipoProducto tipoProducto;
-    private boolean isAnunciado;
+    private Boolean isAnunciado;
 
     //Metodos constructor de la clase
     public Producto() {
 
+    }
+
+    public Producto(String codigo, String nombre, String descripcion, Double valorInicial, TipoProducto tipoProducto) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.valorInicial = valorInicial;
+        this.tipoProducto = tipoProducto;
     }
 
     public Producto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) {
@@ -115,7 +126,10 @@ public class Producto implements IProducto {
     }
 
 
-
+    @Override
+    public List<ProductoDTO> obtenerProductos() {
+        return null;
+    }
 
     @Override
     public Producto crearProducto(String codigo, String nombre, String descripcion, Image image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
