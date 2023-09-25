@@ -149,11 +149,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public void setMiAnunciante(Anunciante miAnunciante) {
         this.miAnunciante = miAnunciante;
         this.miComprador = null;
+
+        //se setea la informacion para CuentaViewController
         this.miCuentaViewController.setAnunciante(miAnunciante);
         this.miCuentaViewController.setMiAnucianteInformation();
         this.miSubasta.autenticarUsuario(miAnunciante.getUsuario());
-        this.productosViewController.setAnunciante(miAnunciante);
 
+        //se setea el anunciante en ProductosViewController
+        this.productosViewController.setAnunciante(miAnunciante);
         //se añaden los productos segun el anunciante
         ObservableList<ProductoDTO> listaProductosDTO = FXCollections.observableArrayList();
         listaProductosDTO.addAll(obtenerProductosAnunciante());
@@ -164,6 +167,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public void setMiComprador(Comprador miComprador) {
         this.miComprador = miComprador;
         this.miAnunciante = null;
+
+        //se setea la informacion para CuentaViewController
         this.miCuentaViewController.setComprador(miComprador);
         this.miCuentaViewController.setMiCompradorInformation();
         this.miSubasta.autenticarUsuario(miComprador.getUsuario());
@@ -173,15 +178,22 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public void resetCuenta(String usuario) {
         this.miAnunciante = null;
         this.miComprador = null;
+
+        //se setea la informacion para CuentaViewController
         this.miCuentaViewController.setAnunciante(null);
         this.miCuentaViewController.setComprador(null);
+
+        //se setea la informacion para ProductoViewController
         this.productosViewController.setAnunciante(null);
+
+        //se desautentica el usuario y se dehabilitan las pestaññas
         this.miSubasta.desAutenticarUsuario(usuario);
         this.ventanaPrincipalViewController.dehabilitarPestanias();
     }
 
     @Override
     public void resetCuenta() {
+        //reset para el accion en la que se elimina una cuenta
         this.miAnunciante = null;
         this.miComprador = null;
         this.ventanaPrincipalViewController.dehabilitarPestanias();

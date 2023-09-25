@@ -138,16 +138,25 @@ public class ProductosViewController implements Initializable {
         tbcPrecioProd.setCellValueFactory(celldata -> new SimpleStringProperty(String.valueOf(celldata.getValue().valorInicial())));
     }
 
-    private void obtenerProductos() {
-        listaProductosDTO.addAll(productoControllerService.obtenerProductosAnunciante());
-    }
 
     private void listenerSelection() {
 
         tbvProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             productoSeleccionado = newSelection;
-            //MostrarInfomacionProducto method to be added
+            mostrarInformacionProducto(productoSeleccionado);
         });
+    }
+
+    private void mostrarInformacionProducto(ProductoDTO productoSeleccionado) {
+        if(productoSeleccionado != null){
+            txfCodigoProd.setText(productoSeleccionado.codigo());
+            txfNombreProd.setText(productoSeleccionado. nombre());
+            txaDescripcionProducto.setText(productoSeleccionado.descripcion());
+            Image imgLoad = new Image(productoSeleccionado.image());
+            imageViewProducto.setImage(imgLoad);
+            txfValorInicialProd.setText(productoSeleccionado.valorInicial().toString());
+            cmbTipoProd.getSelectionModel().select(productoSeleccionado.tipoProducto().toString());
+        }
     }
 
     public void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
