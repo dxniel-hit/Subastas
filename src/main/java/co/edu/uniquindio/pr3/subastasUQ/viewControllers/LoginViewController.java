@@ -1,16 +1,15 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.LoginController;
-import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
-import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +19,10 @@ public class LoginViewController implements Initializable {
     LoginController loginController;
     Anunciante miAnunciante;
     Comprador miComprador;
+
+
+    @FXML
+    private ImageView imageLogin;
 
     @FXML
     private TextField inputUsuario;
@@ -87,6 +90,10 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Image image = new Image((getClass().getResource("/images/auction.png")).toExternalForm());
+        imageLogin.setImage(image);
+
         System.out.println("Invocación EmpleadoViewController");
         loginController = new LoginController();
         loginController.mfm.initLoginViewController(this);

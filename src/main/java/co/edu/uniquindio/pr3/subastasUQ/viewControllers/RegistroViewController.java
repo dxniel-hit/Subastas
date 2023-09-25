@@ -10,41 +10,45 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class RegistroViewController implements Initializable {
 
     RegistroController registroController;
 
     @FXML
-    private TextField inputNombres;
+    private ImageView imageRegistro;
 
     @FXML
-    private PasswordField inputContrasenia;
+    private Button btnRegistrarse;
 
     @FXML
-    private TextField inputIdentificacion;
+    private ComboBox<String> comboTipoUsuario;
 
     @FXML
     private TextField inputApellidos;
 
     @FXML
-    private TextField inputEdad;
+    private PasswordField inputContrasenia;
 
     @FXML
-    private TextField inputUsuario;
+    private TextField inputEdad;
 
     @FXML
     private TextField inputEmail;
 
     @FXML
-    private ComboBox<String> comboTipoUsuario;
+    private TextField inputIdentificacion;
+
+    @FXML
+    private TextField inputNombres;
+
+    @FXML
+    private TextField inputUsuario;
 
     @FXML
     void registrarAction(ActionEvent event) {
@@ -137,6 +141,9 @@ public class RegistroViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list = FXCollections.observableArrayList("ANUNCIANTE", "COMPRADOR");
         comboTipoUsuario.setItems(list);
+
+        Image image = new Image((getClass().getResource("/images/auction.png")).toExternalForm());
+        imageRegistro.setImage(image);
 
         System.out.println("Invocación EmpleadoViewController");
         registroController = new RegistroController();

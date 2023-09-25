@@ -1,144 +1,167 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
-import co.edu.uniquindio.pr3.subastasUQ.controllers.ProductoController;
-import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
-import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.*;
+import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.net.*;
+import java.util.*;
 
 public class ProductosViewController implements Initializable {
 
-    ProductoController productoController;
+
+    /**
+     * Atributos de la clase
+     */
+    ProductoController productoControllerService;
+    ObservableList<ProductoDTO> listaProductosDTO = FXCollections.observableArrayList();
+    ProductoDTO productoSeleccionado;
+
+    /**
+     * Atributos de la interfaz
+     */
 
     @FXML
-    private ListView<?> ListViewListaProductos;
+    private Button bntAgregarNuevoProd;
 
     @FXML
-    private Button btnActualizar;
+    private Button bntAgregarProducto;
 
     @FXML
-    private Button btnAgregar;
+    private Button btnActualizarProducto;
 
     @FXML
-    private Button btnEliminar;
+    private Button btnCancelarNuevoProd;
 
     @FXML
-    private Button btnNuevo;
+    private Button btnEliminarProducto;
 
     @FXML
-    private ComboBox<String> comboTipoProducto;
+    private Button btnSeleccionarImagenProd;
 
     @FXML
-    private ImageView imageViewProducto;
+    private ComboBox<?> cmbTipoProd;
 
     @FXML
-    private TextField inputCodigo;
+    private Tab tabInfoProd;
 
     @FXML
-    private TextArea inputDescripcion;
+    private Tab tabProductos;
 
     @FXML
-    private TextField inputNombre;
+    private TableColumn<ProductoDTO, String> tbcCategoriaProd;
 
     @FXML
-    private TextField inputValorInicial;
-
-    //Atributos de la clase
-
-    private static ArrayList<Producto> productos;
-
-
-    //Métodos de la clase
-
-    public static ArrayList<Producto> getProductos() {
-        return productos;
-    }
+    private TableColumn<ProductoDTO, String> tbcCodigoProd;
 
     @FXML
-    void actualizarProductoEvent(ActionEvent event) {
-
-    }
+    private TableColumn<ProductoDTO, String> tbcDescripcionProd;
 
     @FXML
-    void agregarProductoEvent(ActionEvent event) {
-
-    }
+    private TableColumn<ProductoDTO, String> tbcExistenciasProd;
 
     @FXML
-    void eliminarProductoEvent(ActionEvent event) {
-
-    }
+    private TableColumn<ProductoDTO, String> tbcImagenProd;
 
     @FXML
-    void nuevoProductoEvent(ActionEvent event) throws ProductoException {
-
-        if (formularioProductoIsCompleto()) {
-
-            String codigo = inputCodigo.getText();
-            Double valorInicial = Double.parseDouble(inputValorInicial.getText());
-            String descripcion = inputDescripcion.getText();
-            String nombre = inputNombre.getText();
-            Image image = imageViewProducto.getImage();
-            TipoProducto tipoProducto = TipoProducto.valueOf(comboTipoProducto.getSelectionModel().getSelectedItem());
-
-            try {
-                Producto p = productoController.mfm.crearProducto(codigo,nombre,descripcion,image,valorInicial,tipoProducto);
-            } catch (ProductoException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+    private TableColumn<ProductoDTO, String> tbcNombreProd;
 
     @FXML
-    void refrescarAtributosTipoProducto(ActionEvent event) {
-
-    }
+    private TableColumn<ProductoDTO, String> tbcPrecioProd;
 
     @FXML
-    void seleccionarImagenAction(ActionEvent event) {
+    private TableView<ProductoDTO> tbvProductos;
 
-    }
+    @FXML
+    private TextArea txaDescripcionProducto;
 
+    @FXML
+    private TextField txfCodigoProd;
 
-    //Métodos no inyectados de la clase, probablemente sean removidos de acá
+    @FXML
+    private TextField txfNombreProd;
 
-    private boolean formularioProductoIsCompleto() {
+    @FXML
+    private TextField txfValorInicialProd;
 
-        boolean inputCodigoVacio = !inputCodigo.getText().trim().isEmpty();
-        boolean inputValorInicialVacio = !inputValorInicial.getText().trim().isEmpty();
-        boolean inputDescripcionVacio = !inputDescripcion.getText().trim().isEmpty();
-        boolean inputNombreVacio = !inputNombre.getText().trim().isEmpty();
-        boolean comboTipoVacio = comboTipoProducto.getValue() != null;
+    /**
+     * Métodos de la clase ------------------------------------------------------------------------------------------------
+     */
 
-        return inputCodigoVacio && inputDescripcionVacio && inputValorInicialVacio && inputNombreVacio && inputCodigoVacio && comboTipoVacio;
-    }
-
-    //    tecnología, hogar, deportes, vehículos y bien raíz.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ObservableList<String> list = FXCollections.observableArrayList("Bien Raíz", "Deporte", "Hogar", "Tecnológico", "Vehículo");
-        comboTipoProducto.setItems(list);
-        System.out.println("Invocación ProductoViewController");
+        productoControllerService = new ProductoController();
+        initView();
+    }
 
-        productoController = new ProductoController();
-        productoController.mfm.initProductosViewController(this);
+    private void initView() {
+
+        initDatabinding();
+        obtenerProductos();
+        tbvProductos.getItems().clear();
+        tbvProductos.setItems(listaProductosDTO);
+        listenerSelection();
+    }
+
+    private void initDatabinding() {
+        tbcCategoriaProd.setCellValueFactory(celldata -> new SimpleStringProperty(String.valueOf(celldata.getValue().tipoProducto())));
+        tbcNombreProd.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().nombre()));
+        tbcCodigoProd.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().codigo()));
+        tbcDescripcionProd.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().descripcion()));
+        tbcPrecioProd.setCellValueFactory(celldata -> new SimpleStringProperty(String.valueOf(celldata.getValue().valorInicial())));
+    }
+
+    private void obtenerProductos() {
+        listaProductosDTO.addAll(productoControllerService.obtenerProductos());
+    }
+
+    private void listenerSelection() {
+
+        tbvProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            productoSeleccionado = newSelection;
+            //MostrarInfomacionProducto method to be added
+        });
+    }
+
+    @FXML
+    void actualizarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void agregarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cancelarNuevoProd(ActionEvent event) {
+
+    }
+
+    @FXML
+    void eliminarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void irVentanaInfoProd(ActionEvent event) {
+
+    }
+
+    @FXML
+    void seleccionarImagen(ActionEvent event) {
+
     }
 }
-
-
-
