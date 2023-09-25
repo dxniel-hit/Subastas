@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.ProductosViewController">
+    <tabs>
+        <Tab fx:id="tabProductos" closable="false" text="Productos">
+            <content>
+                <Pane prefHeight="638.0" prefWidth="1366.0">
+                    <children>
+                        <Pane layoutX="13.0" layoutY="73.0" prefHeight="43.0" prefWidth="1340.0">
+                            <children>
+                                <Label prefHeight="43.0" prefWidth="172.0" text="Productos">
+                                    <font>
+                                        <Font name="Rockwell" size="28.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <TableView fx:id="tbvProductos" layoutX="14.0" layoutY="116.0" prefHeight="542.0"
+                                   prefWidth="1341.0">
+                            <columns>
+                                <TableColumn fx:id="tbcImagenProd" prefWidth="83.0" text="Imagen"/>
+                                <TableColumn fx:id="tbcCodigoProd" prefWidth="75.0" text="Código"/>
+                                <TableColumn fx:id="tbcNombreProd" prefWidth="241.0" text="Nombre"/>
+                                <TableColumn fx:id="tbcCategoriaProd" prefWidth="90.0" text="Categoria"/>
+                                <TableColumn fx:id="tbcPrecioProd" prefWidth="108.0" text="Precio"/>
+                                <TableColumn fx:id="tbcExistenciasProd" prefWidth="75.0" text="Existencias"/>
+                                <TableColumn fx:id="tbcDescripcionProd" prefWidth="625.0" text="Descripción"/>
+                            </columns>
+                        </TableView>
+                        <Button fx:id="btnEliminarProducto" layoutX="1167.0" layoutY="667.0" mnemonicParsing="false"
+                                onAction="#eliminarProducto" prefHeight="44.0" prefWidth="176.0"
+                                style="-fx-background-color: #FFCCCC;" text="Eliminar producto" textFill="#f50000">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="btnActualizarProducto" layoutX="963.0" layoutY="667.0" mnemonicParsing="false"
+                                onAction="#actualizarProducto" prefHeight="44.0" prefWidth="176.0"
+                                style="-fx-background-color: #3399CC;" text="Actualizar producto" textFill="WHITE">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="bntAgregarProducto" layoutX="1176.0" layoutY="29.0" mnemonicParsing="false"
+                                onAction="#irVentanaInfoProd" prefHeight="44.0" prefWidth="176.0"
+                                style="-fx-background-color: #669966;" text="Añadir producto" textFill="WHITE">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+        <Tab fx:id="tabInfoProd" closable="false" text="Información producto">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Pane prefHeight="740.0" prefWidth="1366.0" style="-fx-background-color: #CCCCCC;">
+                            <children>
+                                <Pane layoutX="15.0" layoutY="66.0" prefHeight="381.0" prefWidth="1337.0"
+                                      style="-fx-background-color: #FFFFFF;">
+                                    <children>
+                                        <Label layoutX="27.0" layoutY="14.0" prefHeight="25.0"
+                                               text="Nombre del producto">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="txfNombreProd" layoutX="27.0" layoutY="39.0" prefHeight="44.0"
+                                                   prefWidth="179.0" promptText="Nombre del producto"/>
+                                        <Label layoutX="262.0" layoutY="14.0" prefHeight="25.0" text="Código">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="txfCodigoProd" layoutX="262.0" layoutY="39.0"
+                                                   prefHeight="44.0" prefWidth="179.0" promptText="Ingrese el código"/>
+                                        <Label layoutX="501.0" layoutY="14.0" prefHeight="25.0" text="Valor inicial">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="txfValorInicialProd" layoutX="501.0" layoutY="39.0"
+                                                   prefHeight="44.0" prefWidth="179.0"
+                                                   promptText="Ingrese el valor inicial"/>
+                                        <Label layoutX="737.0" layoutY="14.0" prefHeight="25.0" text="Tipo producto">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="27.0" layoutY="122.0" prefHeight="25.0" text="Descripción">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextArea fx:id="txaDescripcionProducto" layoutX="27.0" layoutY="147.0"
+                                                  prefHeight="90.0" prefWidth="415.0"
+                                                  promptText="Agregue una pequeña descripción"/>
+                                        <Label layoutX="953.0" layoutY="14.0" prefHeight="25.0" text="Añadir imagen">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="btnSeleccionarImagenProd" layoutX="953.0" layoutY="39.0"
+                                                mnemonicParsing="false" onAction="#seleccionarImagen" prefHeight="44.0"
+                                                prefWidth="176.0" style="-fx-background-color: #3399CC;"
+                                                text="Seleccionar imagen" textFill="WHITE">
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                        </Button>
+                                        <ImageView fitHeight="230.0" fitWidth="310.0" layoutX="953.0" layoutY="122.0"
+                                                   pickOnBounds="true" preserveRatio="true">
+                                        </ImageView>
+                                        <Label layoutX="953.0" layoutY="97.0" prefHeight="25.0" text="Vista anticipada">
+                                            <font>
+                                                <Font name="Rockwell" size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <ComboBox fx:id="cmbTipoProd" layoutX="737.0" layoutY="39.0" prefHeight="44.0"
+                                                  prefWidth="179.0" promptText="Escoja un tipo"
+                                                  style="-fx-background-color: #3399CC;"/>
+                                    </children>
+                                </Pane>
+                                <Label layoutX="14.0" layoutY="14.0" prefHeight="43.0" text="Productos">
+                                    <font>
+                                        <Font name="Rockwell" size="28.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="167.0" layoutY="14.0" prefHeight="43.0" text="Añadir nuevo producto"
+                                       textFill="#757575">
+                                    <font>
+                                        <Font name="Rockwell" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="bntAgregarNuevoProd" layoutX="468.0" layoutY="475.0"
+                                        mnemonicParsing="false" onAction="#agregarProducto" prefHeight="44.0"
+                                        prefWidth="176.0" style="-fx-background-color: #669966;" text="Añadir"
+                                        textFill="WHITE">
+                                    <font>
+                                        <Font size="15.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="btnCancelarNuevoProd" layoutX="666.0" layoutY="475.0"
+                                        mnemonicParsing="false" onAction="#cancelarNuevoProd" prefHeight="44.0"
+                                        prefWidth="176.0" style="-fx-background-color: #FFCCCC;" text="Cancelar"
+                                        textFill="#f50000">
+                                    <font>
+                                        <Font size="15.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

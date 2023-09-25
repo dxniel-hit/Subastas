@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.pr3.subastasUQ.oldViewControllers.SubastasQuindioViewController">
+    <children>
+        <TabPane layoutX="8.0" layoutY="4.0" prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="anunciosTab" text="ANUNCIOS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="192.0" layoutY="48.0" orientation="VERTICAL" prefHeight="542.0"
+                                           prefWidth="790.0">
+                                    <items>
+                                        <fx:include source="oldAnunciosView.fxml"/>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="productosTab" text="PRODUCTOS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="6.0" layoutY="6.0" orientation="VERTICAL" prefHeight="542.0"
+                                           prefWidth="790.0">
+                                    <items>
+                                        <fx:include source="oldProductosView.fxml"/>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="misAnunciosTab" text="MIS ANUNCIOS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="6.0" layoutY="6.0" orientation="VERTICAL" prefHeight="542.0"
+                                           prefWidth="790.0">
+                                    <items>
+                                        <fx:include source="../application/MisAnunciosView.fxml"/>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="misPujasTab" text="MIS PUJAS">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="6.0" layoutY="6.0" orientation="VERTICAL" prefHeight="542.0"
+                                           prefWidth="790.0">
+                                    <items>
+                                        <fx:include source="../application/MisPujasView.fxml"/>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="miCuentaTab" text="MI CUENTA">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane layoutX="5.0" layoutY="35.0" orientation="VERTICAL" prefHeight="489.0"
+                                           prefWidth="790.0">
+                                    <items>
+                                        <fx:include source="../application/MiCuentaView.fxml"/>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

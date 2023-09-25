@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab fx:id="inicioSesionTab" text="Entrar">
+        <fx:include source="NewLoginView.fxml" />
+    </Tab>
+    <Tab fx:id="registroCuentaTab" text="Registrar">
+        <fx:include source="NewRegistroView.fxml" />
+    </Tab>
+  </tabs>
+</TabPane>
