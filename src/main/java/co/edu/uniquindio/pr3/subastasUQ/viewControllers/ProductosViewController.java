@@ -152,6 +152,7 @@ public class ProductosViewController implements Initializable {
             txfCodigoProd.setText(productoSeleccionado.codigo());
             txfNombreProd.setText(productoSeleccionado.nombre());
             txaDescripcionProducto.setText(productoSeleccionado.descripcion());
+            imagenProducto = productoSeleccionado.image();
             Image imgLoad = new Image(productoSeleccionado.image());
             imageViewProducto.setImage(imgLoad);
             txfValorInicialProd.setText(productoSeleccionado.valorInicial().toString());
