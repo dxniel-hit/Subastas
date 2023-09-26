@@ -7,7 +7,7 @@ public class MiCuentaController implements IMiCuentaControllerService {
     public ModelFactoryController mfm;
 
     public MiCuentaController(){
-        System.out.println("Llamando al singleton desde EmpleadoServiceController");
+        System.out.println("Llamando al singleton desde MiCuentaController");
         mfm = ModelFactoryController.getInstance();
     }
 

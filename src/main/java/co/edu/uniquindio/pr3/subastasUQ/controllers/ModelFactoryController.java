@@ -1,12 +1,9 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.mappers.*;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IModelFactoryControllerService;
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
@@ -15,6 +12,7 @@ import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import org.mapstruct.factory.Mappers;
 
 import java.util.*;
 
@@ -26,6 +24,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private LoginViewController loginViewController;
     private MiCuentaViewController miCuentaViewController;
     private ProductosViewController productosViewController;
+    private MisAnunciosViewController misAnunciosViewController;
 
 
     //Datos para el manejo de usuarios segun la verificacion de usuario
@@ -36,6 +35,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     //DTO
     Subasta miSubasta;
     SubastaMappers mapper = SubastaMappers.INSTANCE;
+    PujaMapper mapperPuja = PujaMapper.INSTANCE;
+    AnuncioMapper mapperAnuncio = AnuncioMapper.INSTANCE;
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
@@ -115,6 +116,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.productosViewController = productosViewController;
     }
 
+    public void initMisAnunciosViewController(MisAnunciosViewController misAnunciosViewController) {
+        this.misAnunciosViewController = misAnunciosViewController;
+    }
+
     @Override
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, AnuncianteException {
         return this.miSubasta.crearAnunciante(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
@@ -161,6 +166,16 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         ObservableList<ProductoDTO> listaProductosDTO = FXCollections.observableArrayList();
         listaProductosDTO.addAll(obtenerProductosAnunciante());
         this.productosViewController.setListaProductosDTO(listaProductosDTO);
+
+        //se setea el anunciante en MisAnunciosViewController
+        this.misAnunciosViewController.setAnunciante(miAnunciante);
+        //se añaden los anuncios segun el anunciante
+        ObservableList<AnuncioDTO> listaAnunciosDTO = FXCollections.observableArrayList();
+        listaAnunciosDTO.addAll(obtenerAnunciosAnunciante());
+        this.misAnunciosViewController.setListaAnunciosDTO(listaAnunciosDTO);
+        //se añaden los productos segun el anunciante
+        this.misAnunciosViewController.setListaProductosDTO(listaProductosDTO);
+
     }
 
     @Override
@@ -185,6 +200,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
         //se setea la informacion para ProductoViewController
         this.productosViewController.setAnunciante(null);
+        //se setea la informacion para MisAnunciosViewController
+        this.misAnunciosViewController.setAnunciante(null);
 
         //se desautentica el usuario y se dehabilitan las pestaññas
         this.miSubasta.desAutenticarUsuario(usuario);
@@ -269,12 +286,42 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     public boolean expelerProducto(String codigo) {
 
-        Boolean aux = false;
+        boolean aux = false;
         try {
             aux = miAnunciante.eliminarProducto(codigo);
         } catch(ProductoException e) {
             System.out.println(e.getMessage());
         }
         return aux;
+    }
+
+    //Métodos para manejar los Anuncios -------------------------------------------------------------------------------
+
+    public ProductoDTO obtenerProductoDto(String codigoProducto) {
+        Producto producto = miSubasta.obtenerProducto(codigoProducto);
+        return mapper.productoToProductoDTO(producto);
+    }
+
+    public Anuncio obtenerAnuncio(String codigoAnuncio) {
+        return miSubasta.obtenerAnuncio(codigoAnuncio);
+    }
+
+    public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas) {
+        return mapperPuja.getPujasDTO(listaPujas);
+    }
+
+    public boolean agregarAnuncio(AnuncioDTO anuncioDTO) {
+        Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
+        try {
+            return miAnunciante.crearAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
+        } catch (ProductoException | AnuncioException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    private List<AnuncioDTO> obtenerAnunciosAnunciante() {
+        if (miAnunciante != null) return mapperAnuncio.getAnunciosDTO(miAnunciante.getListaAnuncios());
+        return new ArrayList<AnuncioDTO>();
     }
 }

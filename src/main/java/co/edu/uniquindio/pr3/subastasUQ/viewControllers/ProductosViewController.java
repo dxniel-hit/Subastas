@@ -112,7 +112,7 @@ public class ProductosViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Invocación EmpleadoViewController");
+        System.out.println("Invocación ProductoViewController");
         productoControllerService = new ProductoController();
         productoControllerService.mfm.initProductosViewControlles(this);
 

@@ -7,7 +7,7 @@ public class LoginController implements ILoginControllerService {
     public ModelFactoryController mfm;
 
     public LoginController(){
-        System.out.println("Llamando al singleton desde EmpleadoServiceController");
+        System.out.println("Llamando al singleton desde LoginController");
         mfm = ModelFactoryController.getInstance();
     }
 
