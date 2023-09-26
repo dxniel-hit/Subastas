@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.ProductosViewController">
+<TabPane prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.ProductosViewController">
     <tabs>
         <Tab fx:id="tabProductos" closable="false" text="Productos">
             <content>
@@ -119,16 +119,21 @@
                                         <Font name="Rockwell" size="18.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="bntAgregarNuevoProd" layoutX="468.0" layoutY="475.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="44.0" prefWidth="176.0" style="-fx-background-color: #669966;" text="Añadir" textFill="WHITE">
+                                <Button fx:id="bntAgregarNuevoProd" layoutX="838.0" layoutY="475.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="44.0" prefWidth="176.0" style="-fx-background-color: #669966;" text="Añadir" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="btnActualizarProducto" layoutX="676.0" layoutY="475.0" mnemonicParsing="false" onAction="#actualizarProducto" prefHeight="44.0" prefWidth="176.0" style="-fx-background-color: #3399CC;" text="Actualizar" textFill="WHITE">
+                                <Button fx:id="btnActualizarProducto" layoutX="574.0" layoutY="475.0" mnemonicParsing="false" onAction="#actualizarProducto" prefHeight="44.0" prefWidth="176.0" style="-fx-background-color: #3399CC;" text="Actualizar" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
+                        <Button fx:id="btnNuevoProducto" layoutX="309.0" layoutY="475.0" mnemonicParsing="false" onAction="#nuevoProducto" prefHeight="44.0" prefWidth="176.0" style="-fx-background-color: #3399CC;" text="Nuevo" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
                             </children>
                         </Pane>
                     </children>

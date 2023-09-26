@@ -103,6 +103,9 @@ public class ProductosViewController implements Initializable {
     @FXML
     private ImageView imageViewProducto;
 
+    @FXML
+    private Button btnNuevoProducto;
+
     /**
      * Métodos de la clase ------------------------------------------------------------------------------------------------
      */
@@ -361,5 +364,10 @@ public class ProductosViewController implements Initializable {
     public void setListaProductosDTO(ObservableList<ProductoDTO> listaProductosDTO) {
         this.listaProductosDTO = listaProductosDTO;
         this.tbvProductos.setItems(this.listaProductosDTO);
+    }
+
+    @FXML
+    void nuevoProducto(ActionEvent event) {
+        limpiarCamposProducto();
     }
 }
