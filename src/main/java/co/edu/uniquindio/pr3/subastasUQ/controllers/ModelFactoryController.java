@@ -239,10 +239,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return miSubasta.eliminarComprador(identificacion);
     }
 
-    //Métodos para crear un producto
+    //Métodos para manejar los productos -------------------------------------------------------------------------------
 
     public List<ProductoDTO> obtenerProductosAnunciante() {
-        if(miAnunciante!=null) return mapper.getProductosDTO(miAnunciante.getListaProductos());
+        if (miAnunciante != null) return mapper.getProductosDTO(miAnunciante.getListaProductos());
         return new ArrayList<ProductoDTO>();
     }
 
@@ -256,4 +256,25 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
     }
 
+    public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO) {
+
+        Producto p = mapper.productoDTOtoProducto(productoDTO);
+        try {
+            return miAnunciante.renovarProducto(codigoProducto, p);
+        } catch (ProductoException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean expelerProducto(String codigo) {
+
+        Boolean aux = false;
+        try {
+            aux = miAnunciante.eliminarProducto(codigo);
+        } catch(ProductoException e) {
+            System.out.println(e.getMessage());
+        }
+        return aux;
+    }
 }

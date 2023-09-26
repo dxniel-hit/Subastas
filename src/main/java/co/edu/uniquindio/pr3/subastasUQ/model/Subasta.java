@@ -250,7 +250,9 @@ public class Subasta implements ISubasta {
         return "Contraseña actualizada correctamente";
     }
 
-    //CRUD de Producto
+    //CRUD de Producto--------------------------------------------------------------------------------------------------
+
+
 
 
     //Metodos para autenticar y desautenticar un usuario una vez inicia sesión

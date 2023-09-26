@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MiCuentaViewController implements  Initializable{
+public class MiCuentaViewController implements Initializable {
 
     MiCuentaController miCuentaController;
     Anunciante miAnunciante;
@@ -58,8 +58,8 @@ public class MiCuentaViewController implements  Initializable{
         String edad = inputEdad.getText();
         String email = inputEmail.getText();
         TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
-        if(validarDatos(nombres, apellidos, identificacion, email, edad, tipoUsuario)) {
-            if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
+        if (validarDatos(nombres, apellidos, identificacion, email, edad, tipoUsuario)) {
+            if (tipoUsuario.equals(TipoUsuario.ANUNCIANTE)) {
                 try {
                     boolean flag = miCuentaController.mfm.actualizarAnuciante(nombres, apellidos, identificacion, Integer.parseInt(edad), email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de anunciante actualizada", "La cuenta de anunciante fue actualizada correctamente", Alert.AlertType.INFORMATION);
@@ -68,7 +68,7 @@ public class MiCuentaViewController implements  Initializable{
                     mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de anunciante", e.getMessage(), Alert.AlertType.WARNING);
                 }
             }
-            if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
+            if (tipoUsuario.equals(TipoUsuario.COMPRADOR)) {
                 try {
                     boolean flag = miCuentaController.mfm.actualizarComprador(nombres, apellidos, identificacion, Integer.parseInt(edad), email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de Comprador actualizada", "La cuenta de comprador fue actualizada correctamente", Alert.AlertType.INFORMATION);
@@ -115,7 +115,7 @@ public class MiCuentaViewController implements  Initializable{
         vaciarCasillas();
     }
 
-    public void resetCuenta(){
+    public void resetCuenta() {
         this.miAnunciante = null;
         this.miComprador = null;
     }
@@ -124,7 +124,7 @@ public class MiCuentaViewController implements  Initializable{
     void eliminarCuentaEvent(ActionEvent event) {
         String identificacion = inputIdentificacion.getText();
         TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem().toString());
-        if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
+        if (tipoUsuario.equals(TipoUsuario.ANUNCIANTE)) {
             try {
                 boolean flag = miCuentaController.mfm.eliminarAnunciante(identificacion);
                 mostrarMensaje("Proceso Exitoso", "Cuenta eliminada", "La cuenta fue eliminada correctamente", Alert.AlertType.INFORMATION);
@@ -135,7 +135,7 @@ public class MiCuentaViewController implements  Initializable{
                 mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
             }
         }
-        if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
+        if (tipoUsuario.equals(TipoUsuario.COMPRADOR)) {
             try {
                 boolean flag = miCuentaController.mfm.eliminarComprador(identificacion);
                 mostrarMensaje("Proceso Exitoso", "Cuenta eliminada", "La cuenta fue eliminada correctamente", Alert.AlertType.INFORMATION);
@@ -148,37 +148,42 @@ public class MiCuentaViewController implements  Initializable{
         }
     }
 
-    public void vaciarCasillas(){
-        inputNombres.setText(null); inputApellidos.setText(null); inputIdentificacion.setText(null);
-        inputEdad.setText(null); inputUsuario.setText(null); inputContrasenia.setText(null);
-        inputEmail.setText(null); comboTipoUsuario.getSelectionModel().clearSelection();
+    public void vaciarCasillas() {
+        inputNombres.setText(null);
+        inputApellidos.setText(null);
+        inputIdentificacion.setText(null);
+        inputEdad.setText(null);
+        inputUsuario.setText(null);
+        inputContrasenia.setText(null);
+        inputEmail.setText(null);
+        comboTipoUsuario.getSelectionModel().clearSelection();
     }
 
     private boolean validarDatos(String nombres, String apellidos, String identificacion, String correo, String edad, TipoUsuario tipoUsuario) {
         String mensaje = "";
 
-        if(nombres == null || nombres.equals(""))
+        if (nombres == null || nombres.equals(""))
             mensaje += "El nombre es invalido \n";
 
-        if(apellidos == null || apellidos.equals(""))
+        if (apellidos == null || apellidos.equals(""))
             mensaje += "Los apellidos son invalidos \n";
 
-        if(identificacion == null || identificacion.equals(""))
+        if (identificacion == null || identificacion.equals(""))
             mensaje += "La identificacion es invalida \n";
 
 
-        if(correo == null || correo.equals(""))
+        if (correo == null || correo.equals(""))
             mensaje += "El correo es invalido \n";
 
-        if(!edad.matches("\\d+"))
+        if (!edad.matches("\\d+"))
             mensaje += "La edad debe ser un numero \n";
 
-        if(tipoUsuario == null)
+        if (tipoUsuario == null)
             mensaje += "El Tipo de Usuario es invalido \n";
 
-        if(mensaje.equals("")){
+        if (mensaje.equals("")) {
             return true;
-        }else{
+        } else {
             mostrarMensaje("Información Usuario", "Datos invalidos", mensaje, Alert.AlertType.WARNING);
             return false;
         }
@@ -202,13 +207,13 @@ public class MiCuentaViewController implements  Initializable{
         miCuentaController = new MiCuentaController();
         miCuentaController.mfm.initMiCuentaViewController(this);
 
-        if(miAnunciante!=null) setMiAnucianteInformation();
-        if(miComprador!=null)setMiCompradorInformation();
+        if (miAnunciante != null) setMiAnucianteInformation();
+        if (miComprador != null) setMiCompradorInformation();
         inputIdentificacion.setDisable(true);
         comboTipoUsuario.setDisable(true);
     }
 
-    public void setMiAnucianteInformation(){
+    public void setMiAnucianteInformation() {
         inputNombres.setText(miAnunciante.getNombres());
         inputApellidos.setText(miAnunciante.getApellidos());
         inputIdentificacion.setText(miAnunciante.getIdentificacion());
@@ -219,7 +224,7 @@ public class MiCuentaViewController implements  Initializable{
         comboTipoUsuario.getSelectionModel().select(miAnunciante.getTipoUsuario().toString());
     }
 
-    public void setMiCompradorInformation(){
+    public void setMiCompradorInformation() {
         inputNombres.setText(miComprador.getNombres());
         inputApellidos.setText(miComprador.getApellidos());
         inputIdentificacion.setText(miComprador.getIdentificacion());

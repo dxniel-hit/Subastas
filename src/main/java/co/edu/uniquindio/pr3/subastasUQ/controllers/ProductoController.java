@@ -20,8 +20,20 @@ public class ProductoController implements IProductoControllerService {
 
     @Override
     public boolean agregarProducto(ProductoDTO productoDto) {
+
         return mfm.agregarProducto(productoDto);
     }
+
+    @Override
+    public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO) {
+        return mfm.renovarProducto(codigoProducto, productoDTO);
+    }
+
+    @Override
+    public boolean expelerProducto(String codigo) {
+        return mfm.expelerProducto(codigo);
+    }
+
 
     public List<ProductoDTO> obtenerProductosAnunciante() {
         return mfm.obtenerProductosAnunciante();

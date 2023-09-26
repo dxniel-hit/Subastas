@@ -118,7 +118,7 @@ public class ProductosViewController implements Initializable {
         cmbTipoProd.setItems(list);
     }
 
-    public void setAnunciante(Anunciante anunciante){
+    public void setAnunciante(Anunciante anunciante) {
         this.anunciante = anunciante;
         listaProductosDTO.removeAll();
         tbvProductos.getItems().clear();
@@ -148,9 +148,9 @@ public class ProductosViewController implements Initializable {
     }
 
     private void mostrarInformacionProducto(ProductoDTO productoSeleccionado) {
-        if(productoSeleccionado != null){
+        if (productoSeleccionado != null) {
             txfCodigoProd.setText(productoSeleccionado.codigo());
-            txfNombreProd.setText(productoSeleccionado. nombre());
+            txfNombreProd.setText(productoSeleccionado.nombre());
             txaDescripcionProducto.setText(productoSeleccionado.descripcion());
             Image imgLoad = new Image(productoSeleccionado.image());
             imageViewProducto.setImage(imgLoad);
@@ -168,31 +168,46 @@ public class ProductosViewController implements Initializable {
         alert.showAndWait();
     }
 
+    public boolean mostrarMensajeParaConfirmar(String titulo, String header, String contenido, Alert.AlertType alertType) {
+
+        Alert alert = new Alert(alertType);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(contenido);
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.YES) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private boolean validarDatos(String codigo, String nombre, String descripcion, String image, String valorIncial, TipoProducto tipoProducto) {
         String mensaje = "";
 
-        if(codigo == null || codigo.equals(""))
+        if (codigo == null || codigo.equals(""))
             mensaje += "El codigo es invalido \n";
 
-        if(nombre == null || nombre.equals(""))
+        if (nombre == null || nombre.equals(""))
             mensaje += "El nombre es invalido \n";
 
-        if(descripcion == null || descripcion.equals(""))
+        if (descripcion == null || descripcion.equals(""))
             mensaje += "La descpripcion es invalida \n";
 
-        if(image == null || image.equals(""))
+        if (image == null || image.equals(""))
             mensaje += "La imagen es invalida \n";
 
         //regex watafa
-        if(!valorIncial.matches("\\d+"))
+        if (!valorIncial.matches("\\d+"))
             mensaje += "El valor inicial debe ser un numero \n";
 
-        if(tipoProducto == null)
+        if (tipoProducto == null)
             mensaje += "El Tipo de Producto es invalido \n";
 
-        if(mensaje.equals("")){
+        if (mensaje.equals("")) {
             return true;
-        }else{
+        } else {
             mostrarMensaje("Información Producto", "Datos invalidos", mensaje, Alert.AlertType.WARNING);
             return false;
         }
@@ -213,16 +228,41 @@ public class ProductosViewController implements Initializable {
     @FXML
     void actualizarProducto(ActionEvent event) {
 
+        renovarProducto();
     }
 
     @FXML
     void agregarProducto(ActionEvent event) {
+
         crearProducto();
     }
 
     @FXML
     void eliminarProducto(ActionEvent event) {
 
+        expelerProducto();
+    }
+
+    private void expelerProducto() {
+
+        if(productoSeleccionado != null) {
+
+            if(mostrarMensajeParaConfirmar("Eliminar producto", "Eliminar producto", "¿Está seguro de eliminar el producto", Alert.AlertType.CONFIRMATION)) {
+
+                if(productoControllerService.expelerProducto(productoSeleccionado.codigo())) {
+                    listaProductosDTO.remove(productoSeleccionado);
+                    productoSeleccionado = null;
+                    tbvProductos.getSelectionModel().clearSelection();
+                    limpiarCamposProducto();
+                    mostrarMensaje("Eliminación", "Producto eliminado", "El producto ha sido eliminado con éxito", Alert.AlertType.CONFIRMATION);
+                } else {
+                    //¿Cuándo ocurre esto?
+                    mostrarMensaje("Eliminación", "Producto eliminado", "El producto no se ha podido eliminar", Alert.AlertType.CONFIRMATION);
+                }
+            }
+        } else {
+            mostrarMensaje("Selecicón", "Selección producto", "Seleccione un producto que eliminar", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
@@ -244,7 +284,7 @@ public class ProductosViewController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
 
         //Se verifica que el archivo seleccionado sea una imagen
-        if(file.isFile() && (file.getName().contains(".jpg") || file.getName().contains(".png") ||
+        if (file.isFile() && (file.getName().contains(".jpg") || file.getName().contains(".png") ||
                 file.getName().contains(".bmp") || file.getName().contains(".gif"))) {
 
             try {
@@ -262,8 +302,7 @@ public class ProductosViewController implements Initializable {
                 e.printStackTrace();
             }
 
-        }
-        else {
+        } else {
             mostrarMensaje("Mensaje Informativo", "Imagen producto", "El formato del archivo no es una imagen", Alert.AlertType.WARNING);
         }
     }
@@ -272,19 +311,40 @@ public class ProductosViewController implements Initializable {
         //1. Capturar los datos
         ProductoDTO productoDto = construirProductoDto();
         //2. Validar la información
-        if(validarDatos(txfCodigoProd.getText(), txfNombreProd.getText(), txaDescripcionProducto.getText(), imagenProducto, txfValorInicialProd.getText(), TipoProducto.valueOf(cmbTipoProd.getSelectionModel().getSelectedItem().toString()))){
-            if(productoControllerService.agregarProducto(productoDto)){
+        if (validarDatos(txfCodigoProd.getText(), txfNombreProd.getText(), txaDescripcionProducto.getText(), imagenProducto, txfValorInicialProd.getText(), TipoProducto.valueOf(cmbTipoProd.getSelectionModel().getSelectedItem().toString()))) {
+            if (productoControllerService.agregarProducto(productoDto)) {
                 listaProductosDTO.add(productoDto);
                 tbvProductos.setItems(listaProductosDTO);
                 mostrarMensaje("Notificación producto", "Producto creado", "El producto se ha creado con éxito", Alert.AlertType.INFORMATION);
                 limpiarCamposProducto();
-            }else{
+            } else {
                 mostrarMensaje("Notificación producto", "Producto no creado", "El producto no se ha creado con éxito", Alert.AlertType.ERROR);
             }
-        }else{
+        } else {
             mostrarMensaje("Notificación producto", "Producto no creado", "Los datos ingresados son invalidos", Alert.AlertType.ERROR);
         }
 
+    }
+
+    private void renovarProducto() {
+
+        String codigoProducto = productoSeleccionado.codigo();
+        ProductoDTO nuevoProductoDTO = construirProductoDto();
+
+        if(productoSeleccionado != null) {
+
+            if(validarDatos(txfCodigoProd.getText(), txfNombreProd.getText(), txaDescripcionProducto.getText(), imagenProducto, txfValorInicialProd.getText(), TipoProducto.valueOf(cmbTipoProd.getSelectionModel().getSelectedItem().toString()))) {
+
+                if(productoControllerService.renovarProducto(codigoProducto, nuevoProductoDTO)) {
+                    listaProductosDTO.remove(productoSeleccionado);
+                    listaProductosDTO.add(nuevoProductoDTO);
+                    tbvProductos.refresh();
+                    mostrarMensaje("Proceso Exitoso", "Producto actualizado", "El producto ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+                } else {
+                    mostrarMensaje("Proceso Sin Exito", "Producto no actualizado", "El producto no se puede actualizar", Alert.AlertType.WARNING);
+                }
+            }
+        }
     }
 
     private void limpiarCamposProducto() {

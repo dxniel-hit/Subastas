@@ -124,7 +124,8 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public boolean crearProducto(String codigo, String nombre, String descripcion, String image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
-        if(p!=null) throw new ProductoException("El Producto con codigo: "+codigo+" "+"ya se encuentra creado");
+        if (p != null)
+            throw new ProductoException("El Producto con codigo: " + codigo + " " + "ya se encuentra creado");
         Producto producto = new Producto(codigo, nombre, descripcion, image, valorInicial, tipoProducto);
         listaProductos.add(producto);
         getSubastasQuindio().getListaProductos().add(producto);
@@ -134,7 +135,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public void imprimirProducto(String codigo) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
-        if(p==null) throw new ProductoException("El Producto con codigo: "+codigo+" no se encuentra creado");
+        if (p == null) throw new ProductoException("El Producto con codigo: " + codigo + " no se encuentra creado");
         System.out.println("Detalles del Producto:");
         System.out.println("Codigo: " + p.getCodigo());
         System.out.println("Nombre Producto: " + p.getNombre());
@@ -144,19 +145,25 @@ public class Anunciante extends Usuario implements IAnunciante {
     }
 
     @Override
-    public boolean actualizarProducto(String codigo, String nombre, String descripcion, String image, Double valorInicial, TipoProducto tipoProducto) throws ProductoException {
-        Producto p = obtenerProducto(codigo);
-        if(p==null) throw new ProductoException("El Producto con codigo: "+codigo+" "+"No ha sido creado por el anunciante");
-        p.setNombre(nombre); p.setDescripcion(descripcion);
-        p.setImage(image); p.setValorInicial(valorInicial);
-        p.setTipoProducto(tipoProducto);
-        return true;
+    public boolean renovarProducto(String codigo, Producto producto) throws ProductoException {
+        Producto productoActualizado = obtenerProducto(codigo);
+        if (productoActualizado == null) {
+            throw new ProductoException("El Producto con codigo: " + codigo + " " + "No ha sido creado por el anunciante");
+        } else {
+            productoActualizado.setCodigo(producto.getCodigo());
+            productoActualizado.setNombre(producto.getNombre());
+            productoActualizado.setDescripcion(producto.getDescripcion());
+            productoActualizado.setImage(producto.getImage());
+            productoActualizado.setValorInicial(producto.getValorInicial());
+            productoActualizado.setTipoProducto(producto.getTipoProducto());
+            return true;
+        }
     }
 
     @Override
     public boolean eliminarProducto(String codigo) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
-        if(p==null) throw new ProductoException("El Producto No se encuentra creado");
+        if (p == null) throw new ProductoException("El Producto No se encuentra creado");
         getSubastasQuindio().getListaProductos().remove(p);
         listaProductos.remove(p);
         return true;
