@@ -3,13 +3,13 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
-    <Tab fx:id="inicioSesionTab" text="Entrar">
-        <fx:include source="LoginView.fxml" />
-    </Tab>
     <Tab fx:id="registroCuentaTab" text="Registrar">
         <fx:include source="RegistroView.fxml" />
+    </Tab>
+    <Tab fx:id="inicioSesionTab" text="Entrar">
+        <fx:include source="LoginView.fxml" />
     </Tab>
   </tabs>
 </TabPane>

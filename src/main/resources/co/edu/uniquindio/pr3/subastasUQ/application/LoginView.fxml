@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.LoginViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.LoginViewController">
     <children>
-        <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="750.0" prefWidth="683.0" style="-fx-background-color: #669966;">
+        <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="683.0" style="-fx-background-color: #669966;">
             <children>
             <ImageView fitHeight="365.0" fitWidth="361.0" layoutX="155.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,7 +23,7 @@
             </ImageView>
             </children>
         </Pane>
-        <Pane layoutX="686.0" maxWidth="1.7976931348623157E308" prefHeight="750.0" prefWidth="614.0">
+        <Pane layoutX="686.0" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="614.0">
             <children>
                 <Label layoutX="198.0" layoutY="14.0" text="Bienvenido">
                     <font>
@@ -33,42 +33,42 @@
                         <Glow />
                     </effect>
                 </Label>
-                <TextField fx:id="inputUsuario" layoutX="211.0" layoutY="236.0" prefHeight="45.0" prefWidth="385.0" promptText="Nombre de usuario" />
-                <PasswordField fx:id="inputContrasenia" layoutX="210.0" layoutY="297.0" prefHeight="45.0" prefWidth="385.0" promptText="Contraseña" />
-                <Hyperlink layoutX="233.0" layoutY="375.0" prefHeight="45.0" prefWidth="193.0" text="¿Contraseña olvidada?">
+                <TextField fx:id="inputUsuario" layoutX="196.0" layoutY="232.0" prefHeight="45.0" prefWidth="385.0" promptText="Nombre de usuario" />
+                <PasswordField fx:id="inputContrasenia" layoutX="195.0" layoutY="293.0" prefHeight="45.0" prefWidth="385.0" promptText="Contraseña" />
+                <Hyperlink layoutX="211.0" layoutY="338.0" prefHeight="45.0" prefWidth="193.0" text="¿Contraseña olvidada?">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Hyperlink>
-                <Button fx:id="btnIniciarSesion" layoutX="192.0" layoutY="440.0" mnemonicParsing="false" onAction="#ingresarAction" prefHeight="40.0" prefWidth="274.0" style="-fx-background-radius: 16; -fx-background-color: #3399CC;" text="Iniciar sesion" textFill="WHITE">
+                <Button fx:id="btnIniciarSesion" layoutX="175.0" layoutY="440.0" mnemonicParsing="false" onAction="#ingresarAction" prefHeight="40.0" prefWidth="274.0" style="-fx-background-radius: 16; -fx-background-color: #3399CC;" text="Iniciar sesion" textFill="WHITE">
                     <font>
                         <Font name="Rockwell Bold" size="24.0" />
                     </font>
                 </Button>
-                <Label layoutX="312.0" layoutY="521.0" prefHeight="38.0" prefWidth="21.0" text="o" textAlignment="CENTER" wrapText="true">
+                <Label layoutX="297.0" layoutY="521.0" prefHeight="38.0" prefWidth="21.0" text="o" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="36.0" />
                     </font>
                 </Label>
-                <Button layoutX="192.0" layoutY="576.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="275.0" style="-fx-background-radius: 16; -fx-background-color: #669966;" text="Crear cuenta nueva" textFill="WHITE">
+                <Button layoutX="175.0" layoutY="578.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="275.0" style="-fx-background-radius: 16; -fx-background-color: #669966;" text="Crear cuenta nueva" textFill="WHITE">
                     <font>
                         <Font name="Rockwell" size="24.0" />
                     </font>
                 </Button>
-                <Separator layoutX="13.0" layoutY="542.0" prefHeight="7.0" prefWidth="285.0" />
-                <Separator layoutX="352.0" layoutY="542.0" prefHeight="7.0" prefWidth="242.0" />
+                <Separator layoutX="13.0" layoutY="542.0" prefHeight="7.0" prefWidth="262.0" />
+                <Separator layoutX="365.0" layoutY="542.0" prefHeight="7.0" prefWidth="229.0" />
                 <Label layoutX="71.0" layoutY="85.0" prefHeight="61.0" prefWidth="503.0" text="Encuentre las mejores ofertas en los artículos que ama con nuestras subasta en línea." textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
                 <Separator layoutX="19.0" layoutY="159.0" prefHeight="7.0" prefWidth="577.0" />
-                <Label alignment="CENTER_RIGHT" layoutX="7.0" layoutY="300.0" prefHeight="40.0" prefWidth="190.0" text="Contraseña:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="296.0" prefHeight="40.0" prefWidth="139.0" text="Contraseña:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="7.0" layoutY="239.0" prefHeight="40.0" prefWidth="190.0" text="Nombre:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="235.0" prefHeight="40.0" prefWidth="139.0" text="Nombre:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>

@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.RegistroViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.RegistroViewController">
     <children>
-        <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="750.0" prefWidth="683.0" style="-fx-background-color: #669966;">
+        <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="683.0" style="-fx-background-color: #669966;">
             <children>
             <ImageView fitHeight="365.0" fitWidth="361.0" layoutX="161.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,7 +24,7 @@
             </ImageView>
             </children>
         </Pane>
-        <Pane layoutX="683.0" prefHeight="750.0" prefWidth="617.0">
+        <Pane layoutX="683.0" prefHeight="720.0" prefWidth="617.0">
             <children>
                 <Label layoutX="145.0" layoutY="14.0" text="Crea una cuenta">
                     <font>
@@ -39,60 +39,60 @@
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <TextField fx:id="inputNombres" layoutX="216.0" layoutY="139.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su nombre" />
-                <TextField fx:id="inputApellidos" layoutX="216.0" layoutY="184.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su apellido" />
-                <TextField fx:id="inputIdentificacion" layoutX="216.0" layoutY="229.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su identificación" />
-                <TextField fx:id="inputEdad" layoutX="216.0" layoutY="273.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su edad" />
-                <TextField fx:id="inputUsuario" layoutX="216.0" layoutY="318.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su usuario" />
-                <TextField fx:id="inputEmail" layoutX="216.0" layoutY="408.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su correo" />
-                <ComboBox fx:id="comboTipoUsuario" layoutX="216.0" layoutY="453.0" prefHeight="40.0" prefWidth="385.0" promptText="Escoja un tipo de usuario" />
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="139.0" prefHeight="40.0" prefWidth="190.0" text="Nombre:" textAlignment="CENTER" wrapText="true">
+                <TextField fx:id="inputNombres" layoutX="211.0" layoutY="139.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su nombre" />
+                <TextField fx:id="inputApellidos" layoutX="211.0" layoutY="184.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su apellido" />
+                <TextField fx:id="inputIdentificacion" layoutX="211.0" layoutY="229.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su identificación" />
+                <TextField fx:id="inputEdad" layoutX="211.0" layoutY="273.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su edad" />
+                <TextField fx:id="inputUsuario" layoutX="211.0" layoutY="318.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su usuario" />
+                <TextField fx:id="inputEmail" layoutX="211.0" layoutY="408.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese su correo" />
+                <ComboBox fx:id="comboTipoUsuario" layoutX="211.0" layoutY="453.0" prefHeight="40.0" prefWidth="385.0" promptText="Escoja un tipo de usuario" />
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="139.0" prefHeight="40.0" prefWidth="190.0" text="Nombre:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="184.0" prefHeight="40.0" prefWidth="190.0" text="Apellido:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="184.0" prefHeight="40.0" prefWidth="190.0" text="Apellido:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="229.0" prefHeight="40.0" prefWidth="190.0" text="Identificación:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="229.0" prefHeight="40.0" prefWidth="190.0" text="Identificación:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="273.0" prefHeight="40.0" prefWidth="190.0" text="Edad:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="273.0" prefHeight="40.0" prefWidth="190.0" text="Edad:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="318.0" prefHeight="40.0" prefWidth="190.0" text="Usuario:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="318.0" prefHeight="40.0" prefWidth="190.0" text="Usuario:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="363.0" prefHeight="40.0" prefWidth="190.0" text="Contraseña:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="363.0" prefHeight="40.0" prefWidth="190.0" text="Contraseña:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="408.0" prefHeight="40.0" prefWidth="190.0" text="Email:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="408.0" prefHeight="40.0" prefWidth="190.0" text="Email:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="453.0" prefHeight="40.0" prefWidth="190.0" text="Tipo de usuario:" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="453.0" prefHeight="40.0" prefWidth="190.0" text="Tipo de usuario:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <PasswordField fx:id="inputContrasenia" layoutX="216.0" layoutY="363.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese la contraseña" />
-                <Button fx:id="btnRegistrarse" layoutX="188.0" layoutY="510.0" mnemonicParsing="false" onAction="#registrarAction" prefHeight="40.0" prefWidth="274.0" style="-fx-background-radius: 16; -fx-background-color: #669966;" text="Registrarse" textFill="WHITE">
+                <PasswordField fx:id="inputContrasenia" layoutX="211.0" layoutY="363.0" prefHeight="40.0" prefWidth="385.0" promptText="Ingrese la contraseña" />
+                <Button fx:id="btnRegistrarse" layoutX="171.0" layoutY="505.0" mnemonicParsing="false" onAction="#registrarAction" prefHeight="40.0" prefWidth="274.0" style="-fx-background-radius: 16; -fx-background-color: #669966;" text="Registrarse" textFill="WHITE">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Button>
-                <Hyperlink layoutX="228.0" layoutY="581.0" prefHeight="45.0" prefWidth="193.0" text="¿Ya tienes una cuenta?">
+                <Hyperlink layoutX="211.0" layoutY="571.0" prefHeight="45.0" prefWidth="193.0" text="¿Ya tienes una cuenta?">
                     <font>
                         <Font size="18.0" />
                     </font>

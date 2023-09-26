@@ -15,7 +15,7 @@
 
 <BorderPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MiCuentaViewController">
     <bottom>
-        <AnchorPane prefHeight="769.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="750.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
             <children>
                 <Label layoutX="459.0" layoutY="241.0" prefHeight="30.0" prefWidth="84.0" text="Nombres:" />
                 <TextField fx:id="inputNombres" layoutX="551.0" layoutY="244.0" prefHeight="25.0" prefWidth="319.0" />

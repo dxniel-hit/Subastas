@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.SubastasViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.SubastasViewController">
     <children>
-        <TableView fx:id="tbvSubastas" layoutY="63.0" prefHeight="686.0" prefWidth="1102.0">
+        <TableView fx:id="tbvSubastas" layoutY="63.0" prefHeight="656.0" prefWidth="1102.0">
             <columns>
                 <TableColumn fx:id="tbcImagenSubasta" prefWidth="141.0" text="Imagen" />
                 <TableColumn fx:id="tbcLoteSubasta" prefWidth="51.0" text="Lote" />
@@ -29,12 +29,12 @@
                         <Font name="Rockwell Italic" size="48.0" />
                     </font>
                 </Label>
-                <Hyperlink fx:id="hplRegistrarse" layoutX="1008.0" layoutY="18.0" text="Registrarse" textFill="WHITE">
+                <Hyperlink fx:id="hplRegistrarse" layoutX="1063.0" layoutY="18.0" text="Registrarse" textFill="WHITE">
                     <font>
                         <Font name="Rockwell" size="16.0" />
                     </font>
                 </Hyperlink>
-                <Hyperlink fx:id="hplIniciarSesion" layoutX="1136.0" layoutY="18.0" text="Iniciar sesión" textFill="WHITE">
+                <Hyperlink fx:id="hplIniciarSesion" layoutX="1178.0" layoutY="18.0" text="Iniciar sesión" textFill="WHITE">
                     <font>
                         <Font name="Rockwell" size="16.0" />
                     </font>
