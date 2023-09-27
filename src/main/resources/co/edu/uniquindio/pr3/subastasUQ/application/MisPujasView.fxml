@@ -23,30 +23,31 @@
                   </Label>
                   <Separator layoutX="14.0" layoutY="32.0" prefHeight="5.0" prefWidth="597.0" />
                   <Label layoutX="14.0" layoutY="46.0" text="Anuncio:" />
-                  <TextField fx:id="inputAnuncio" layoutX="177.0" layoutY="42.0" prefHeight="25.0" prefWidth="254.0" promptText="Se muestra el anuncio de la puja" />
+                  <TextField fx:id="inputAnuncio" layoutX="177.0" layoutY="42.0" prefHeight="25.0" prefWidth="254.0" promptText="Ingrese el codigo del anuncio:" />
                   <Label layoutX="14.0" layoutY="78.0" text="Comprador:" />
-                  <TextField fx:id="inputComprador" layoutX="177.0" layoutY="74.0" prefHeight="25.0" prefWidth="254.0" promptText="Se muestra el comprador de la puja" />
+                  <TextField fx:id="inputComprador" layoutX="177.0" layoutY="74.0" prefHeight="25.0" prefWidth="254.0" promptText="Identificacion del comprador" />
                   <Label layoutX="14.0" layoutY="111.0" text="Valor:" />
-                  <TextField fx:id="inputValor" layoutX="177.0" layoutY="107.0" prefHeight="25.0" prefWidth="254.0" promptText="Se muestra el valor de la puja" />
-                  <TextField fx:id="inputNumPujasEnAnuncio" layoutX="177.0" layoutY="140.0" prefHeight="25.0" prefWidth="254.0" promptText="Se muestra el numero de pujas en el anuncio" />
+                  <TextField fx:id="inputValor" layoutX="177.0" layoutY="107.0" prefHeight="25.0" prefWidth="254.0" promptText="Ingrese el valor de la Puja" />
+                  <TextField fx:id="inputNumPujasEnAnuncio" layoutX="177.0" layoutY="140.0" prefHeight="25.0" prefWidth="254.0" promptText="Numero de Pujas en anuncio" />
                   <Label layoutX="14.0" layoutY="144.0" text="Numero Pujas en Anuncio:" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="687.0">
                <children>
-                  <Button fx:id="btnEliminar" layoutX="614.0" layoutY="251.0" mnemonicParsing="false" onAction="#eliminarPujaEvent" prefHeight="25.0" prefWidth="65.0" text="Eliminar" />
+                  <Button fx:id="btnPujas" layoutX="614.0" layoutY="251.0" mnemonicParsing="false" onAction="#pujarEvent" prefHeight="25.0" prefWidth="65.0" text="Pujar" />
                   <Label layoutX="14.0" layoutY="14.0" text="Listado de Pujas en Anuncio">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tablePujas" layoutX="14.0" layoutY="39.0" onMouseClicked="#seleccionarPujaEvent" prefHeight="237.0" prefWidth="590.0">
+                  <TableView fx:id="tablePujas" layoutX="14.0" layoutY="39.0" prefHeight="237.0" prefWidth="590.0">
                      <columns>
                         <TableColumn fx:id="columnAnuncio" prefWidth="179.0" text="Anuncio" />
                         <TableColumn fx:id="columnComprador" prefWidth="221.0" text="Comprador" />
                         <TableColumn fx:id="columnValor" prefWidth="189.0" text="Valor" />
                      </columns>
                   </TableView>
+                  <Button fx:id="btnLimpiar" layoutX="614.0" layoutY="213.0" mnemonicParsing="false" onAction="#limpiarEvent" prefHeight="25.0" prefWidth="65.0" text="Limpiar" />
                </children>
             </AnchorPane>
         </items>

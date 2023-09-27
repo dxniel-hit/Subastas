@@ -65,14 +65,18 @@ public class Comprador extends Usuario implements IComprador {
     public boolean realizarPuja(String codigoAnuncio, Double valor, String fecha) throws PujaException {
         Anuncio a = getSubastasQuindio().obtenerAnuncio(codigoAnuncio);
         if(a==null) throw new PujaException("El Anuncio No se encuentra creado");
-        if(!verificarCantidadPujas(codigoAnuncio)) throw new PujaException("Ya se han realizado 3 pujas por el anujncio");
+        if(!verificarCantidadPujas(codigoAnuncio)) throw new PujaException("Ya se han realizado 3 pujas por el anuncio");
+        if(valor<a.getProducto().getValorInicial()) throw new PujaException("El valor de la puja es menor al valor inicial del producto");
+        if(!Subasta.isEntreFechas(fecha, a.getFechaInicio(), a.getFechaFinal())) throw new PujaException("La puja no se puede realizar en la fecha actual");
         Puja p = new Puja(a, this, valor, fecha);
+        a.getListaPujas().add(p);  //Se añade la puja a la listaPujas del Anuncio
+        getListaPujas().add(p);    //Se añade la puja a la listaPujas del Comprador
         return true;
     }
 
     @Override
     public boolean verificarCantidadPujas(String codigoAnuncio) throws PujaException {
-        return devolverNumeroPujasEnAnuncio(codigoAnuncio) <= 3;
+        return devolverNumeroPujasEnAnuncio(codigoAnuncio) < 3;
     }
 
     @Override

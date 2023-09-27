@@ -121,6 +121,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     public boolean eliminarAnuncio(String codigo) throws AnuncioException {
         Anuncio a = obtenerAnuncio(codigo);
         if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
+        a.getListaPujas().forEach(p -> p.getComprador().getListaPujas().remove(p)); //Se eliminan las pujas en la listaPujas de Comprador
         getSubastasQuindio().getListaAnuncios().remove(a);
         listaAnuncios.remove(a);
         a.getProducto().setAnunciado(false);

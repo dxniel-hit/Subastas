@@ -26,6 +26,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private ProductosViewController productosViewController;
     private MisAnunciosViewController misAnunciosViewController;
     private SubastasViewController subastasViewController;
+    private MisPujasViewController misPujasViewController;
 
 
     //Datos para el manejo de usuarios segun la verificacion de usuario
@@ -126,6 +127,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.subastasViewController = subastasViewController;
     }
 
+    public void initMisPujasViewController(MisPujasViewController misPujasViewController) {
+        this.misPujasViewController = misPujasViewController;
+    }
+
     @Override
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, AnuncianteException {
         return this.miSubasta.crearAnunciante(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
@@ -181,6 +186,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.misAnunciosViewController.setListaAnunciosDTO(listaAnunciosDTO);
         //se añaden los productos segun el anunciante
         this.misAnunciosViewController.setListaProductosDTO(listaProductosDTO);
+        //se añaden las pujas segun el anunciante
+        this.misAnunciosViewController.setListaPujasDTO(FXCollections.observableArrayList());
 
         //se setean los anuncios en SubastasViewComtroller
         ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
@@ -202,12 +209,21 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
         listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
         this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
+
+        //se setea el comprador en misPujasViewController
+        this.misPujasViewController.setComprador(miComprador);
+        //se setean las Pujas en misPujasViewController
+        ObservableList<PujaDTO> listaPujasDTO = FXCollections.observableArrayList();
+        listaPujasDTO.addAll(mapperPuja.getPujasDTO(miComprador.getListaPujas()));
+        this.misPujasViewController.setListaPujasDTO(listaPujasDTO);
     }
 
     @Override
     public void resetCuenta(String usuario) {
         this.miAnunciante = null;
         this.miComprador = null;
+        this.anuncioSeleccionado = null;
+        resetSeleccionAnuncio();
 
         //se setea la informacion para CuentaViewController
         this.miCuentaViewController.setAnunciante(null);
@@ -217,6 +233,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.productosViewController.setAnunciante(null);
         //se setea la informacion para MisAnunciosViewController
         this.misAnunciosViewController.setAnunciante(null);
+        //se setea la informacion para MisPujasViewController
+        this.misPujasViewController.setAnuncio(null);
+        this.misPujasViewController.setComprador(null);
 
         //se desautentica el usuario y se dehabilitan las pestaññas
         this.miSubasta.desAutenticarUsuario(usuario);
@@ -228,6 +247,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         //reset para el accion en la que se elimina una cuenta
         this.miAnunciante = null;
         this.miComprador = null;
+        this.anuncioSeleccionado = null;
+        resetSeleccionAnuncio();
         this.ventanaPrincipalViewController.dehabilitarPestanias();
     }
 
@@ -382,5 +403,22 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado) {
         this.anuncioSeleccionado = mapperAnuncio.anuncioDTOtoAnuncio(anuncioSeleccionado);
+        this.misPujasViewController.setAnuncio(this.anuncioSeleccionado);
     }
+    public void resetSeleccionAnuncio() {
+        this.subastasViewController.resetSeleccionAnuncio();
+    }
+
+    //Métodos para manejar los la ventana de MisPujas -------------------------------------------------------------------------------
+
+    public boolean agregarPuja(PujaDTO pujaDto) {
+        Puja p = mapperPuja.PujaDTOtoPuja(pujaDto);
+        try {
+            return miComprador.realizarPuja(p.getAnuncio().getCodigo(), p.getValor(), p.getFecha());
+        } catch (PujaException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 }

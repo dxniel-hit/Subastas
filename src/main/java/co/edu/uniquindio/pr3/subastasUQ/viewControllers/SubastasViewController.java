@@ -93,5 +93,9 @@ public class SubastasViewController implements Initializable {
         this.listaAnunciosDTO = listaSubastasDTO;
         this.tableSubastas.setItems(this.listaAnunciosDTO);
     }
+
+    public void resetSeleccionAnuncio() {
+        tableSubastas.getSelectionModel().clearSelection();
+    }
 }
 

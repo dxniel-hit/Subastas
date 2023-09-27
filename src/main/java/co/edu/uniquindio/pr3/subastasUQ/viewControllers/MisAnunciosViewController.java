@@ -320,10 +320,12 @@ public class MisAnunciosViewController implements Initializable {
             fechaFinalizacion = anuncioSeleccionado.fechaFinal();
 
             tableProducto.getSelectionModel().select(misAnunciosControllerService.obtenerProductoDto(anuncioSeleccionado.producto().getCodigo()));
+
             Anuncio a = misAnunciosControllerService.obtenerAnuncio(anuncioSeleccionado.codigo());
             listaPujasDTO.removeAll();
-            listaPujasDTO.addAll(misAnunciosControllerService.obtenerPujasDto(a.getListaPujas()));
             tablePujas.getItems().removeAll();
+            tablePujas.refresh();
+            listaPujasDTO.setAll(misAnunciosControllerService.obtenerPujasDto(a.getListaPujas()));
             tablePujas.setItems(listaPujasDTO);
         }
     }
@@ -372,6 +374,7 @@ public class MisAnunciosViewController implements Initializable {
         tableProducto.getSelectionModel().clearSelection();
         anuncioSeleccionado = null;
         tableMisAnuncios.getSelectionModel().clearSelection();
+        tablePujas.getSelectionModel().clearSelection();
     }
 
     public void setAnunciante(Anunciante miAnunciante) {
@@ -380,6 +383,8 @@ public class MisAnunciosViewController implements Initializable {
         tableMisAnuncios.getItems().removeAll();
         listaProductosDTO.removeAll();
         tableProducto.getItems().removeAll();
+        listaPujasDTO.removeAll();
+        tablePujas.getItems().removeAll();
 
         if (miAnunciante != null) {
             inputNombreAnunciante.setText(anunciante.getNombres());
@@ -395,6 +400,11 @@ public class MisAnunciosViewController implements Initializable {
     public void setListaProductosDTO(ObservableList<ProductoDTO> listaProductosDTO) {
         this.listaProductosDTO = listaProductosDTO;
         this.tableProducto.setItems(this.listaProductosDTO);
+    }
+
+    public void setListaPujasDTO(ObservableList<PujaDTO> listaPujasDTO) {
+        this.listaPujasDTO = listaPujasDTO;
+        this.tablePujas.setItems(this.listaPujasDTO);
     }
 }
 

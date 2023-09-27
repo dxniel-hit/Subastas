@@ -11,9 +11,7 @@ import java.util.*;
 public interface IProductoControllerService {
 
     public boolean agregarProducto(ProductoDTO productoDto);
-
     public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO);
-
     public boolean expelerProducto(String codigo);
     public List<ProductoDTO> obtenerProductosAnunciante();
 

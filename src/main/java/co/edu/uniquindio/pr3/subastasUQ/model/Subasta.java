@@ -249,9 +249,6 @@ public class Subasta implements ISubasta {
         return "Contraseña actualizada correctamente";
     }
 
-    //CRUD de Producto--------------------------------------------------------------------------------------------------
-
-
     //Metodos para autenticar y desautenticar un usuario una vez inicia sesión
     public void autenticarUsuario(String usuario) {
         Usuario u = listaUsuarios.get(encontrarPosUsuario(usuario));
@@ -261,5 +258,69 @@ public class Subasta implements ISubasta {
     public void desAutenticarUsuario(String usuario) {
         Usuario u = listaUsuarios.get(encontrarPosUsuario(usuario));
         u.setAutenticado(false);
+    }
+
+    //Metodos adicionales para manejo de fechas ---------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Metodo para devolver el dia de una fecha en formato String dd.mm.aa como Integer
+     * @param fecha
+     * @return
+     */
+    public static int devolverDiaFecha(String fecha)
+    {
+        String dia=fecha.substring(0,fecha.indexOf("."));
+        return Integer.parseInt(dia);
+    }
+    /**
+     * Metodo para devolver el mes de una fecha en formato String dd.mm.aa como Integer
+     * @param fecha
+     * @return
+     */
+    public static int devolverMesFecha(String fecha)
+    {
+        String mes=fecha.substring(fecha.indexOf(".")+1,fecha.lastIndexOf("."));
+        return Integer.parseInt(mes);
+    }
+    /**
+     * Metodo para devolver el año de una fecha en formato String dd.mm.aa como Integer
+     * @param fecha
+     * @return
+     */
+    public static int devolverAnioFecha(String fecha)
+    {
+        String anio=fecha.substring(fecha.lastIndexOf(".")+1,fecha.length());
+        return Integer.parseInt(anio);
+    }
+    /**
+     * Metodo para verificar si una fecha esta entre la fechaIncio y la fechaFinal del parametro
+     * @param fecha
+     * @param fechaInicio
+     * @param fechaFinal
+     * @return
+     */
+    public static boolean isEntreFechas(String fecha, String fechaInicio, String fechaFinal)
+    {
+        boolean centinela=false;
+        int anioFecha=devolverAnioFecha(fecha); int mesFecha=devolverMesFecha(fecha); int diaFecha=devolverDiaFecha(fecha);
+        int anioFechaInicio=devolverAnioFecha(fechaInicio); int mesFechaInicio=devolverMesFecha(fechaInicio); int diaFechaInicio=devolverDiaFecha(fechaInicio);
+        int anioFechaFinal=devolverAnioFecha(fechaFinal); int mesFechaFinal=devolverMesFecha(fechaFinal); int diaFechaFinal=devolverDiaFecha(fechaFinal);
+        if(mesFechaInicio==mesFechaFinal && anioFechaInicio==anioFechaFinal && mesFecha==mesFechaInicio && anioFecha==anioFechaInicio && diaFecha>=diaFechaInicio && diaFecha<=diaFechaFinal)
+        {
+            centinela=true;
+        }
+        else
+        if(mesFechaInicio!=mesFechaFinal && anioFechaInicio==anioFechaFinal &&((diaFecha>=diaFechaInicio && mesFecha==mesFechaInicio && anioFecha==anioFechaInicio)||(mesFecha>mesFechaInicio && mesFecha<mesFechaFinal &&
+                anioFecha==anioFechaInicio)||(diaFecha<=diaFechaFinal && mesFecha==mesFechaFinal && anioFecha==anioFechaFinal)))
+        {
+            centinela=true;
+        }
+        else
+        if(anioFechaInicio!=anioFechaFinal&&((diaFecha>=diaFechaInicio && mesFecha==mesFechaInicio && anioFecha==anioFechaInicio)||(diaFecha<=diaFechaFinal && mesFecha==mesFechaFinal && anioFecha==anioFechaFinal)
+                ||(anioFecha>anioFechaInicio && anioFecha<anioFechaFinal)||(mesFecha>mesFechaInicio && anioFecha==anioFechaInicio)||(mesFecha<mesFechaFinal && anioFecha==anioFechaFinal)))
+        {
+            centinela=true;
+        }
+        return centinela;
     }
 }

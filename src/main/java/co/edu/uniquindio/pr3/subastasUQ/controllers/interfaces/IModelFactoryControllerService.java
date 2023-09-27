@@ -19,6 +19,7 @@ public interface IModelFactoryControllerService {
     public void initProductosViewControlles(ProductosViewController productosViewController);
     public void initMisAnunciosViewController(MisAnunciosViewController misAnunciosViewController);
     public void initSubastasViewController(SubastasViewController subastasViewController);
+    public void initMisPujasViewController(MisPujasViewController misPujasViewController);
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, AnuncianteException;
     public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, CompradorException;
     public int encontrarPosUsuario(String usuario);
@@ -39,9 +40,9 @@ public interface IModelFactoryControllerService {
     public boolean eliminarComprador(String identificacion) throws CompradorException;
     public ProductoDTO obtenerProductoDto(String codigoProducto);
     public Anuncio obtenerAnuncio(String codigoAnuncio);
-
     public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO productoDTO);
     public boolean eliminarAnuncio(String codigo);
     public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado);
+    public void resetSeleccionAnuncio();
 
 }
