@@ -68,7 +68,7 @@
                         <Font name="Rockwell" size="22.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="235.0" prefHeight="40.0" prefWidth="139.0" text="Usuario" textAlignment="CENTER" wrapText="true">
+                <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="235.0" prefHeight="40.0" prefWidth="139.0" text="Usuario:" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font name="Rockwell" size="22.0" />
                     </font>
