@@ -4,7 +4,7 @@ Programada construido en JavaFX que va a servir para subastar y pujar.
 
 ## ¿Qué falta para la primera entrega?
 
-Decidir que CRUD usar, si el de usuario o el producto.
+Nada.
 
 ## Tabla de contenido
 
