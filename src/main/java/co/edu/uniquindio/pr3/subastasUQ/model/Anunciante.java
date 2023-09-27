@@ -78,9 +78,12 @@ public class Anunciante extends Usuario implements IAnunciante {
         Producto p = obtenerProducto(codigoProducto);
         if (p == null)
             throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "No ha sido creado por el anunciante");
+        if (p.isAnunciado())
+            throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "Ya se encuentra anunciado");
         Anuncio a = new Anuncio(codigo, fechaInicio, fechaFinal, nombreAnunciante, p, null);
         listaAnuncios.add(a);
         getSubastasQuindio().getListaAnuncios().add(a);
+        p.setAnunciado(true);
         return true;
     }
 
@@ -108,7 +111,9 @@ public class Anunciante extends Usuario implements IAnunciante {
         a.setFechaInicio(fechaInicio);
         a.setFechaFinal(fechaFinal);
         a.setNombreAnunciante(nombreAnunciante);
+        a.getProducto().setAnunciado(false);
         a.setProducto(p);
+        p.setAnunciado(true);
         return true;
     }
 
@@ -118,6 +123,7 @@ public class Anunciante extends Usuario implements IAnunciante {
         if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
         getSubastasQuindio().getListaAnuncios().remove(a);
         listaAnuncios.remove(a);
+        a.getProducto().setAnunciado(false);
         return true;
     }
 
@@ -145,18 +151,21 @@ public class Anunciante extends Usuario implements IAnunciante {
     }
 
     @Override
-    public boolean renovarProducto(String codigo, Producto producto) throws ProductoException {
+    public boolean actualizarProducto(String codigo, Producto producto) throws ProductoException {
         Producto productoActualizado = obtenerProducto(codigo);
         if (productoActualizado == null) {
             throw new ProductoException("El Producto con codigo: " + codigo + " " + "No ha sido creado por el anunciante");
         } else {
-            productoActualizado.setCodigo(producto.getCodigo());
-            productoActualizado.setNombre(producto.getNombre());
-            productoActualizado.setDescripcion(producto.getDescripcion());
-            productoActualizado.setImage(producto.getImage());
-            productoActualizado.setValorInicial(producto.getValorInicial());
-            productoActualizado.setTipoProducto(producto.getTipoProducto());
-            return true;
+            if(productoActualizado.isAnunciado()) {
+                throw new ProductoException("El producto se encuentra anunciado por lo que no puede ser actualizado");
+            }else{
+                productoActualizado.setNombre(producto.getNombre());
+                productoActualizado.setDescripcion(producto.getDescripcion());
+                productoActualizado.setImage(producto.getImage());
+                productoActualizado.setValorInicial(producto.getValorInicial());
+                productoActualizado.setTipoProducto(producto.getTipoProducto());
+                return true;
+            }
         }
     }
 
@@ -164,6 +173,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     public boolean eliminarProducto(String codigo) throws ProductoException {
         Producto p = getSubastasQuindio().obtenerProducto(codigo);
         if (p == null) throw new ProductoException("El Producto No se encuentra creado");
+        if(p.isAnunciado()) throw new ProductoException("No se puede eliminar el producto ya que se encuentra anunciado");
         getSubastasQuindio().getListaProductos().remove(p);
         listaProductos.remove(p);
         return true;

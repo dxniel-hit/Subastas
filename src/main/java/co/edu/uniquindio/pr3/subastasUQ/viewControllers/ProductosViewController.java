@@ -336,12 +336,9 @@ public class ProductosViewController implements Initializable {
         ProductoDTO nuevoProductoDTO = construirProductoDto();
 
         if(productoSeleccionado != null) {
-
-            if(validarDatos(txfCodigoProd.getText(), txfNombreProd.getText(), txaDescripcionProducto.getText(), imagenProducto, txfValorInicialProd.getText(), TipoProducto.valueOf(cmbTipoProd.getSelectionModel().getSelectedItem().toString()))) {
-
+            if(validarDatos(txfCodigoProd.getText(), txfNombreProd.getText(), txaDescripcionProducto.getText(), imagenProducto, txfValorInicialProd.getText(), TipoProducto.valueOf(cmbTipoProd.getSelectionModel().getSelectedItem()))) {
                 if(productoControllerService.renovarProducto(codigoProducto, nuevoProductoDTO)) {
-                    listaProductosDTO.remove(productoSeleccionado);
-                    listaProductosDTO.add(nuevoProductoDTO);
+                    listaProductosDTO.set(listaProductosDTO.indexOf(productoSeleccionado), nuevoProductoDTO);
                     tbvProductos.refresh();
                     mostrarMensaje("Proceso Exitoso", "Producto actualizado", "El producto ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
                 } else {
@@ -370,4 +367,5 @@ public class ProductosViewController implements Initializable {
     void nuevoProducto(ActionEvent event) {
         limpiarCamposProducto();
     }
+
 }

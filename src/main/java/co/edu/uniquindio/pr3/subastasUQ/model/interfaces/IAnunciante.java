@@ -22,7 +22,7 @@ public interface IAnunciante {
 
     public void imprimirProducto(String codigo) throws ProductoException;
 
-    public boolean renovarProducto(String codigo, Producto producto) throws ProductoException;
+    public boolean actualizarProducto(String codigo, Producto producto) throws ProductoException;
 
     public boolean eliminarProducto(String codigo) throws ProductoException;
 

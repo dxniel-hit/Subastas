@@ -25,11 +25,13 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private MiCuentaViewController miCuentaViewController;
     private ProductosViewController productosViewController;
     private MisAnunciosViewController misAnunciosViewController;
+    private SubastasViewController subastasViewController;
 
 
     //Datos para el manejo de usuarios segun la verificacion de usuario
     private Anunciante miAnunciante;
     private Comprador miComprador;
+    private Anuncio anuncioSeleccionado;
 
     //Datos para la creación de productos en la aplicación
     //DTO
@@ -120,6 +122,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.misAnunciosViewController = misAnunciosViewController;
     }
 
+    public void initSubastasViewController(SubastasViewController subastasViewController) {
+        this.subastasViewController = subastasViewController;
+    }
+
     @Override
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, AnuncianteException {
         return this.miSubasta.crearAnunciante(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
@@ -176,6 +182,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         //se añaden los productos segun el anunciante
         this.misAnunciosViewController.setListaProductosDTO(listaProductosDTO);
 
+        //se setean los anuncios en SubastasViewComtroller
+        ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
+        listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
+        this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
     }
 
     @Override
@@ -187,6 +197,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.miCuentaViewController.setComprador(miComprador);
         this.miCuentaViewController.setMiCompradorInformation();
         this.miSubasta.autenticarUsuario(miComprador.getUsuario());
+
+        //se setean los anuncios en SubastasViewComtroller
+        ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
+        listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
+        this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
     }
 
     @Override
@@ -277,7 +292,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
         Producto p = mapper.productoDTOtoProducto(productoDTO);
         try {
-            return miAnunciante.renovarProducto(codigoProducto, p);
+            return miAnunciante.actualizarProducto(codigoProducto, p);
         } catch (ProductoException e) {
             System.out.println(e.getMessage());
             return false;
@@ -313,7 +328,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public boolean agregarAnuncio(AnuncioDTO anuncioDTO) {
         Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
         try {
-            return miAnunciante.crearAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
+            boolean falg = miAnunciante.crearAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
+            refrescarTablaSubastas();
+            return falg;
         } catch (ProductoException | AnuncioException e) {
             System.out.println(e.getMessage());
             return false;
@@ -323,5 +340,18 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private List<AnuncioDTO> obtenerAnunciosAnunciante() {
         if (miAnunciante != null) return mapperAnuncio.getAnunciosDTO(miAnunciante.getListaAnuncios());
         return new ArrayList<AnuncioDTO>();
+    }
+
+    public void refrescarTablaSubastas() {
+        //se setean los anuncios en SubastasViewComtroller
+        ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
+        listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
+        this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
+    }
+
+    //Métodos para manejar los la ventana de seleccion de anuncio -------------------------------------------------------------------------------
+
+    public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado) {
+        this.anuncioSeleccionado = mapperAnuncio.anuncioDTOtoAnuncio(anuncioSeleccionado);
     }
 }

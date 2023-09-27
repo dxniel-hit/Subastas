@@ -7,14 +7,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.SubastasViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.SubastasViewController">
     <children>
-        <TableView fx:id="tbvSubastas" layoutY="63.0" prefHeight="656.0" prefWidth="1102.0">
+        <TableView fx:id="tableSubastas" layoutX="7.0" layoutY="63.0" prefHeight="656.0" prefWidth="1285.0">
             <columns>
-                <TableColumn fx:id="tbcImagenSubasta" prefWidth="141.0" text="Imagen" />
-                <TableColumn fx:id="tbcLoteSubasta" prefWidth="51.0" text="Lote" />
-                <TableColumn fx:id="tbcCategoriaSubasta" prefWidth="108.0" text="Categoria" />
-                <TableColumn fx:id="tbcDescripcionSubasta" prefWidth="748.0" text="Descripción" />
+                <TableColumn fx:id="columnCodigoAnuncio" prefWidth="141.0" text="Codigo" />
+                <TableColumn fx:id="columnInicioAnuncio" prefWidth="109.00006103515625" text="Inicio" />
+                <TableColumn fx:id="columnFinalAnuncio" prefWidth="122.0" text="Final" />
+                <TableColumn fx:id="columnNombreAnuncianteAnuncio" prefWidth="173.0" text="Nombre Anunciante" />
+            <TableColumn fx:id="columnCodigoProducto" prefWidth="178.0" text="Producto" />
+            <TableColumn fx:id="columnValorProducto" prefWidth="133.0" text="Valor Inicial" />
+            <TableColumn fx:id="columnDescripcionProducto" prefWidth="244.0" text="Descripcion" />
+            <TableColumn fx:id="columnImagenProducto" prefWidth="188.0" text="Imagen" />
             </columns>
         </TableView>
         <Pane prefHeight="63.0" prefWidth="1300.0" style="-fx-background-color: #6699FF;">

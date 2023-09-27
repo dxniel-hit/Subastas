@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -258,6 +259,12 @@ public class MisAnunciosViewController implements Initializable {
     private void anuncioListenerSelection() {
         tableMisAnuncios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             anuncioSeleccionado = newSelection;
+            mostrarInformacionAnuncio(anuncioSeleccionado);
+        });
+    }
+
+    private void mostrarInformacionAnuncio(AnuncioDTO anuncioSeleccionado) {
+        if (anuncioSeleccionado != null) {
             inputCodigo.setText(anuncioSeleccionado.codigo());
             dateFechaInicio.setValue(LocalDate.parse(anuncioSeleccionado.fechaInicio(), DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             fechaInicio = anuncioSeleccionado.fechaInicio();
@@ -270,7 +277,7 @@ public class MisAnunciosViewController implements Initializable {
             listaPujasDTO.addAll(misAnunciosControllerService.obtenerPujasDto(a.getListaPujas()));
             tablePujas.getItems().removeAll();
             tablePujas.setItems(listaPujasDTO);
-        });
+        }
     }
 
     public void initView() {
