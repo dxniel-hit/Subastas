@@ -180,6 +180,7 @@ public class MisAnunciosViewController implements Initializable {
                     listaAnunciosDTO.remove(anuncioSeleccionado);
                     anuncioSeleccionado = null;
                     tableProducto.getSelectionModel().clearSelection();
+                    tableMisAnuncios.getSelectionModel().clearSelection();
                     limpiarCamposAnuncio();
                     mostrarMensaje("Eliminación", "Anuncio eliminado", "El anuncio ha sido eliminado con éxito", Alert.AlertType.INFORMATION);
                 }
@@ -368,6 +369,9 @@ public class MisAnunciosViewController implements Initializable {
         fechaFinalizacion = "";
         dateFechaFinalizacion.setValue(null);
         productoSeleccionado = null;
+        tableProducto.getSelectionModel().clearSelection();
+        anuncioSeleccionado = null;
+        tableMisAnuncios.getSelectionModel().clearSelection();
     }
 
     public void setAnunciante(Anunciante miAnunciante) {

@@ -328,8 +328,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
         Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
         try {
-            return miSubasta.actualizarAnuncio(codigoAnuncio, a);
-        } catch (AnuncioException e) {
+            boolean flag = miAnunciante.actualizarAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
+            refrescarTablaSubastas();
+            return flag;
+        } catch (AnuncioException | ProductoException e) {
             System.out.println(e.getMessage());
             return false;
         }
@@ -337,7 +339,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public boolean eliminarAnuncio(String codigo) {
-        return miSubasta.eliminarAnuncio(codigo);
+        try {
+            boolean falg = miAnunciante.eliminarAnuncio(codigo);
+            refrescarTablaSubastas();
+            return falg;
+        } catch (AnuncioException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas) {

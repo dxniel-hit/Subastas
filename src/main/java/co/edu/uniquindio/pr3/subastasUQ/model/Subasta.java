@@ -134,38 +134,6 @@ public class Subasta implements ISubasta {
         return listaUsuarios.stream().anyMatch(u -> u.getUsuario().equals(usuario));
     }
 
-    //Método para actualizar un anuncio ya creado
-
-    public boolean actualizarAnuncio(String codigoAnuncio, Anuncio anuncio) throws AnuncioException {
-
-        Anuncio anuncioActualizado = obtenerAnuncio(codigoAnuncio);
-        if (anuncioActualizado == null) {
-            throw new AnuncioException("El anuncio con codigo: " + codigoAnuncio + " " + "no ha sido creado por el anunciante");
-        } else {
-
-            anuncioActualizado.setFechaInicio(anuncio.getFechaInicio());
-            anuncioActualizado.setFechaFinal(anuncio.getFechaFinal());
-            anuncioActualizado.setCodigo(anuncio.getCodigo());
-            anuncioActualizado.setProducto(anuncio.getProducto());
-            anuncioActualizado.setNombreAnunciante(anuncio.getNombreAnunciante());
-            anuncioActualizado.setCompra(anuncio.getCompra());
-            anuncioActualizado.setListaPujas(anuncio.getListaPujas());
-            return true;
-        }
-    }
-
-    //Método para eliminar un anuncio ya creado.
-
-    public boolean eliminarAnuncio(String codigo) {
-
-        try {
-            listaAnuncios.removeIf(anuncio -> anuncio.getCodigo().equals(codigo));
-            return true;
-        } catch (Exception ignored) {
-            return false;
-        }
-    }
-
     @Override
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, Subasta subasta, String usuario, String contrasenia, String email, Boolean isAutenticado) throws AnuncianteException, UsuarioEnUsoException {
         if (obtenerAnunciante(identificacion) != null)
