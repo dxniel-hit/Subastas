@@ -265,7 +265,7 @@ public class ProductosViewController implements Initializable {
                 }
             }
         } else {
-            mostrarMensaje("Selecicón", "Selección producto", "Seleccione un producto que eliminar", Alert.AlertType.WARNING);
+            mostrarMensaje("Selección", "Selección producto", "Seleccione un producto que eliminar", Alert.AlertType.WARNING);
         }
     }
 

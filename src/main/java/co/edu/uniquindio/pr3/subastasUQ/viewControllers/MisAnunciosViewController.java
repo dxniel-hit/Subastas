@@ -21,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MisAnunciosViewController implements Initializable {
 
@@ -111,10 +111,6 @@ public class MisAnunciosViewController implements Initializable {
     @FXML
     private TableColumn<PujaDTO, String> columnValorPuja;
 
-    @FXML
-    void actualizarAnuncioEvent(ActionEvent event) {
-
-    }
 
     @FXML
     void agregarAnuncioEvent(ActionEvent event) {
@@ -123,7 +119,7 @@ public class MisAnunciosViewController implements Initializable {
 
     private void crearProducto() {
         //1. Validar la información
-        if (validarDatos(inputCodigo.getText(), fechaInicio, fechaFinalizacion, inputNombreAnunciante.getText(), productoSeleccionado)){
+        if (validarDatos(inputCodigo.getText(), fechaInicio, fechaFinalizacion, inputNombreAnunciante.getText(), productoSeleccionado)) {
             //2. Capturar los datos
             AnuncioDTO AnuncioDto = construirAnuncioDto();
             if (misAnunciosControllerService.agregarAnuncio(AnuncioDto)) {
@@ -141,27 +137,77 @@ public class MisAnunciosViewController implements Initializable {
     }
 
     @FXML
-    void eliminarAnuncioEvent(ActionEvent event) {
+    void actualizarAnuncioEvent(ActionEvent event) {
 
+        actualizarAnuncio();
+    }
+
+    private void actualizarAnuncio() {
+
+        String codigoAnuncio = anuncioSeleccionado.codigo();
+        AnuncioDTO nuevoAnuncioDTO = construirAnuncioDto();
+
+        if (anuncioSeleccionado != null) {
+
+            if (validarDatos(inputCodigo.getText(), fechaInicio, fechaFinalizacion, inputNombreAnunciante.getText(), productoSeleccionado)) {
+
+                if (misAnunciosControllerService.actualizarAnuncio(codigoAnuncio, nuevoAnuncioDTO)) {
+
+                    listaAnunciosDTO.set(listaAnunciosDTO.indexOf(anuncioSeleccionado), nuevoAnuncioDTO);
+                    tableMisAnuncios.refresh();
+                    mostrarMensaje("Proceso exitoso", "Anuncio actualizado", "El anuncio ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+                } else {
+                    mostrarMensaje("Proceso exitoso", "Anuncio no actualizado", "El anuncio no se puede actualizar", Alert.AlertType.INFORMATION);
+                }
+            }
+        } else {
+            mostrarMensaje("Selección", "Selección anuncio", "Seleccione un anuncio que actualizar", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
+    void eliminarAnuncioEvent(ActionEvent event) {
+        eliminarAnuncio();
+    }
+
+    private void eliminarAnuncio() {
+
+        if (anuncioSeleccionado != null) {
+
+            if (mostrarMensajeParaConfirmar("Eliminación", "Eliminar anuncio", "¿Está seguro de eliminar el anuncio?", Alert.AlertType.CONFIRMATION)) {
+
+                if(misAnunciosControllerService.eliminarAnuncio(anuncioSeleccionado.codigo())) {
+                    listaAnunciosDTO.remove(anuncioSeleccionado);
+                    anuncioSeleccionado = null;
+                    tableProducto.getSelectionModel().clearSelection();
+                    limpiarCamposAnuncio();
+                    mostrarMensaje("Eliminación", "Anuncio eliminado", "El anuncio ha sido eliminado con éxito", Alert.AlertType.INFORMATION);
+                }
+            } else {
+                mostrarMensaje("Eliminación", "Anuncio no eliminado", "El anuncio no se ha podido eliminar", Alert.AlertType.INFORMATION);
+            }
+        } else {
+            mostrarMensaje("Selección", "Selección anuncio", "Seleccione un anuncio que eliminar", Alert.AlertType.WARNING);
+        }
+    }
+
+
+    @FXML
     void getFechaFinalizacion(ActionEvent event) {
-        try{
+        try {
             LocalDate myDate = dateFechaFinalizacion.getValue();
             fechaFinalizacion = myDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        }catch(Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
 
     @FXML
     void getFechaInicio(ActionEvent event) {
-        try{
+        try {
             LocalDate myDate = dateFechaInicio.getValue();
             fechaInicio = myDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        }
-        catch (Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
@@ -247,6 +293,7 @@ public class MisAnunciosViewController implements Initializable {
         tableProducto.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             productoSeleccionado = newSelection;
         });
+
     }
 
     private void pujaListenerSelection() {
@@ -280,6 +327,21 @@ public class MisAnunciosViewController implements Initializable {
         }
     }
 
+    public boolean mostrarMensajeParaConfirmar(String titulo, String header, String contenido, Alert.AlertType alertType) {
+
+        Alert alert = new Alert(alertType);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(contenido);
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.YES) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void initView() {
         initProductoDatabinding();
         initAnuncioDatabinding();
@@ -301,8 +363,10 @@ public class MisAnunciosViewController implements Initializable {
 
     private void limpiarCamposAnuncio() {
         inputCodigo.setText(null);
-        fechaInicio=""; dateFechaInicio.setValue(null);
-        fechaFinalizacion=""; dateFechaFinalizacion.setValue(null);
+        fechaInicio = "";
+        dateFechaInicio.setValue(null);
+        fechaFinalizacion = "";
+        dateFechaFinalizacion.setValue(null);
         productoSeleccionado = null;
     }
 
@@ -313,7 +377,7 @@ public class MisAnunciosViewController implements Initializable {
         listaProductosDTO.removeAll();
         tableProducto.getItems().removeAll();
 
-        if(miAnunciante!=null){
+        if (miAnunciante != null) {
             inputNombreAnunciante.setText(anunciante.getNombres());
             inputNombreAnunciante.setDisable(true);
         }

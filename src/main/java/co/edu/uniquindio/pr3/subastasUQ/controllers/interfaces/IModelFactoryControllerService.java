@@ -39,6 +39,9 @@ public interface IModelFactoryControllerService {
     public boolean eliminarComprador(String identificacion) throws CompradorException;
     public ProductoDTO obtenerProductoDto(String codigoProducto);
     public Anuncio obtenerAnuncio(String codigoAnuncio);
+
+    public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO productoDTO);
+    public boolean eliminarAnuncio(String codigo);
     public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado);
 
 }

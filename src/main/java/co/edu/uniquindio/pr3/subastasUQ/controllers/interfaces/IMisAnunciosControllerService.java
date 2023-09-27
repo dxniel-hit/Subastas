@@ -18,6 +18,10 @@ public interface IMisAnunciosControllerService {
     public Anuncio obtenerAnuncio(String codigoAnuncio);
     public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas);
     public boolean agregarAnuncio(AnuncioDTO anuncioDto);
+
+    public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO anuncioDTO);
+
+    public boolean eliminarAnuncio(String codigoAnuncio);
     public Producto poductoDTOtoPRoducto(ProductoDTO productoSeleccionado);
 
 }

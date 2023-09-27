@@ -312,13 +312,32 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Métodos para manejar los Anuncios -------------------------------------------------------------------------------
 
+    @Override
     public ProductoDTO obtenerProductoDto(String codigoProducto) {
         Producto producto = miSubasta.obtenerProducto(codigoProducto);
         return mapper.productoToProductoDTO(producto);
     }
 
+    @Override
     public Anuncio obtenerAnuncio(String codigoAnuncio) {
         return miSubasta.obtenerAnuncio(codigoAnuncio);
+    }
+
+    @Override
+    public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO anuncioDTO) {
+
+        Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
+        try {
+            return miSubasta.actualizarAnuncio(codigoAnuncio, a);
+        } catch (AnuncioException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean eliminarAnuncio(String codigo) {
+        return miSubasta.eliminarAnuncio(codigo);
     }
 
     public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas) {
@@ -351,6 +370,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Métodos para manejar los la ventana de seleccion de anuncio -------------------------------------------------------------------------------
 
+    @Override
     public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado) {
         this.anuncioSeleccionado = mapperAnuncio.anuncioDTOtoAnuncio(anuncioSeleccionado);
     }

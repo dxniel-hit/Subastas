@@ -41,6 +41,16 @@ public class MisAnunciosController implements IMisAnunciosControllerService {
         return mfm.agregarAnuncio(anuncioDto);
     }
 
+    @Override
+    public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO anuncioDTO) {
+        return mfm.actualizarAnuncio(codigoAnuncio, anuncioDTO);
+    }
+
+    @Override
+    public boolean eliminarAnuncio(String codigo) {
+        return mfm.eliminarAnuncio(codigo);
+    }
+
     public Producto poductoDTOtoPRoducto(ProductoDTO productoSeleccionado) {
         return mfm.mapper.productoDTOtoProducto(productoSeleccionado);
     }
