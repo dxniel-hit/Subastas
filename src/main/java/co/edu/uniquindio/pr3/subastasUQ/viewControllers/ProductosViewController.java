@@ -23,7 +23,6 @@ import java.util.*;
 
 public class ProductosViewController implements Initializable {
 
-
     /**
      * Atributos de la clase
      */
@@ -261,7 +260,7 @@ public class ProductosViewController implements Initializable {
                     mostrarMensaje("Eliminación", "Producto eliminado", "El producto ha sido eliminado con éxito", Alert.AlertType.CONFIRMATION);
                 } else {
                     //¿Cuándo ocurre esto?
-                    mostrarMensaje("Eliminación", "Producto eliminado", "El producto no se ha podido eliminar", Alert.AlertType.CONFIRMATION);
+                    mostrarMensaje("Eliminación", "Producto no eliminado", "El producto no se ha podido eliminar", Alert.AlertType.CONFIRMATION);
                 }
             }
         } else {
