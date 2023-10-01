@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
@@ -65,22 +66,38 @@ public class RegistroViewController implements Initializable {
                 try {
                     boolean flag = registroController.mfm.crearAnunciante(nombres, apellidos, identificacion, Integer.parseInt(edad), usuario, contrasenia, email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de Anunciante creado", "El usuario para anunciante fue creado exitosamente", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion("SubsatasUQ", "creacion cuenta anunciante");
+
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {
                     mostrarMensaje("Error de Usuario", "Usuario en Uso", e.getMessage(), Alert.AlertType.WARNING);
+                    //Se registra la excepcion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarExcepcion(e);
                 } catch (AnuncianteException e) {
                     mostrarMensaje("Error de Creacion", "No se puede crear la cuenta", e.getMessage(), Alert.AlertType.WARNING);
+                    //Se registra la excepcion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarExcepcion(e);
                 }
             }
             if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
                 try {
                     boolean flag = registroController.mfm.crearComprador(nombres, apellidos, identificacion, Integer.parseInt(edad), usuario, contrasenia, email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de Comprador creado", "El usuario para comprador fue creado exitosamente", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion("SubsatasUQ", "creacion cuenta comprador");
+
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {
                     mostrarMensaje("Error de Usuario", "Usuario en Uso", e.getMessage(), Alert.AlertType.WARNING);
+                    //Se registra la excepcion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarExcepcion(e);
                 } catch (CompradorException e) {
                     mostrarMensaje("Error de Creacion", "No se puede crear la cuenta", e.getMessage(), Alert.AlertType.WARNING);
+                    //Se registra la excepcion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarExcepcion(e);
                 }
             }
         }

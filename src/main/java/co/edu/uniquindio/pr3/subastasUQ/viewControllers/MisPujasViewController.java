@@ -2,6 +2,7 @@ package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MisAnunciosController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MisPujasController;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.AnuncioDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.ProductoDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.PujaDTO;
@@ -102,6 +103,10 @@ public class MisPujasViewController implements Initializable {
                         listaPujasDTO.add(PujaDto);
                         tablePujas.setItems(listaPujasDTO);
                         mostrarMensaje("Notificación Puja", "Puja creada", "La puja se ha creado con éxito", Alert.AlertType.INFORMATION);
+
+                        //Se registra la accion en SubastasUQ_Log.txt
+                        ModelFactoryController.registrarAccion(comprador.getUsuario(), "realizar puja");
+
                         limpiarInformacion();
                     } else {
                         mostrarMensaje("Notificación Puja", "Puja no creada", "La puja no se ha creado con éxito", Alert.AlertType.ERROR);
@@ -177,7 +182,7 @@ public class MisPujasViewController implements Initializable {
     public void mostrarInformacionAnuncio(){
         if(this.anuncioSeleccionado!=null){
             inputAnuncio.setText(this.anuncioSeleccionado.getCodigo());
-            inputNumPujasEnAnuncio.setText(String.valueOf(comprador.devolverNumeroPujasEnAnuncio(this.anuncioSeleccionado.getCodigo())));
+            if(this.comprador != null) inputNumPujasEnAnuncio.setText(String.valueOf(comprador.devolverNumeroPujasEnAnuncio(this.anuncioSeleccionado.getCodigo())));
         }
     }
 

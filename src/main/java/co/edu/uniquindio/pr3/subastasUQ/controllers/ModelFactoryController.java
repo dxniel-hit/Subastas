@@ -5,16 +5,15 @@ import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.mappers.*;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IModelFactoryControllerService;
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
-import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
-import co.edu.uniquindio.pr3.subastasUQ.utils.*;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Log;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import org.mapstruct.factory.Mappers;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ModelFactoryController implements IModelFactoryControllerService {
 
@@ -28,18 +27,22 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private SubastasViewController subastasViewController;
     private MisPujasViewController misPujasViewController;
 
+    //Clase Subasta global
+    Subasta miSubasta;
 
     //Datos para el manejo de usuarios segun la verificacion de usuario
     private Anunciante miAnunciante;
     private Comprador miComprador;
     private Anuncio anuncioSeleccionado;
 
-    //Datos para la creación de productos en la aplicación
+    //Datos para la creación de cualquier transaccion (CRUD) en la aplicación
     //DTO
-    Subasta miSubasta;
-    SubastaMappers mapper = SubastaMappers.INSTANCE;
+    ProductoMapper mapper = ProductoMapper.INSTANCE;
     PujaMapper mapperPuja = PujaMapper.INSTANCE;
     AnuncioMapper mapperAnuncio = AnuncioMapper.INSTANCE;
+
+    //Datos para flujo de datos
+    static Logger LOGGER = Log.LOGGER;
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
@@ -63,30 +66,22 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         miSubasta = new Subasta("Subastas UQ", "Carrera 15 #12N, Armenia, Quindío");
     }
 
-    //Getterws y setters del subastero
-
+    //Getters y setters del subastero
     public Subasta getMiSubasta() {
-
         return miSubasta;
     }
-
     public void setMiSubasta(Subasta miSubasta) {
-
         this.miSubasta = miSubasta;
     }
-
     public Anunciante getMiAnunciante() {
         return miAnunciante;
     }
-
     public Comprador getMiComprador() {
         return miComprador;
     }
-
     public Subasta getMiSubastasQuindio() {
         return miSubasta;
     }
-
     public void setMiSubastasQuindio(Subasta miSubasta) {
         this.miSubasta = miSubasta;
     }
@@ -231,11 +226,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
         //se setea la informacion para ProductoViewController
         this.productosViewController.setAnunciante(null);
+        this.productosViewController.limpiarCamposProducto();
         //se setea la informacion para MisAnunciosViewController
         this.misAnunciosViewController.setAnunciante(null);
+        this.misAnunciosViewController.limpiarCamposAnuncio();
         //se setea la informacion para MisPujasViewController
         this.misPujasViewController.setAnuncio(null);
         this.misPujasViewController.setComprador(null);
+        this.misPujasViewController.limpiarInformacion();
 
         //se desautentica el usuario y se dehabilitan las pestaññas
         this.miSubasta.desAutenticarUsuario(usuario);
@@ -248,6 +246,12 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.miAnunciante = null;
         this.miComprador = null;
         this.anuncioSeleccionado = null;
+
+        //Se limpia la informacion contenida en las pestañas
+        this.productosViewController.limpiarCamposProducto();
+        this.misAnunciosViewController.limpiarCamposAnuncio();
+        this.misPujasViewController.limpiarInformacion();
+
         resetSeleccionAnuncio();
         this.ventanaPrincipalViewController.dehabilitarPestanias();
     }
@@ -304,17 +308,22 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         try {
             return miAnunciante.crearProducto(p.getCodigo(), p.getNombre(), p.getDescripcion(), p.getImage(), p.getValorInicial(), p.getTipoProducto());
         } catch (ProductoException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
             return false;
         }
     }
 
     public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO) {
-
         Producto p = mapper.productoDTOtoProducto(productoDTO);
         try {
             return miAnunciante.actualizarProducto(codigoProducto, p);
         } catch (ProductoException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
             return false;
         }
@@ -326,6 +335,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         try {
             aux = miAnunciante.eliminarProducto(codigo);
         } catch(ProductoException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
         }
         return aux;
@@ -346,13 +358,15 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO anuncioDTO) {
-
         Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
         try {
             boolean flag = miAnunciante.actualizarAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
             refrescarTablaSubastas();
             return flag;
         } catch (AnuncioException | ProductoException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
             return false;
         }
@@ -361,10 +375,13 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public boolean eliminarAnuncio(String codigo) {
         try {
-            boolean falg = miAnunciante.eliminarAnuncio(codigo);
+            boolean flag = miAnunciante.eliminarAnuncio(codigo);
             refrescarTablaSubastas();
-            return falg;
+            return flag;
         } catch (AnuncioException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
             return false;
         }
@@ -377,10 +394,13 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public boolean agregarAnuncio(AnuncioDTO anuncioDTO) {
         Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
         try {
-            boolean falg = miAnunciante.crearAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
+            boolean flag = miAnunciante.crearAnuncio(a.getCodigo(), a.getFechaInicio(), a.getFechaFinal(), a.getNombreAnunciante(), a.getProducto().getCodigo());
             refrescarTablaSubastas();
-            return falg;
+            return flag;
         } catch (ProductoException | AnuncioException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
             return false;
         }
@@ -404,6 +424,12 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado) {
         this.anuncioSeleccionado = mapperAnuncio.anuncioDTOtoAnuncio(anuncioSeleccionado);
         this.misPujasViewController.setAnuncio(this.anuncioSeleccionado);
+
+        //Se registra la accion en SubastasUQ_Log.txt
+        String usuario = "";
+        if(miAnunciante!=null) usuario = miAnunciante.getUsuario();
+        if(miComprador!=null) usuario = miComprador.getUsuario();
+        ModelFactoryController.registrarAccion(usuario, "selección de anuncio");
     }
     public void resetSeleccionAnuncio() {
         this.subastasViewController.resetSeleccionAnuncio();
@@ -416,9 +442,32 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         try {
             return miComprador.realizarPuja(p.getAnuncio().getCodigo(), p.getValor(), p.getFecha());
         } catch (PujaException e) {
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
+
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Metodos Flujo de Datos ---------------------------------------------------------------------------------------------------------------------------------
+
+    //Registro de actividad (logger)--------------------------------------------------------------------------------------------------------------------------
+
+    //Metodo para registrar las acciones del usuario
+    public static void registrarAccion(String usuario, String accion) {
+        LOGGER.log(Level.INFO, "Usuario " + usuario + " realizó la acción: " + accion);
+    }
+
+    //Metodo para registrar el ingreso del usuario
+    public static void registrarIngresoUsuario(String usuario) {
+        LOGGER.log(Level.INFO, "Ingreso al sistema: Usuario " + usuario + " ha ingresado.");
+    }
+
+    //Metodo para registrar las excepciones propias
+    public static void registrarExcepcion(Exception e) {
+        LOGGER.log(Level.WARNING, "Excepcion lanzada: "+e.getMessage());
     }
 
 }

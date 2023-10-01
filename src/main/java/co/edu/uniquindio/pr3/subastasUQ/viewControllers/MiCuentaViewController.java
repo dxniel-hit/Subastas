@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MiCuentaController;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
@@ -63,18 +64,30 @@ public class MiCuentaViewController implements Initializable {
                 try {
                     boolean flag = miCuentaController.mfm.actualizarAnuciante(nombres, apellidos, identificacion, Integer.parseInt(edad), email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de anunciante actualizada", "La cuenta de anunciante fue actualizada correctamente", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion(miAnunciante.getUsuario(), "actualizacion cuenta anunciante");
+
                     setMiAnucianteInformation();
                 } catch (AnuncianteException e) {
                     mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de anunciante", e.getMessage(), Alert.AlertType.WARNING);
+                    //Se registra la excepcion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarExcepcion(e);
                 }
             }
             if (tipoUsuario.equals(TipoUsuario.COMPRADOR)) {
                 try {
                     boolean flag = miCuentaController.mfm.actualizarComprador(nombres, apellidos, identificacion, Integer.parseInt(edad), email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de Comprador actualizada", "La cuenta de comprador fue actualizada correctamente", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion(miComprador.getUsuario(), "actualizacion cuenta comprador");
+
                     setMiCompradorInformation();
                 } catch (CompradorException e) {
                     mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de comprador", e.getMessage(), Alert.AlertType.WARNING);
+                    //Se registra la excepcion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarExcepcion(e);
                 }
             }
         }
@@ -88,8 +101,17 @@ public class MiCuentaViewController implements Initializable {
         try {
             String mensaje = miCuentaController.mfm.cambiarContrasenia(identifiacion, tipoUsuario, nuevaContrasenia);
             mostrarMensaje("Proceso Exitoso", "Contraseña actualizada", "La contraseña fue actualizada correctamente", Alert.AlertType.INFORMATION);
+
+            //Se registra la accion en SubastasUQ_Log.txt
+            String usuario = "";
+            if(miAnunciante!=null) usuario = miAnunciante.getUsuario();
+            if(miComprador!=null) usuario = miComprador.getUsuario();
+            ModelFactoryController.registrarAccion(usuario, "cambio de contraseña");
+
         } catch (CompradorException | AnuncianteException e) {
             mostrarMensaje("Error de Actualizacion", "No se puedo actualizar la contraseña", e.getMessage(), Alert.AlertType.WARNING);
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
         }
     }
 
@@ -101,15 +123,29 @@ public class MiCuentaViewController implements Initializable {
         try {
             String mensaje = miCuentaController.mfm.cambiarUsuario(identifiacion, tipoUsuario, nuevoUsuario);
             mostrarMensaje("Proceso Exitoso", "Usuario actualizado", "El usuario fue actualizado correctamente", Alert.AlertType.INFORMATION);
+
+            //Se registra la accion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarAccion(nuevoUsuario, "cambio de usuario");
+
         } catch (CompradorException | AnuncianteException e) {
             mostrarMensaje("Error de Actualizacion", "No se puedo actualizar el usuario", e.getMessage(), Alert.AlertType.WARNING);
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
         } catch (UsuarioEnUsoException e) {
             mostrarMensaje("Error de Usuario", "Usuario en Uso", e.getMessage(), Alert.AlertType.WARNING);
+            //Se registra la excepcion en SubastasUQ_Log.txt
+            ModelFactoryController.registrarExcepcion(e);
         }
     }
 
     @FXML
     void cerrarSesionEvent(ActionEvent event) {
+        //Se registra la accion en SubastasUQ_Log.txt
+        String usuario = "";
+        if(miAnunciante!=null) usuario = miAnunciante.getUsuario();
+        if(miComprador!=null) usuario = miComprador.getUsuario();
+        ModelFactoryController.registrarAccion(usuario, "cierre de sesión");
+
         resetCuenta();
         miCuentaController.mfm.resetCuenta(inputUsuario.getText());
         vaciarCasillas();
@@ -128,22 +164,34 @@ public class MiCuentaViewController implements Initializable {
             try {
                 boolean flag = miCuentaController.mfm.eliminarAnunciante(identificacion);
                 mostrarMensaje("Proceso Exitoso", "Cuenta eliminada", "La cuenta fue eliminada correctamente", Alert.AlertType.INFORMATION);
+
+                //Se registra la accion en SubastasUQ_Log.txt
+                ModelFactoryController.registrarAccion(miAnunciante.getUsuario(), "eliminación de cuenta de anunciante");
+
                 vaciarCasillas();
                 miCuentaController.mfm.resetCuenta();
                 resetCuenta();
             } catch (AnuncianteException e) {
                 mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
+                //Se registra la excepcion en SubastasUQ_Log.txt
+                ModelFactoryController.registrarExcepcion(e);
             }
         }
         if (tipoUsuario.equals(TipoUsuario.COMPRADOR)) {
             try {
                 boolean flag = miCuentaController.mfm.eliminarComprador(identificacion);
                 mostrarMensaje("Proceso Exitoso", "Cuenta eliminada", "La cuenta fue eliminada correctamente", Alert.AlertType.INFORMATION);
+
+                //Se registra la accion en SubastasUQ_Log.txt
+                ModelFactoryController.registrarAccion(miComprador.getUsuario(), "eliminación de cuenta de comprador");
+
                 vaciarCasillas();
                 miCuentaController.mfm.resetCuenta();
                 resetCuenta();
             } catch (CompradorException e) {
                 mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
+                //Se registra la excepcion en SubastasUQ_Log.txt
+                ModelFactoryController.registrarExcepcion(e);
             }
         }
     }

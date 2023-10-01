@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.LoginController;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
 import javafx.event.ActionEvent;
@@ -42,11 +43,13 @@ public class LoginViewController implements Initializable {
                     vaciarCasillas();
                     loginController.mfm.setMiAnunciante(miAnunciante);
                     loginController.mfm.habilitarPestaniasAnunciante();
+                    ModelFactoryController.registrarIngresoUsuario(miAnunciante.getUsuario());
                 }
                 if(miComprador!=null) {
                     vaciarCasillas();
                     loginController.mfm.setMiComprador(miComprador);
                     loginController.mfm.habilitarPestaniasComprador();
+                    ModelFactoryController.registrarIngresoUsuario(miComprador.getUsuario());
                 }
             }
             else {

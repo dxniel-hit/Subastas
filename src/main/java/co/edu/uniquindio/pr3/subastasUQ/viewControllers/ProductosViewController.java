@@ -258,9 +258,12 @@ public class ProductosViewController implements Initializable {
                     tbvProductos.getSelectionModel().clearSelection();
                     limpiarCamposProducto();
                     mostrarMensaje("Eliminación", "Producto eliminado", "El producto ha sido eliminado con éxito", Alert.AlertType.CONFIRMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion(anunciante.getUsuario(), "eliminación producto");
+
                 } else {
-                    //¿Cuándo ocurre esto?
-                    mostrarMensaje("Eliminación", "Producto no eliminado", "El producto no se ha podido eliminar", Alert.AlertType.CONFIRMATION);
+                    mostrarMensaje("Eliminación", "Producto no eliminado", "El producto no se ha podido eliminar", Alert.AlertType.ERROR);
                 }
             }
         } else {
@@ -319,6 +322,10 @@ public class ProductosViewController implements Initializable {
                 listaProductosDTO.add(productoDto);
                 tbvProductos.setItems(listaProductosDTO);
                 mostrarMensaje("Notificación producto", "Producto creado", "El producto se ha creado con éxito", Alert.AlertType.INFORMATION);
+
+                //Se registra la accion en SubastasUQ_Log.txt
+                ModelFactoryController.registrarAccion(anunciante.getUsuario(), "creación producto");
+
                 limpiarCamposProducto();
             } else {
                 mostrarMensaje("Notificación producto", "Producto no creado", "El producto no se ha creado con éxito", Alert.AlertType.ERROR);
@@ -339,7 +346,14 @@ public class ProductosViewController implements Initializable {
                 if(productoControllerService.renovarProducto(codigoProducto, nuevoProductoDTO)) {
                     listaProductosDTO.set(listaProductosDTO.indexOf(productoSeleccionado), nuevoProductoDTO);
                     tbvProductos.refresh();
+                    tbvProductos.getSelectionModel().clearSelection();
+                    this.productoSeleccionado=null;
+                    limpiarCamposProducto();
                     mostrarMensaje("Proceso Exitoso", "Producto actualizado", "El producto ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion(anunciante.getUsuario(), "actualización producto");
+
                 } else {
                     mostrarMensaje("Proceso Sin Exito", "Producto no actualizado", "El producto no se puede actualizar", Alert.AlertType.WARNING);
                 }
@@ -347,7 +361,7 @@ public class ProductosViewController implements Initializable {
         }
     }
 
-    private void limpiarCamposProducto() {
+    public void limpiarCamposProducto() {
         txfNombreProd.setText(null);
         txfCodigoProd.setText(null);
         txaDescripcionProducto.setText(null);

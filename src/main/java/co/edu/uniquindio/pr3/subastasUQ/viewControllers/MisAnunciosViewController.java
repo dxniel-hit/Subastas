@@ -1,6 +1,7 @@
 package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MisAnunciosController;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ProductoController;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.AnuncioDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.ProductoDTO;
@@ -114,10 +115,11 @@ public class MisAnunciosViewController implements Initializable {
 
     @FXML
     void agregarAnuncioEvent(ActionEvent event) {
-        crearProducto();
+
+        crearAnuncio();
     }
 
-    private void crearProducto() {
+    private void crearAnuncio() {
         //1. Validar la información
         if (validarDatos(inputCodigo.getText(), fechaInicio, fechaFinalizacion, inputNombreAnunciante.getText(), productoSeleccionado)) {
             //2. Capturar los datos
@@ -126,6 +128,10 @@ public class MisAnunciosViewController implements Initializable {
                 listaAnunciosDTO.add(AnuncioDto);
                 tableMisAnuncios.setItems(listaAnunciosDTO);
                 mostrarMensaje("Notificación Anuncio", "Anuncio creado", "El anuncio se ha creado con éxito", Alert.AlertType.INFORMATION);
+
+                //Se registra la accion en SubastasUQ_Log.txt
+                ModelFactoryController.registrarAccion(anunciante.getUsuario(), "creación anuncio");
+
                 limpiarCamposAnuncio();
             } else {
                 mostrarMensaje("Notificación Anuncio", "Anuncio no creado", "El anuncio no se ha creado con éxito", Alert.AlertType.ERROR);
@@ -156,6 +162,10 @@ public class MisAnunciosViewController implements Initializable {
                     listaAnunciosDTO.set(listaAnunciosDTO.indexOf(anuncioSeleccionado), nuevoAnuncioDTO);
                     tableMisAnuncios.refresh();
                     mostrarMensaje("Proceso exitoso", "Anuncio actualizado", "El anuncio ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion(anunciante.getUsuario(), "actualización anuncio");
+
                 } else {
                     mostrarMensaje("Proceso exitoso", "Anuncio no actualizado", "El anuncio no se puede actualizar", Alert.AlertType.INFORMATION);
                 }
@@ -183,6 +193,10 @@ public class MisAnunciosViewController implements Initializable {
                     tableMisAnuncios.getSelectionModel().clearSelection();
                     limpiarCamposAnuncio();
                     mostrarMensaje("Eliminación", "Anuncio eliminado", "El anuncio ha sido eliminado con éxito", Alert.AlertType.INFORMATION);
+
+                    //Se registra la accion en SubastasUQ_Log.txt
+                    ModelFactoryController.registrarAccion(anunciante.getUsuario(), "eliminación anuncio");
+
                 }
             } else {
                 mostrarMensaje("Eliminación", "Anuncio no eliminado", "El anuncio no se ha podido eliminar", Alert.AlertType.INFORMATION);
@@ -364,7 +378,7 @@ public class MisAnunciosViewController implements Initializable {
         );
     }
 
-    private void limpiarCamposAnuncio() {
+    public void limpiarCamposAnuncio() {
         inputCodigo.setText(null);
         fechaInicio = "";
         dateFechaInicio.setValue(null);

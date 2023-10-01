@@ -86,6 +86,7 @@ public class SubastasViewController implements Initializable {
         tableSubastas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             anuncioSeleccionado = newSelection;
             subastasControllerService.initAnuncioSeleccionado(anuncioSeleccionado);
+
         });
     }
 

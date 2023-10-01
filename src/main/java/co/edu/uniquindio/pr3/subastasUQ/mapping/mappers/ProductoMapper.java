@@ -8,9 +8,9 @@ import org.mapstruct.factory.*;
 import java.util.*;
 
 @Mapper
-public interface SubastaMappers {
+public interface ProductoMapper {
 
-    SubastaMappers INSTANCE = Mappers.getMapper(SubastaMappers.class);
+    ProductoMapper INSTANCE = Mappers.getMapper(ProductoMapper.class);
 
     @Named("productoToProductoDTO")
     ProductoDTO productoToProductoDTO(Producto producto);

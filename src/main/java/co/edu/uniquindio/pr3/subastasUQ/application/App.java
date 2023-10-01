@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Log;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +21,20 @@ public class App extends Application {
         VentanaPrincipalViewController controller = loader.getController();
         controller.setStage(primaryStage);
         primaryStage.show();
+
+        // Configurar el logger al inicio de la aplicación
+        Log.configurarLogger();
     }
 
     public static void main(String[] args) {
-
         launch();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        // Este método se llama al finalizar la aplicación
+        // Coloca aquí cualquier limpieza o acciones de cierre que necesites
+        Log.cerrarLogger();
+        super.stop();
     }
 }

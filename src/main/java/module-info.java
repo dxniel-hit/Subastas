@@ -6,6 +6,7 @@ module co.edu.uniquindio.pr3.subastasUQ {
     requires javafx.base;
 
     requires org.mapstruct;
+    requires java.logging;
 
     opens co.edu.uniquindio.pr3.subastasUQ.application to javafx.graphics, javafx.fxml;
     opens co.edu.uniquindio.pr3.subastasUQ.model to javafx.base;
