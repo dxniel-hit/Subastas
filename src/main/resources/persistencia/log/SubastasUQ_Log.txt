@@ -1,10 +1,176 @@
-Oct 02, 2023 2:47:47 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+oct. 02, 2023 10:41:58 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
 INFO: Usuario SubsatasUQ realizó la acción: creacion cuenta anunciante
-Oct 02, 2023 2:47:53 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
-INFO: Ingreso al sistema: Usuario carti ha ingresado.
-Oct 02, 2023 2:48:22 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
-INFO: Usuario carti realizó la acción: creación producto
-Oct 02, 2023 2:48:48 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
-INFO: Usuario carti realizó la acción: creación producto
-Oct 02, 2023 2:49:05 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
-INFO: Usuario carti realizó la acción: creación anuncio
+oct. 02, 2023 10:42:17 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario SubsatasUQ realizó la acción: creacion cuenta comprador
+oct. 02, 2023 10:42:43 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario SubsatasUQ realizó la acción: creacion cuenta anunciante
+oct. 02, 2023 10:43:03 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario SubsatasUQ realizó la acción: creacion cuenta comprador
+oct. 02, 2023 10:43:11 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario juanjarce ha ingresado.
+oct. 02, 2023 10:43:21 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: actualizacion cuenta anunciante
+oct. 02, 2023 10:43:27 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: cambio de contraseña
+oct. 02, 2023 10:44:11 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: creación producto
+oct. 02, 2023 10:44:30 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: creación producto
+oct. 02, 2023 10:44:32 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:44:39 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario jaidiver ha ingresado.
+oct. 02, 2023 10:44:55 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidiver realizó la acción: actualizacion cuenta anunciante
+oct. 02, 2023 10:45:03 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: cambio de usuario
+oct. 02, 2023 10:45:41 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarExcepcion
+WARNING: Excepcion lanzada: El Producto con codigo: P1 ya se encuentra creado
+oct. 02, 2023 10:45:46 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: creación producto
+oct. 02, 2023 10:45:58 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: cierre de sesión
+oct. 02, 2023 10:46:04 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario juanjarce ha ingresado.
+oct. 02, 2023 10:46:22 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: actualización producto
+oct. 02, 2023 10:46:36 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: actualización producto
+oct. 02, 2023 10:46:38 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:46:45 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario jaidi ha ingresado.
+oct. 02, 2023 10:47:01 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: actualización producto
+oct. 02, 2023 10:47:04 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: cierre de sesión
+oct. 02, 2023 10:47:21 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario juanjarce ha ingresado.
+oct. 02, 2023 10:47:30 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: creación anuncio
+oct. 02, 2023 10:47:40 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: creación anuncio
+oct. 02, 2023 10:48:16 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarExcepcion
+WARNING: Excepcion lanzada: No se puede eliminar el producto ya que se encuentra anunciado
+oct. 02, 2023 10:48:19 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:48:29 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario jaidi ha ingresado.
+oct. 02, 2023 10:48:38 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarExcepcion
+WARNING: Excepcion lanzada: El Anuncio con codigo: 1ya se encuentra creado
+oct. 02, 2023 10:48:43 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: creación anuncio
+oct. 02, 2023 10:48:46 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: cierre de sesión
+oct. 02, 2023 10:48:52 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario caarce ha ingresado.
+oct. 02, 2023 10:49:07 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: actualizacion cuenta comprador
+oct. 02, 2023 10:49:11 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:49:18 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: realizar puja
+oct. 02, 2023 10:49:18 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:49:20 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:49:26 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: realizar puja
+oct. 02, 2023 10:49:26 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:49:29 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:49:43 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarExcepcion
+WARNING: Excepcion lanzada: La puja no se puede realizar en la fecha actual
+oct. 02, 2023 10:49:50 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:49:58 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: realizar puja
+oct. 02, 2023 10:49:58 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:50:00 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:50:48 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario maria ha ingresado.
+oct. 02, 2023 10:51:09 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: actualizacion cuenta comprador
+oct. 02, 2023 10:51:12 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:19 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: realizar puja
+oct. 02, 2023 10:51:19 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:20 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:28 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: realizar puja
+oct. 02, 2023 10:51:28 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:33 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:39 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarExcepcion
+WARNING: Excepcion lanzada: La puja no se puede realizar en la fecha actual
+oct. 02, 2023 10:51:42 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:48 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: realizar puja
+oct. 02, 2023 10:51:48 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:50 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:57 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: realizar puja
+oct. 02, 2023 10:51:57 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:51:58 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:52:06 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: realizar puja
+oct. 02, 2023 10:52:06 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:52:14 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: selección de anuncio
+oct. 02, 2023 10:52:19 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarExcepcion
+WARNING: Excepcion lanzada: Ya se han realizado 3 pujas por el anuncio
+oct. 02, 2023 10:52:22 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: cierre de sesión
+oct. 02, 2023 10:52:22 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario  realizó la acción: selección de anuncio
+oct. 02, 2023 10:54:38 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario juanjarce ha ingresado.
+oct. 02, 2023 10:54:54 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:55:01 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario jaidi ha ingresado.
+oct. 02, 2023 10:55:10 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: eliminación anuncio
+oct. 02, 2023 10:55:12 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario jaidi realizó la acción: cierre de sesión
+oct. 02, 2023 10:55:57 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario maria ha ingresado.
+oct. 02, 2023 10:56:02 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: cierre de sesión
+oct. 02, 2023 10:56:09 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario caarce ha ingresado.
+oct. 02, 2023 10:56:15 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:56:20 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario maria ha ingresado.
+oct. 02, 2023 10:56:25 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario maria realizó la acción: cierre de sesión
+oct. 02, 2023 10:56:30 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario caarce ha ingresado.
+oct. 02, 2023 10:56:36 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:56:43 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: realizar puja
+oct. 02, 2023 10:56:43 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: selección de anuncio
+oct. 02, 2023 10:56:45 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario caarce realizó la acción: cierre de sesión
+oct. 02, 2023 10:57:09 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarIngresoUsuario
+INFO: Ingreso al sistema: Usuario juanjarce ha ingresado.
+oct. 02, 2023 10:57:23 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: eliminación anuncio
+oct. 02, 2023 10:57:25 A. M. co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController registrarAccion
+INFO: Usuario juanjarce realizó la acción: cierre de sesión

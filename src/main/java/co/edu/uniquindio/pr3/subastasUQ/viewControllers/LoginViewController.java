@@ -44,12 +44,16 @@ public class LoginViewController implements Initializable {
                     loginController.mfm.setMiAnunciante(miAnunciante);
                     loginController.mfm.habilitarPestaniasAnunciante();
                     ModelFactoryController.registrarIngresoUsuario(miAnunciante.getUsuario());
+                    //Se registra la informacion de los usuarios en usuarios.txt
+                    ModelFactoryController.writeBackupUser();
                 }
                 if(miComprador!=null) {
                     vaciarCasillas();
                     loginController.mfm.setMiComprador(miComprador);
                     loginController.mfm.habilitarPestaniasComprador();
                     ModelFactoryController.registrarIngresoUsuario(miComprador.getUsuario());
+                    //Se registra la informacion de los usuarios en usuarios.txt
+                    ModelFactoryController.writeBackupUser();
                 }
             }
             else {

@@ -98,7 +98,6 @@ public class Anuncio {
                 ", nombreAnunciante='" + nombreAnunciante + '\'' +
                 ", producto=" + producto.getCodigo() +
                 ", compra=" + compra +
-                ", listaPujas=" + listaPujas +
                 '}';
     }
 }

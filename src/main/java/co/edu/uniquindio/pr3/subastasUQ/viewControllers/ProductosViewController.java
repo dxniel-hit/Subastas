@@ -260,6 +260,8 @@ public class ProductosViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(anunciante.getUsuario(), "eliminación producto");
+                    //Se registra la informacion de los productos en productos.txt
+                    ModelFactoryController.writeBackupProduct();
 
                 } else {
                     mostrarMensaje("Eliminación", "Producto no eliminado", "El producto no se ha podido eliminar", Alert.AlertType.ERROR);
@@ -324,7 +326,8 @@ public class ProductosViewController implements Initializable {
 
                 //Se registra la accion en SubastasUQ_Log.txt
                 ModelFactoryController.registrarAccion(anunciante.getUsuario(), "creación producto");
-                ModelFactoryController.crearRespaldoCreacionProducto(productoDto.codigo(), productoDto.nombre(), String.valueOf(productoDto.tipoProducto()), anunciante.getUsuario(), anunciante.getNombres(), anunciante.getApellidos(), anunciante.getIdentificacion());
+                //Se registra la informacion del producto en productos.txt
+                ModelFactoryController.appendToBackupProduct(productoDto);
 
                 limpiarCamposProducto();
             } else {
@@ -353,6 +356,8 @@ public class ProductosViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(anunciante.getUsuario(), "actualización producto");
+                    //Se registra la informacion de los productos en productos.txt
+                    ModelFactoryController.writeBackupProduct();
 
                 } else {
                     mostrarMensaje("Proceso Sin Exito", "Producto no actualizado", "El producto no se puede actualizar", Alert.AlertType.WARNING);

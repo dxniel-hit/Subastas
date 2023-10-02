@@ -17,12 +17,16 @@ public class Subasta implements ISubasta {
     private List<Producto> listaProductos;
     private List<Anuncio> listaAnuncios;
     private List<Usuario> listaUsuarios;
+    private List<Puja> listaPujas;
+    private List<Compra> listaCompras;
 
     //Constructores de la clase
     public Subasta() {
         this.listaProductos = new ArrayList<Producto>();
         this.listaAnuncios = new ArrayList<Anuncio>();
         this.listaUsuarios = new ArrayList<Usuario>();
+        this.listaPujas = new ArrayList<Puja>();
+        this.listaCompras = new ArrayList<Compra>();
     }
 
     public Subasta(String nombre, String direccion) {
@@ -31,6 +35,8 @@ public class Subasta implements ISubasta {
         this.listaProductos = new ArrayList<Producto>();
         this.listaAnuncios = new ArrayList<Anuncio>();
         this.listaUsuarios = new ArrayList<Usuario>();
+        this.listaPujas = new ArrayList<Puja>();
+        this.listaCompras = new ArrayList<Compra>();
     }
 
     //Getters y setters
@@ -74,6 +80,21 @@ public class Subasta implements ISubasta {
         this.listaUsuarios = listaUsuarios;
     }
 
+    public List<Puja> getListaPujas() {
+        return listaPujas;
+    }
+
+    public void setListaPujas(List<Puja> listaPujas) {
+        this.listaPujas = listaPujas;
+    }
+
+    public List<Compra> getListaCompras() {
+        return listaCompras;
+    }
+
+    public void setListaCompras(List<Compra> listaCompras) {
+        this.listaCompras = listaCompras;
+    }
     //---------------------------------------------------------------------------------------------------------------------------------------------
     //Metodos de la Clase SubastasQuindio
 

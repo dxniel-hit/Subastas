@@ -106,6 +106,10 @@ public class MisPujasViewController implements Initializable {
 
                         //Se registra la accion en SubastasUQ_Log.txt
                         ModelFactoryController.registrarAccion(comprador.getUsuario(), "realizar puja");
+                        //Se registra la informacion de la puja en pujas_Transaccion.txt
+                        ModelFactoryController.appendToBackupBid(PujaDto);
+                        //Se registra la informacion de los Anuncios en anuncios.txt
+                        ModelFactoryController.writeBackupAdvertisement();
 
                         limpiarInformacion();
                     } else {

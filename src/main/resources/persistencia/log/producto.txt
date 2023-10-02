@@ -1,4 +1,0 @@
-Oct 02, 2023 2:48:22 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController crearRespaldoCreacionProducto
-INFO: Gatonejo@@HOGAR@@P1@@Daniel@@Correa@@1092455966
-Oct 02, 2023 2:48:48 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController crearRespaldoCreacionProducto
-INFO: Gato vampiro@@HOGAR@@P2@@Daniel@@Correa@@1092455966

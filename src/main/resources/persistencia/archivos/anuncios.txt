@@ -1,0 +1,1 @@
+2@@03.10.2023@@04.10.2023@@Juan Jose@@Producto{codigo='P2', nombre='Bus', descripcion='Bus descripcion', imagen='file:/C:/ArchivosConcesionario/Fotos%20Vehiculos/Bus1.png', valorInicial=5.0E7, tipoProducto=VEHICULOS, isAnunciado=true}@@null@@[]

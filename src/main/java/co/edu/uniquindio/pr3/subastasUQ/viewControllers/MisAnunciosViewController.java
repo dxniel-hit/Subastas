@@ -131,7 +131,10 @@ public class MisAnunciosViewController implements Initializable {
 
                 //Se registra la accion en SubastasUQ_Log.txt
                 ModelFactoryController.registrarAccion(anunciante.getUsuario(), "creación anuncio");
-                ModelFactoryController.crearRespaldoCreacionAnuncio(AnuncioDto.codigo(), AnuncioDto.fechaInicio(), AnuncioDto.fechaFinal(), anunciante.getUsuario(), anunciante.getNombres(), anunciante.getApellidos(), anunciante.getIdentificacion());
+                //Se registra la informacion del Anuncio en anuncios.txt
+                ModelFactoryController.appendToBackupAdvertisement(AnuncioDto);
+                //Se registra la informacion de los productos en productos.txt
+                ModelFactoryController.writeBackupProduct();
 
                 limpiarCamposAnuncio();
             } else {
@@ -166,6 +169,10 @@ public class MisAnunciosViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(anunciante.getUsuario(), "actualización anuncio");
+                    //Se registra la informacion de los Anuncioa en anuncios.txt
+                    ModelFactoryController.writeBackupAdvertisement();
+                    //Se registra la informacion de los productos en productos.txt
+                    ModelFactoryController.writeBackupProduct();
 
                 } else {
                     mostrarMensaje("Proceso exitoso", "Anuncio no actualizado", "El anuncio no se puede actualizar", Alert.AlertType.INFORMATION);
@@ -197,6 +204,12 @@ public class MisAnunciosViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(anunciante.getUsuario(), "eliminación anuncio");
+                    //Se registra la informacion de los Anuncioa en anuncios.txt
+                    ModelFactoryController.writeBackupAdvertisement();
+                    //Se registra la informacion de los productos en productos.txt
+                    ModelFactoryController.writeBackupBid();
+                    //Se registra la informacion de los productos en productos.txt
+                    ModelFactoryController.writeBackupProduct();
 
                 }
             } else {

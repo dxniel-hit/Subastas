@@ -1,0 +1,3 @@
+P1@@Mazda 6@@Mazda 6 modelo 2023@@file:/C:/ArchivosConcesionario/Fotos%20Vehiculos/Sedan1.png@@2.0E7@@VEHICULOS@@false
+P2@@Bus@@Bus descripcion@@file:/C:/ArchivosConcesionario/Fotos%20Vehiculos/Bus1.png@@5.0E7@@VEHICULOS@@true
+P3@@Otag@@Es un gato@@file:/C:/Users/juanj/Downloads/Perfil.png@@47000.0@@HOGAR@@false

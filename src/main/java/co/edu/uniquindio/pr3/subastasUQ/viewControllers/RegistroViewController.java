@@ -5,6 +5,7 @@ import co.edu.uniquindio.pr3.subastasUQ.controllers.RegistroController;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
+import co.edu.uniquindio.pr3.subastasUQ.model.Usuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,7 +70,8 @@ public class RegistroViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion("SubsatasUQ", "creacion cuenta anunciante");
-                    ModelFactoryController.crearRespaldoCreacionUsuario(usuario, contrasenia, email, edad, tipoUsuario.toString(), nombres, apellidos, identificacion);
+                    //Se registra la informacion del usuario en usuarios.txt
+                    ModelFactoryController.appendToBackupUser((Usuario) registroController.mfm.obtenerAnunciante(identificacion));
 
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {
@@ -89,6 +91,8 @@ public class RegistroViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion("SubsatasUQ", "creacion cuenta comprador");
+                    //Se registra la informacion del usuario en usuarios.txt
+                    ModelFactoryController.appendToBackupUser((Usuario) registroController.mfm.obtenerComprador(identificacion));
 
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {

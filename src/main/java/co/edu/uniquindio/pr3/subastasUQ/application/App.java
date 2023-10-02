@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.application.Application;
@@ -24,9 +25,12 @@ public class App extends Application {
 
         // Configurar el logger al inicio de la aplicación
         Log.configurarLogger();
-        RegistroProducto.obtenerDatosProductos();
-        RegistroAnuncio.obtenerDatosAnuncio();
-        RegistroUsuario.obtenerDatosUsuario();
+
+        //Se inicializa la informacion de los objetos en "objeto_xxx.txt"
+        ModelFactoryController.writeBackupProduct();
+        ModelFactoryController.writeBackupUser();
+        ModelFactoryController.writeBackupAdvertisement();
+        ModelFactoryController.writeBackupBid();
     }
 
     public static void main(String[] args) {
@@ -43,9 +47,6 @@ public class App extends Application {
         // Este método se llama al finalizar la aplicación
         // Coloca aquí cualquier limpieza o acciones de cierre que necesites
         Log.cerrarLogger();
-        RegistroProducto.cerrarDatosProductos();
-        RegistroAnuncio.cerrarDatosAnuncio();
-        RegistroUsuario.cerrarDatosUsuario();
         super.stop();
     }
 }

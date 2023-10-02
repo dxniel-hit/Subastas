@@ -43,9 +43,6 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Datos para flujo de datos
     static Logger LOGGER = Log.LOGGER;
-    static Logger RESPALDERPRODUCTO = RegistroProducto.RESPALDERPRODUCTO;
-    static Logger RESPALDERANUNCIO = RegistroAnuncio.RESPALDERANUNCIO;
-    static Logger RESPALDERUSUARIO = RegistroUsuario.RESPALDERUSUARIO;
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
@@ -479,19 +476,44 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         LOGGER.log(Level.WARNING, "Excepcion lanzada: " + e.getMessage());
     }
 
-    public static void crearRespaldoCreacionProducto(String codigoProducto, String nombreProducto, String tipoProducto, String usuario, String nombre, String apellido, String cedula) {
-
-        RESPALDERPRODUCTO.log(Level.INFO, nombreProducto + "@@" + tipoProducto + "@@" + codigoProducto + "@@" + nombre + "@@" + apellido + "@@" + cedula);
-
+    //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Producto"
+    public static void writeBackupProduct(){
+        BackupProducto.writeBackup(getInstance().miSubasta.getListaProductos());
     }
 
-    public static void crearRespaldoCreacionAnuncio(String codigo, String fechaInicial, String fechaFinal, String productoSeleccionado, String nombreAnunciante, String apellidoAnunciante, String identificacionAnunciante) {
-        RESPALDERANUNCIO.log(Level.INFO, codigo + "@@" + fechaInicial + "@@" + fechaFinal + "@@" + productoSeleccionado + "@@" + nombreAnunciante + "@@" + apellidoAnunciante + "@@" + identificacionAnunciante);
+    //Metodo para adicionar la informacion de 1 objeto con CRUD "Producto" a su txt "productos.txt"
+    public static void appendToBackupProduct(ProductoDTO p){
+        BackupProducto.appendToBackup(getInstance().mapper.productoDTOtoProducto(p));
     }
 
-    public static void crearRespaldoCreacionUsuario(String usuario, String contrasenia, String email, String edad, String tipoUsuario, String nombres, String apellidos, String identificacion) {
+    //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Usuario"
+    public static void writeBackupUser(){
+        BackupUsuario.writeBackup(getInstance().miSubasta.getListaUsuarios());
+    }
 
-        RESPALDERUSUARIO.log(Level.INFO, usuario + "@@" + contrasenia + "@@" + email + "@@" + edad  + "@@" +tipoUsuario + "@@" + nombres + "@@" + apellidos + "@@" + identificacion);
+    //Metodo para adicionar la informacion de 1 objeto con CRUD "Usuario" a su txt "usuarios.txt"
+    public static void appendToBackupUser(Usuario u){
+        BackupUsuario.appendToBackup(u);
+    }
+
+    //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Usuario"
+    public static void writeBackupAdvertisement(){
+        BackupAnuncio.writeBackup(getInstance().miSubasta.getListaAnuncios());
+    }
+
+    //Metodo para adicionar la informacion de 1 objeto con CRUD "Usuario" a su txt "usuarios.txt"
+    public static void appendToBackupAdvertisement(AnuncioDTO a){
+        BackupAnuncio.appendToBackup(getInstance().mapperAnuncio.anuncioDTOtoAnuncio(a));
+    }
+
+    //Metodo para cargar y guardad la informacion de Transaccion "Puja"
+    public static void writeBackupBid(){
+        BackupPuja.writeBackup(getInstance().miSubasta.getListaPujas());
+    }
+
+    //Metodo para adicionar la informacion de Transaccion "Pujas" a su txt "pujas_Transaccion.txt"
+    public static void appendToBackupBid(PujaDTO p){
+        BackupPuja.appendToBackup(getInstance().mapperPuja.PujaDTOtoPuja(p));
     }
 
 }

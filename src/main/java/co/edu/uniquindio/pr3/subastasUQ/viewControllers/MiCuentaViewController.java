@@ -67,6 +67,8 @@ public class MiCuentaViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(miAnunciante.getUsuario(), "actualizacion cuenta anunciante");
+                    //Se registra la informacion de los usuarios en usuarios.txt
+                    ModelFactoryController.writeBackupUser();
 
                     setMiAnucianteInformation();
                 } catch (AnuncianteException e) {
@@ -82,6 +84,8 @@ public class MiCuentaViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(miComprador.getUsuario(), "actualizacion cuenta comprador");
+                    //Se registra la informacion de los usuarios en usuarios.txt
+                    ModelFactoryController.writeBackupUser();
 
                     setMiCompradorInformation();
                 } catch (CompradorException e) {
@@ -107,6 +111,8 @@ public class MiCuentaViewController implements Initializable {
             if(miAnunciante!=null) usuario = miAnunciante.getUsuario();
             if(miComprador!=null) usuario = miComprador.getUsuario();
             ModelFactoryController.registrarAccion(usuario, "cambio de contraseña");
+            //Se registra la informacion de los usuarios en usuarios.txt
+            ModelFactoryController.writeBackupUser();
 
         } catch (CompradorException | AnuncianteException e) {
             mostrarMensaje("Error de Actualizacion", "No se puedo actualizar la contraseña", e.getMessage(), Alert.AlertType.WARNING);
@@ -126,6 +132,8 @@ public class MiCuentaViewController implements Initializable {
 
             //Se registra la accion en SubastasUQ_Log.txt
             ModelFactoryController.registrarAccion(nuevoUsuario, "cambio de usuario");
+            //Se registra la informacion de los usuarios en usuarios.txt
+            ModelFactoryController.writeBackupUser();
 
         } catch (CompradorException | AnuncianteException e) {
             mostrarMensaje("Error de Actualizacion", "No se puedo actualizar el usuario", e.getMessage(), Alert.AlertType.WARNING);
@@ -149,6 +157,9 @@ public class MiCuentaViewController implements Initializable {
         resetCuenta();
         miCuentaController.mfm.resetCuenta(inputUsuario.getText());
         vaciarCasillas();
+
+        //Se registra la informacion de los usuarios en usuarios.txt
+        ModelFactoryController.writeBackupUser();
     }
 
     public void resetCuenta() {
@@ -167,6 +178,8 @@ public class MiCuentaViewController implements Initializable {
 
                 //Se registra la accion en SubastasUQ_Log.txt
                 ModelFactoryController.registrarAccion(miAnunciante.getUsuario(), "eliminación de cuenta de anunciante");
+                //Se registra la informacion de los usuarios en usuarios.txt
+                ModelFactoryController.writeBackupUser();
 
                 vaciarCasillas();
                 miCuentaController.mfm.resetCuenta();
@@ -184,6 +197,8 @@ public class MiCuentaViewController implements Initializable {
 
                 //Se registra la accion en SubastasUQ_Log.txt
                 ModelFactoryController.registrarAccion(miComprador.getUsuario(), "eliminación de cuenta de comprador");
+                //Se registra la informacion de los usuarios en usuarios.txt
+                ModelFactoryController.writeBackupUser();
 
                 vaciarCasillas();
                 miCuentaController.mfm.resetCuenta();

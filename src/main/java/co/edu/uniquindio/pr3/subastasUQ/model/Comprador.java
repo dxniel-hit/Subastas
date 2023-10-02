@@ -69,6 +69,7 @@ public class Comprador extends Usuario implements IComprador {
         if(valor<a.getProducto().getValorInicial()) throw new PujaException("El valor de la puja es menor al valor inicial del producto");
         if(!Subasta.isEntreFechas(fecha, a.getFechaInicio(), a.getFechaFinal())) throw new PujaException("La puja no se puede realizar en la fecha actual");
         Puja p = new Puja(a, this, valor, fecha);
+        getSubastasQuindio().getListaPujas().add(p);
         a.getListaPujas().add(p);  //Se añade la puja a la listaPujas del Anuncio
         getListaPujas().add(p);    //Se añade la puja a la listaPujas del Comprador
         return true;
@@ -79,6 +80,7 @@ public class Comprador extends Usuario implements IComprador {
         return devolverNumeroPujasEnAnuncio(codigoAnuncio) < 3;
     }
 
+    //¡No se utiliza!
     @Override
     public boolean eliminarPuja(String codigoAnuncio, Double valor, String fecha) {
         try{
