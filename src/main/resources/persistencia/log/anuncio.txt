@@ -1,0 +1,2 @@
+Oct 02, 2023 2:49:05 AM co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController crearRespaldoCreacionAnuncio
+INFO: C1@@10.10.2023@@10.10.2023@@carti@@Daniel@@Correa@@1092455966

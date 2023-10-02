@@ -8,8 +8,7 @@ import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -325,6 +324,7 @@ public class ProductosViewController implements Initializable {
 
                 //Se registra la accion en SubastasUQ_Log.txt
                 ModelFactoryController.registrarAccion(anunciante.getUsuario(), "creación producto");
+                ModelFactoryController.crearRespaldoCreacionProducto(productoDto.codigo(), productoDto.nombre(), String.valueOf(productoDto.tipoProducto()), anunciante.getUsuario(), anunciante.getNombres(), anunciante.getApellidos(), anunciante.getIdentificacion());
 
                 limpiarCamposProducto();
             } else {

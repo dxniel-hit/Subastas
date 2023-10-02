@@ -61,14 +61,15 @@ public class RegistroViewController implements Initializable {
         String contrasenia = inputContrasenia.getText();
         String email = inputEmail.getText();
         TipoUsuario tipoUsuario = TipoUsuario.valueOf(comboTipoUsuario.getSelectionModel().getSelectedItem());
-        if(validarDatos(nombres, apellidos, identificacion, usuario, contrasenia, email, edad, tipoUsuario)) {
-            if(tipoUsuario.equals(TipoUsuario.ANUNCIANTE)){
+        if (validarDatos(nombres, apellidos, identificacion, usuario, contrasenia, email, edad, tipoUsuario)) {
+            if (tipoUsuario.equals(TipoUsuario.ANUNCIANTE)) {
                 try {
                     boolean flag = registroController.mfm.crearAnunciante(nombres, apellidos, identificacion, Integer.parseInt(edad), usuario, contrasenia, email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de Anunciante creado", "El usuario para anunciante fue creado exitosamente", Alert.AlertType.INFORMATION);
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion("SubsatasUQ", "creacion cuenta anunciante");
+                    ModelFactoryController.crearRespaldoCreacionUsuario(usuario, contrasenia, email, edad, tipoUsuario.toString(), nombres, apellidos, identificacion);
 
                     vaciarCasillas();
                 } catch (UsuarioEnUsoException e) {
@@ -81,7 +82,7 @@ public class RegistroViewController implements Initializable {
                     ModelFactoryController.registrarExcepcion(e);
                 }
             }
-            if(tipoUsuario.equals(TipoUsuario.COMPRADOR)){
+            if (tipoUsuario.equals(TipoUsuario.COMPRADOR)) {
                 try {
                     boolean flag = registroController.mfm.crearComprador(nombres, apellidos, identificacion, Integer.parseInt(edad), usuario, contrasenia, email);
                     mostrarMensaje("Proceso Exitoso", "Cuenta de Comprador creado", "El usuario para comprador fue creado exitosamente", Alert.AlertType.INFORMATION);
@@ -103,43 +104,48 @@ public class RegistroViewController implements Initializable {
         }
     }
 
-    public void vaciarCasillas(){
-        inputNombres.setText(null); inputApellidos.setText(null); inputIdentificacion.setText(null);
-        inputEdad.setText(null); inputUsuario.setText(null); inputContrasenia.setText(null);
-        inputEmail.setText(null); comboTipoUsuario.getSelectionModel().clearSelection();
+    public void vaciarCasillas() {
+        inputNombres.setText(null);
+        inputApellidos.setText(null);
+        inputIdentificacion.setText(null);
+        inputEdad.setText(null);
+        inputUsuario.setText(null);
+        inputContrasenia.setText(null);
+        inputEmail.setText(null);
+        comboTipoUsuario.getSelectionModel().clearSelection();
     }
 
     private boolean validarDatos(String nombres, String apellidos, String identificacion, String usuario, String contrasenia, String correo, String edad, TipoUsuario tipoUsuario) {
         String mensaje = "";
 
-        if(nombres == null || nombres.equals(""))
+        if (nombres == null || nombres.equals(""))
             mensaje += "El nombre es invalido \n";
 
-        if(apellidos == null || apellidos.equals(""))
+        if (apellidos == null || apellidos.equals(""))
             mensaje += "Los apellidos son invalidos \n";
 
-        if(identificacion == null || identificacion.equals(""))
+        if (identificacion == null || identificacion.equals(""))
             mensaje += "La identificacion es invalida \n";
 
-        if(usuario == null || usuario.equals(""))
+        if (usuario == null || usuario.equals(""))
             mensaje += "El usuario es invalido \n";
 
-        if(contrasenia == null || contrasenia.equals(""))
+        if (contrasenia == null || contrasenia.equals(""))
             mensaje += "La contrasenia es invalida \n";
 
-        if(correo == null || correo.equals(""))
+        if (correo == null || correo.equals(""))
             mensaje += "El correo es invalido \n";
 
         //regex watafa
-        if(!edad.matches("\\d+"))
+        if (!edad.matches("\\d+"))
             mensaje += "La edad debe ser un numero \n";
 
-        if(tipoUsuario == null)
+        if (tipoUsuario == null)
             mensaje += "El Tipo de Usuario es invalido \n";
 
-        if(mensaje.equals("")){
+        if (mensaje.equals("")) {
             return true;
-        }else{
+        } else {
             mostrarMensaje("Información Usuario", "Datos invalidos", mensaje, Alert.AlertType.WARNING);
             return false;
         }

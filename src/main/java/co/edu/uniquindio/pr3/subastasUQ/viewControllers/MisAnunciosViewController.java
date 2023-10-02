@@ -131,6 +131,7 @@ public class MisAnunciosViewController implements Initializable {
 
                 //Se registra la accion en SubastasUQ_Log.txt
                 ModelFactoryController.registrarAccion(anunciante.getUsuario(), "creación anuncio");
+                ModelFactoryController.crearRespaldoCreacionAnuncio(AnuncioDto.codigo(), AnuncioDto.fechaInicio(), AnuncioDto.fechaFinal(), anunciante.getUsuario(), anunciante.getNombres(), anunciante.getApellidos(), anunciante.getIdentificacion());
 
                 limpiarCamposAnuncio();
             } else {

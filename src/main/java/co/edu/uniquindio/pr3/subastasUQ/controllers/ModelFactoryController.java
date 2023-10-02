@@ -6,7 +6,7 @@ import co.edu.uniquindio.pr3.subastasUQ.mapping.mappers.*;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IModelFactoryControllerService;
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
-import co.edu.uniquindio.pr3.subastasUQ.persistencia.Log;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,6 +43,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Datos para flujo de datos
     static Logger LOGGER = Log.LOGGER;
+    static Logger RESPALDERPRODUCTO = RegistroProducto.RESPALDERPRODUCTO;
+    static Logger RESPALDERANUNCIO = RegistroAnuncio.RESPALDERANUNCIO;
+    static Logger RESPALDERUSUARIO = RegistroUsuario.RESPALDERUSUARIO;
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
@@ -70,18 +73,23 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public Subasta getMiSubasta() {
         return miSubasta;
     }
+
     public void setMiSubasta(Subasta miSubasta) {
         this.miSubasta = miSubasta;
     }
+
     public Anunciante getMiAnunciante() {
         return miAnunciante;
     }
+
     public Comprador getMiComprador() {
         return miComprador;
     }
+
     public Subasta getMiSubastasQuindio() {
         return miSubasta;
     }
+
     public void setMiSubastasQuindio(Subasta miSubasta) {
         this.miSubasta = miSubasta;
     }
@@ -334,7 +342,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         boolean aux = false;
         try {
             aux = miAnunciante.eliminarProducto(codigo);
-        } catch(ProductoException e) {
+        } catch (ProductoException e) {
             //Se registra la excepcion en SubastasUQ_Log.txt
             ModelFactoryController.registrarExcepcion(e);
 
@@ -427,10 +435,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
         //Se registra la accion en SubastasUQ_Log.txt
         String usuario = "";
-        if(miAnunciante!=null) usuario = miAnunciante.getUsuario();
-        if(miComprador!=null) usuario = miComprador.getUsuario();
+        if (miAnunciante != null) usuario = miAnunciante.getUsuario();
+        if (miComprador != null) usuario = miComprador.getUsuario();
         ModelFactoryController.registrarAccion(usuario, "selección de anuncio");
     }
+
     public void resetSeleccionAnuncio() {
         this.subastasViewController.resetSeleccionAnuncio();
     }
@@ -467,7 +476,22 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Metodo para registrar las excepciones propias
     public static void registrarExcepcion(Exception e) {
-        LOGGER.log(Level.WARNING, "Excepcion lanzada: "+e.getMessage());
+        LOGGER.log(Level.WARNING, "Excepcion lanzada: " + e.getMessage());
+    }
+
+    public static void crearRespaldoCreacionProducto(String codigoProducto, String nombreProducto, String tipoProducto, String usuario, String nombre, String apellido, String cedula) {
+
+        RESPALDERPRODUCTO.log(Level.INFO, nombreProducto + "@@" + tipoProducto + "@@" + codigoProducto + "@@" + nombre + "@@" + apellido + "@@" + cedula);
+
+    }
+
+    public static void crearRespaldoCreacionAnuncio(String codigo, String fechaInicial, String fechaFinal, String productoSeleccionado, String nombreAnunciante, String apellidoAnunciante, String identificacionAnunciante) {
+        RESPALDERANUNCIO.log(Level.INFO, codigo + "@@" + fechaInicial + "@@" + fechaFinal + "@@" + productoSeleccionado + "@@" + nombreAnunciante + "@@" + apellidoAnunciante + "@@" + identificacionAnunciante);
+    }
+
+    public static void crearRespaldoCreacionUsuario(String usuario, String contrasenia, String email, String edad, String tipoUsuario, String nombres, String apellidos, String identificacion) {
+
+        RESPALDERUSUARIO.log(Level.INFO, usuario + "@@" + contrasenia + "@@" + email + "@@" + edad  + "@@" +tipoUsuario + "@@" + nombres + "@@" + apellidos + "@@" + identificacion);
     }
 
 }
