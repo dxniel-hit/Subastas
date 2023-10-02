@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
@@ -74,7 +75,7 @@ public class Anunciante extends Usuario implements IAnunciante {
     @Override
     public boolean crearAnuncio(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, String codigoProducto) throws AnuncioException, ProductoException {
         if (obtenerAnuncio(codigo) != null)
-            throw new AnuncioException("El Anuncio con codigo: " + codigo + "ya se encuentra creado");
+            throw new AnuncioException("El Anuncio con codigo: "+ codigo+" "+"ya se encuentra creado");
         Producto p = obtenerProducto(codigoProducto);
         if (p == null)
             throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "No ha sido creado por el anunciante");
@@ -108,6 +109,16 @@ public class Anunciante extends Usuario implements IAnunciante {
         if (p.isAnunciado() && !a.getProducto().getCodigo().equals(codigoProducto))
             throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "ya se encuentra anunciado");
 
+        //Se intenta obtener la compra en el anuncio
+        Compra compraAnuncio = null;
+        try{
+            compraAnuncio = a.getCompra();
+        }catch (Exception ignored){
+
+        }
+        //Si el anuncio tiene una compra no se puede modificar
+        if(compraAnuncio != null) throw new AnuncioException("El anuncio no puede ser modificado, ya que tiene una compra asociada");
+
         a.setFechaInicio(fechaInicio);
         a.setFechaFinal(fechaFinal);
         a.setNombreAnunciante(nombreAnunciante);
@@ -121,6 +132,16 @@ public class Anunciante extends Usuario implements IAnunciante {
     public boolean eliminarAnuncio(String codigo) throws AnuncioException {
         Anuncio a = obtenerAnuncio(codigo);
         if (a == null) throw new AnuncioException("El Anuncio No se encuentra creado");
+        //Se intenta obtener la compra en el anuncio
+        Compra compraAnuncio = null;
+        try{
+            compraAnuncio = a.getCompra();
+        }catch (Exception ignored){
+
+        }
+        //Si el anuncio tiene una compra no se puede modificar
+        if(compraAnuncio != null) throw new AnuncioException("El anuncio no puede ser eliminado, ya que tiene una compra asociada");
+
         a.getListaPujas().forEach(p ->{
             p.getComprador().getListaPujas().remove(p); //Se elimina la puja de la listaPujas del Comprador
             getSubastasQuindio().getListaPujas().remove(p);  //Se elimina la puja de la listaPujas de la clase global Subasta
@@ -181,6 +202,30 @@ public class Anunciante extends Usuario implements IAnunciante {
         getSubastasQuindio().getListaProductos().remove(p);
         listaProductos.remove(p);
         return true;
+    }
+
+    //Metodo para realizar la compra de un anuncio
+    public Compra realizarVenta(String codigoAnuncio, String codigoProducto, Double valor, String fecha, String identificacionComprador, Anunciante anunciante) throws AnuncianteException {
+        //Se intenta obtener la compra en el anuncio
+        Anuncio a = obtenerAnuncio(codigoAnuncio);
+        Compra compraAnuncio = null;
+        try{
+            compraAnuncio = a.getCompra();
+        }catch (Exception ignored){
+
+        }
+
+        //Si el anuncio tiene una compra asociada no se puede vender nuevamente
+        if(compraAnuncio!=null)  throw new AnuncianteException("El anuncio ya tiene una venta asociada");
+
+        //Se realiza la compra
+        Comprador comprador = getSubastasQuindio().obtenerComprador(identificacionComprador);
+        Compra c = new Compra(obtenerProducto(codigoProducto), valor, fecha, comprador, anunciante);
+        getSubastasQuindio().getListaCompras().add(c);
+        comprador.getListaCompras().add(c);
+        a.setCompra(c);
+
+        return c;
     }
 
 }

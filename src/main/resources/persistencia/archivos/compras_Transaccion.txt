@@ -1,0 +1,1 @@
+Producto{codigo='P1', nombre='asdasdas', descripcion='asdasdasd', imagen='file:/C:/ArchivosConcesionario/Fotos%20Vehiculos/Bus1.png', valorInicial=1.5E7, tipoProducto=VEHICULOS, isAnunciado=true}@@2.0E7@@02.10.2023@@false@@18494175@@18484

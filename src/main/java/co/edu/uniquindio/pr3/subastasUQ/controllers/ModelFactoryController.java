@@ -516,4 +516,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         BackupPuja.appendToBackup(getInstance().mapperPuja.PujaDTOtoPuja(p));
     }
 
+    //Metodo para cargar y guardad la informacion de Transaccion "Compra"
+    public static void writeBackupBuys(){
+        BackupCompra.writeBackup(getInstance().miSubasta.getListaCompras());
+    }
+
+    //Metodo para adicionar la informacion de Transaccion "Compra" a su txt "compras_Transaccion.txt"
+    public static void appendToBackupBuys(Compra c){
+        BackupCompra.appendToBackup(c);
+    }
+
 }

@@ -31,6 +31,7 @@ public class App extends Application {
         ModelFactoryController.writeBackupUser();
         ModelFactoryController.writeBackupAdvertisement();
         ModelFactoryController.writeBackupBid();
+        ModelFactoryController.writeBackupBuys();
     }
 
     public static void main(String[] args) {

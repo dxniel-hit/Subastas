@@ -1,10 +1,9 @@
 package co.edu.uniquindio.pr3.subastasUQ.model.interfaces;
 
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncioException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.ProductoException;
-import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
-import co.edu.uniquindio.pr3.subastasUQ.model.Compra;
-import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
+import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import javafx.scene.image.Image;
 
@@ -25,5 +24,7 @@ public interface IAnunciante {
     public boolean actualizarProducto(String codigo, Producto producto) throws ProductoException;
 
     public boolean eliminarProducto(String codigo) throws ProductoException;
+
+    public Compra realizarVenta(String codigoAnuncio, String codigoProducto, Double valor, String fecha, String identificacionComprador, Anunciante anunciante) throws AnuncianteException;
 
 }

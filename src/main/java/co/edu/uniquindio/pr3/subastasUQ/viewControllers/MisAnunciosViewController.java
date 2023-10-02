@@ -3,11 +3,13 @@ package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MisAnunciosController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ProductoController;
+import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.AnuncioDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.ProductoDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.PujaDTO;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
+import co.edu.uniquindio.pr3.subastasUQ.model.Compra;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -174,8 +176,8 @@ public class MisAnunciosViewController implements Initializable {
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
 
-                } else {
-                    mostrarMensaje("Proceso exitoso", "Anuncio no actualizado", "El anuncio no se puede actualizar", Alert.AlertType.INFORMATION);
+                }else {
+                    mostrarMensaje("Proceso No exitoso", "Anuncio no actualizado", "El anuncio no se puede actualizar", Alert.AlertType.WARNING);
                 }
             }
         } else {
@@ -211,9 +213,9 @@ public class MisAnunciosViewController implements Initializable {
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
 
+                }else {
+                    mostrarMensaje("Eliminación", "Anuncio no eliminado", "El anuncio no se ha podido eliminar", Alert.AlertType.WARNING);
                 }
-            } else {
-                mostrarMensaje("Eliminación", "Anuncio no eliminado", "El anuncio no se ha podido eliminar", Alert.AlertType.INFORMATION);
             }
         } else {
             mostrarMensaje("Selección", "Selección anuncio", "Seleccione un anuncio que eliminar", Alert.AlertType.WARNING);
@@ -248,7 +250,45 @@ public class MisAnunciosViewController implements Initializable {
 
     @FXML
     void venderAccion(ActionEvent event) {
+        if(anunciante!=null){
+            if(anuncioSeleccionado!=null){
+                if(pujaSeleccionada!=null){
+                    try {
+                        Compra c = anunciante.realizarVenta(this.anuncioSeleccionado.codigo(), this.anuncioSeleccionado.producto().getCodigo(), this.pujaSeleccionada.valor(), obtenerFechaActual(), this.pujaSeleccionada.comprador().getIdentificacion(), this.anunciante);
+                        mostrarMensaje("Venta", "Venta realizada", "La venta se ha realizado de manera exitosa", Alert.AlertType.INFORMATION);
 
+                        //Se registra la informacion de la Compra en compras_Transaccion.txt
+                        ModelFactoryController.appendToBackupBuys(c);
+
+                        //Limpiamos la seleccion
+                        this.anuncioSeleccionado = null;
+                        tableMisAnuncios.getSelectionModel().clearSelection();
+                        this.pujaSeleccionada = null;
+                        tablePujas.getSelectionModel().clearSelection();
+
+                    } catch (AnuncianteException e) {
+                        mostrarMensaje("Error de Venta", "No se puede realizar la venta", e.getMessage(), Alert.AlertType.WARNING);
+                        //Se registra la excepcion en SubastasUQ_Log.txt
+                        ModelFactoryController.registrarExcepcion(e);
+                    }
+                }
+                else{
+                    mostrarMensaje("Puja", "Puja No seleccionada", "No hay un puja seleccionada", Alert.AlertType.WARNING);
+                }
+            }
+            else{
+                mostrarMensaje("Anuncio", "Anuncio No seleccionado", "No hay un anuncio seleccionado", Alert.AlertType.WARNING);
+            }
+        }
+        else{
+            mostrarMensaje("Anunciante", "Anunciante No iniciado", "No hay un anunciante autenticado", Alert.AlertType.WARNING);
+        }
+    }
+
+    public String obtenerFechaActual() {
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return fechaActual.format(formatter);
     }
 
     private boolean validarDatos(String codigo, String fechaInicio, String fechaFinal, String nombreAnunciante, ProductoDTO productoSeleccionado) {
