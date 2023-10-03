@@ -5,11 +5,16 @@ import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.ISubasta;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
 
-public class Subasta implements ISubasta {
+public class Subasta implements ISubasta, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     //Atributos de la clase
     private String nombre;

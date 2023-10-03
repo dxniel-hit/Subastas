@@ -1,2 +1,1 @@
-Anuncio{codigo='1', fechaInicio='02.10.2023', fechaFinal='04.10.2023', nombreAnunciante='Juan', producto=P1, compra=Compra{producto=P1, valor=2.0E7, fecha='02.10.2023', isPago=false, comprador=18494175, anunciante=18484}}@@18494175@@2.0E7@@02.10.2023
-Anuncio{codigo='1', fechaInicio='02.10.2023', fechaFinal='04.10.2023', nombreAnunciante='Juan', producto=P1, compra=Compra{producto=P1, valor=2.0E7, fecha='02.10.2023', isPago=false, comprador=18494175, anunciante=18484}}@@18494175@@2.1E7@@02.10.2023
+Anuncio{codigo='1', fechaInicio='02.10.2023', fechaFinal='03.10.2023', nombreAnunciante='Juan José', producto=P1, compra=Compra{producto=P1, valor=2.2E7, fecha='02.10.2023', isPago=false, comprador=1092455966, anunciante=1092851015}}@@1092455966@@2.2E7@@02.10.2023

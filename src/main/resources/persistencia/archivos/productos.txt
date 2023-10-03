@@ -1,2 +1,2 @@
-P1@@asdasdas@@asdasdasd@@file:/C:/ArchivosConcesionario/Fotos%20Vehiculos/Bus1.png@@1.5E7@@VEHICULOS@@true
-P2@@Bus@@Descripcion@@file:/C:/Users/juanj/Downloads/Perfil.png@@1.5E7@@VEHICULOS@@false
+P1@@Mazda 6@@Mazda 6 modelo 2023@@C:/ArchivosConcesionario/Fotos Vehiculos/Sedan1.png@@2.0E7@@VEHICULOS@@true
+P2@@Bus@@Bus descripcion@@file:/C:/ArchivosConcesionario/Fotos%20Vehiculos/Bus1.png@@5.0E7@@VEHICULOS@@true

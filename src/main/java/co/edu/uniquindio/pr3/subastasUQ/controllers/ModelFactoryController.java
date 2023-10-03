@@ -7,6 +7,7 @@ import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IModelFactoryCont
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
+import co.edu.uniquindio.pr3.subastasUQ.utils.SubastaUtils;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,6 +65,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     private void inicializarDatos() {
         miSubasta = new Subasta("Subastas UQ", "Carrera 15 #12N, Armenia, Quindío");
+
+        //iniciarYSalvarDatosPrueba()
+        Subasta s1 = SubastaUtils.inicializarDatos();
+        //cargarDatosDesdeArchivos()
+        Persistencia.cargarDatosDesdeArchivos(miSubasta);
     }
 
     //Getters y setters del subastero
