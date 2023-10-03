@@ -31,7 +31,7 @@ public class SubastaUtils {
 
         //Creamos un Producto con Anunciante a1
         try {
-            a1.crearProducto("P1", "Mazda 6", "Mazda 6 modelo 2023", "C:/ArchivosConcesionario/Fotos Vehiculos/Sedan1.png", 20000000.0, TipoProducto.VEHICULOS);
+            a1.crearProducto("P1", "Mazda 6", "Mazda 6 modelo 2023", "C:/ArchivosSubastasUQ/Images/Sedan1.png", 20000000.0, TipoProducto.VEHICULOS);
         } catch (ProductoException e) {
             System.out.println(e.getMessage());
         }

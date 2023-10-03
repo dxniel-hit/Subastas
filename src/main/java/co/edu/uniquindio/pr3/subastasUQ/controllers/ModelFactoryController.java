@@ -45,6 +45,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     //Datos para flujo de datos
     static Logger LOGGER = Log.LOGGER;
 
+    //Direcciones de archivos para serializar y deserializar
+    public static final String RUTA_ARCHIVO_SUBASTAUQXML = "src/main/resources/persistencia/SubastasUQ.xml";
+    public static final String RUTA_ARCHIVO_SUBASTAUQDAT = "src/main/resources/persistencia/SubastasUQ.dat";
+
+
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
         inicializarDatos();
@@ -70,6 +75,17 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Subasta s1 = SubastaUtils.inicializarDatos();
         //cargarDatosDesdeArchivos()
         Persistencia.cargarDatosDesdeArchivos(miSubasta);
+
+        //Se obtiene la informacion de los archivos serializados
+        //cargarResourceXML()
+        if(Persistencia.deserializarXML(RUTA_ARCHIVO_SUBASTAUQXML) != null) {
+            this.miSubasta = Persistencia.deserializarXML(RUTA_ARCHIVO_SUBASTAUQXML);
+        }
+
+        //cargarResourceBinario()
+        /*if(Persistencia.deserializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT) != null) {
+            this.miSubasta = Persistencia.deserializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT);
+        }*/
     }
 
     //Getters y setters del subastero
@@ -195,7 +211,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         //se añaden las pujas segun el anunciante
         this.misAnunciosViewController.setListaPujasDTO(FXCollections.observableArrayList());
 
-        //se setean los anuncios en SubastasViewComtroller
+        //se setean los anuncios en SubastasViewController
         ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
         listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
         this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
@@ -211,7 +227,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.miCuentaViewController.setMiCompradorInformation();
         this.miSubasta.autenticarUsuario(miComprador.getUsuario());
 
-        //se setean los anuncios en SubastasViewComtroller
+        //se setean los anuncios en SubastasViewController
         ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
         listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
         this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
@@ -532,4 +548,24 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         BackupCompra.appendToBackup(c);
     }
 
+    //Metodos para serializar la informacion de la clase global miSubastas ----------------------------------------------------------------------------------------------------------------------
+
+    //guardarResourceBinario()
+    public static void serializarBinario() {
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Se almacenan los datos en archivos
+        Persistencia.serializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT, getInstance().miSubasta);
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    }
+
+    //guardarResourceXML()
+    public static void serializarXML() {
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //Se almacenan los datos en archivos
+        Persistencia.serializarXML(RUTA_ARCHIVO_SUBASTAUQXML, getInstance().miSubasta);
+        Persistencia.serializarXML("C:/ArchivosSubastasUQ/SubastasUQ.xml", getInstance().miSubasta);
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

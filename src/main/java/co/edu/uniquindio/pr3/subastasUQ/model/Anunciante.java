@@ -7,10 +7,13 @@ import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.model.interfaces.IAnunciante;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Anunciante extends Usuario implements IAnunciante {
+public class Anunciante extends Usuario implements IAnunciante, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //Atributos de la clase
     private List<Anuncio> listaAnuncios;

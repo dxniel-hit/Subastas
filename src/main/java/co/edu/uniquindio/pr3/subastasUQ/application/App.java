@@ -1,6 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
-import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
+import co.edu.uniquindio.pr3.subastasUQ.controllers.*;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.application.Application;
@@ -26,6 +26,9 @@ public class App extends Application {
         // Configurar el logger al inicio de la aplicación
         Log.configurarLogger();
 
+        //Se realiza la copia de respaldo para los archivos
+        Persistencia.realizarCopiasRespaldo();
+
         //Se inicializa la informacion de los objetos en "objeto_xxx.txt"
         ModelFactoryController.writeBackupProduct();
         ModelFactoryController.writeBackupUser();
@@ -38,16 +41,16 @@ public class App extends Application {
         launch();
     }
 
-
-    /**
-     * Que buen metodo jeje
-     */
     @Override
-    public void stop() throws Exception {
-
+    public void stop() {
         // Este método se llama al finalizar la aplicación
         // Coloca aquí cualquier limpieza o acciones de cierre que necesites
         Log.cerrarLogger();
-        super.stop();
+
+        //Se serializa la informacion ingresada durante la ejecucion
+        //guardarResourceBinario()
+        ModelFactoryController.serializarBinario();
+        //guardarResourceXML()
+        ModelFactoryController.serializarXML();
     }
 }

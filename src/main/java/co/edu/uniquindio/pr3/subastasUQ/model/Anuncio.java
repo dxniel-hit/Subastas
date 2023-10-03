@@ -1,9 +1,12 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Anuncio {
+public class Anuncio implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //Atributos de la clase
     private String codigo;

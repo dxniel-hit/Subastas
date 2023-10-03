@@ -2,7 +2,11 @@ package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //Atributos de la clase
     private String codigo;
@@ -15,7 +19,7 @@ public class Producto {
 
     //Metodos constructor de la clase
     public Producto() {
-
+        this.isAnunciado = false;
     }
 
     public Producto(String codigo, String nombre, String descripcion, String image, Double valorInicial, TipoProducto tipoProducto) {

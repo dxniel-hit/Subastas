@@ -1,6 +1,10 @@
 package co.edu.uniquindio.pr3.subastasUQ.model;
 
-public class Compra {
+import java.io.Serializable;
+
+public class Compra implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //Atributos de la clase
     private Producto producto;

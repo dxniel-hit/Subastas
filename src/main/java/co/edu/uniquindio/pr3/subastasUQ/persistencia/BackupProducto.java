@@ -22,7 +22,7 @@ public class BackupProducto {
                                 "@"+p.getImage() +"@"+
                                 "@"+p.getValorInicial() +"@"+
                                 "@"+p.getTipoProducto() +"@"+
-                                "@"+p.isAnunciado() +"\n"
+                                "@"+p.isAnunciado()+"\n"
                 );
             }
 
@@ -47,7 +47,7 @@ public class BackupProducto {
                     "@"+p.getImage() +"@"+
                     "@"+p.getValorInicial() +"@"+
                     "@"+p.getTipoProducto() +"@"+
-                    "@"+p.isAnunciado() +"\n");
+                    "@"+p.isAnunciado()+"\n");
 
             // Close the FileWriter object to save the changes
             writer.close();
@@ -73,7 +73,7 @@ public class BackupProducto {
                     String imagen = partes[3];
                     double valorInicial = Double.parseDouble(partes[4]);
                     TipoProducto tipoProducto = TipoProducto.valueOf(partes[5]);
-                    boolean anunciado = Boolean.parseBoolean(partes[6]);
+                    String anunciado = partes[6];
 
                     // Crear un producto y agregarlo a la lista
                     Producto producto = new Producto(codigo, nombre, descripcion, imagen, valorInicial, tipoProducto);

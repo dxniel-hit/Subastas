@@ -2,7 +2,11 @@ package co.edu.uniquindio.pr3.subastasUQ.model;
 
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 
-public class Usuario extends Persona{
+import java.io.Serializable;
+
+public class Usuario extends Persona implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     //Atributos de la clase
     private Subasta subasta;

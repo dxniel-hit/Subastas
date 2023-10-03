@@ -4,8 +4,17 @@ import co.edu.uniquindio.pr3.subastasUQ.exceptions.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 
+import java.io.*;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 
 public class Persistencia {
 
@@ -83,4 +92,145 @@ public class Persistencia {
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Metodos para serializacion binaria ---------------------------------------------------------------------------------------------------------------------------------------------
+
+    //guardarResourceBinario()
+    public static void serializarBinario(String rutaArchivo, Subasta miSubasta) {
+        try {
+            ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream(rutaArchivo));
+            escribiendo_fichero.writeObject(miSubasta);
+            escribiendo_fichero.close();
+        }
+        catch(Exception ignored) {
+        }
+    }
+
+    //cargarResourceBinario()
+    public static Subasta deserializarBinario(String rutaArchivo) {
+        Subasta miSubasta = null;
+        try {
+            ObjectInputStream recuperando_ficheroConcesionario = new ObjectInputStream(new FileInputStream(rutaArchivo));
+            miSubasta = (Subasta) recuperando_ficheroConcesionario.readObject();
+            recuperando_ficheroConcesionario.close();
+        }
+        catch (Exception ignored) {
+
+        }
+        return miSubasta;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Metodos para serializacion en archivos xml---------------------------------------------------------------------------------------------------------------------------------------
+
+    //guardarResourceXML()
+    public static void serializarXML(String rutaArchivo, Subasta miSubasta) {
+        try{
+            XMLEncoder codificadorXML;
+
+            codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
+            codificadorXML.writeObject(miSubasta);
+            codificadorXML.close();
+        }catch (Exception ignored){
+
+        }
+    }
+
+    //cargarResourceXML()
+    public static Subasta deserializarXML(String rutaArchivo) {
+        XMLDecoder decodificadorXML;
+        Subasta objetoXML=null;
+        try{
+            decodificadorXML = new XMLDecoder(new FileInputStream(rutaArchivo));
+            objetoXML = (Subasta) decodificadorXML.readObject();
+            decodificadorXML.close();
+        }catch (Exception ignored){
+
+        }
+        return objetoXML;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Metodo para copia archivo serializado (xml) en formato nombreArchivo_ddmmaaaa_hhmmss --------------------------------------------------------------------------------------------
+
+    //Copar archivo de respaldo .xml
+    public static void copiarArchivoConFechaHoraXML(String rutaOrigen, String directorioDestino) {
+        try {
+            File archivoOriginal = new File(rutaOrigen);
+            if (archivoOriginal.exists() && archivoOriginal.isFile()) {
+                // Obtener la fecha y hora actual
+                SimpleDateFormat formatoFechaHora = new SimpleDateFormat("ddMMyyyy_HHmmss");
+                String fechaHoraActual = formatoFechaHora.format(new Date());
+
+                // Obtener el nombre del archivo original sin extensión
+                String nombreArchivoSinExtension = archivoOriginal.getName().replaceFirst("[.][^.]+$", "");
+
+                // Generar el nuevo nombre del archivo con la fecha y hora
+                String nombreArchivoCopia = nombreArchivoSinExtension + "_" + fechaHoraActual + ".xml";
+
+                // Crear el directorio destino si no existe
+                File directorioDestinoFile = new File(directorioDestino);
+                directorioDestinoFile.mkdirs();
+
+                // Crear el archivo de destino con el nuevo nombre
+                Path destino = new File(directorioDestino, nombreArchivoCopia).toPath();
+
+                // Copiar el archivo original al destino
+                CopyOption[] options = new CopyOption[]{
+                        StandardCopyOption.REPLACE_EXISTING,
+                        StandardCopyOption.COPY_ATTRIBUTES
+                };
+                Files.copy(archivoOriginal.toPath(), destino, options);
+
+                System.out.println("Copia exitosa: " + destino);
+            } else {
+                System.out.println("El archivo original no existe o no es un archivo.");
+            }
+        } catch (IOException e) {
+            System.out.println("Error al copiar el archivo: " + e.getMessage());
+        }
+    }
+
+    //copiar archivo de respaldo .txt
+    public static void copiarArchivoConFechaHoraTXT(String rutaOrigen, String directorioDestino) {
+        try {
+            File archivoOriginal = new File(rutaOrigen);
+            if (archivoOriginal.exists() && archivoOriginal.isFile()) {
+                // Obtener la fecha y hora actual
+                SimpleDateFormat formatoFechaHora = new SimpleDateFormat("ddMMyyyy_HHmmss");
+                String fechaHoraActual = formatoFechaHora.format(new Date());
+
+                // Obtener el nombre del archivo original sin extensión
+                String nombreArchivoSinExtension = archivoOriginal.getName().replaceFirst("[.][^.]+$", "");
+
+                // Generar el nuevo nombre del archivo con la fecha y hora
+                String nombreArchivoCopia = nombreArchivoSinExtension + "_" + fechaHoraActual + ".txt";
+
+                // Crear el directorio destino si no existe
+                File directorioDestinoFile = new File(directorioDestino);
+                directorioDestinoFile.mkdirs();
+
+                // Crear el archivo de destino con el nuevo nombre
+                Path destino = new File(directorioDestino, nombreArchivoCopia).toPath();
+
+                // Copiar el archivo original al destino
+                Files.copy(archivoOriginal.toPath(), destino, StandardCopyOption.REPLACE_EXISTING);
+
+                System.out.println("Copia exitosa: " + destino);
+            } else {
+                System.out.println("El archivo original no existe o no es un archivo.");
+            }
+        } catch (IOException e) {
+            System.out.println("Error al copiar el archivo: " + e.getMessage());
+        }
+    }
+
+    //Rutas necesarias para realizar copias de archivos (cuando se inicia la aplicacion)
+    public static final String RUTA_ARCHIVO_SUBASTAUQ = "src/main/resources/persistencia/SubastasUQ.xml";
+    public static final String RUTA_ARCHIVO_COMPRAS = "src/main/resources/persistencia/archivos/compras_Transaccion.txt";
+
+    public static void realizarCopiasRespaldo(){
+        copiarArchivoConFechaHoraXML(RUTA_ARCHIVO_SUBASTAUQ, "src/main/resources/persistencia/respaldo");
+        copiarArchivoConFechaHoraTXT(RUTA_ARCHIVO_COMPRAS, "src/main/resources/persistencia/respaldo");
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

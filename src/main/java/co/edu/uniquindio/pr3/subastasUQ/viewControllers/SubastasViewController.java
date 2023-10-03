@@ -63,6 +63,7 @@ public class SubastasViewController implements Initializable {
         subastasControllerService = new SubastasController();
         subastasControllerService.initSubastasViewController(this);
 
+        subastasControllerService.mfm.refrescarTablaSubastas();
         initView();
     }
 
