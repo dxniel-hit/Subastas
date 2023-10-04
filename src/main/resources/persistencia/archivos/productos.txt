@@ -1,3 +1,2 @@
 P1@@Mazda 6@@Mazda 6 modelo 2023@@C:/ArchivosSubastasUQ/Images/Sedan1.png@@2.0E7@@VEHICULOS@@true
-P2@@Otag@@Es un gatico@@file:/C:/ArchivosSubastasUQ/Images/Otag.jpg@@42000.0@@HOGAR@@true
-P3@@PickUp Nissan@@Pick  up de nissan ultimo modelo@@file:/C:/ArchivosSubastasUQ/Images/PickUp1.png@@7.0E7@@VEHICULOS@@false
+P2@@Otag@@Es un gato@@file:/C:/ArchivosSubastasUQ/Images/Otag.jpg@@150000.0@@HOGAR@@false

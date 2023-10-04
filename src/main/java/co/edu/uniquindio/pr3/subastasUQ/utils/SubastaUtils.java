@@ -14,7 +14,7 @@ public class SubastaUtils {
 
         //Se crea una cuenta de Anunciante
         try {
-            subasta.crearAnunciante("Juan José", "Arce Aristizabal", "1092851015", 18, subasta, "juanjarce", "nally41945090", "juanjtete2004@gmail.com", false);
+            subasta.crearAnunciante("Juan José", "Arce Aristizabal", "1092851015", 18, subasta, "juanjarce", "juanjarce", "juanjtete2004@gmail.com", false);
         } catch (AnuncianteException | UsuarioEnUsoException e) {
             System.out.println(e.getMessage());
         }
