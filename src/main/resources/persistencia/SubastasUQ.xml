@@ -59,7 +59,7 @@
               <string>Mazda 6</string>
              </void>
              <void property="tipoProducto">
-              <object class="java.lang.Enum" method="valueOf">
+              <object class="java.lang.Enum" id="TipoProducto0" method="valueOf">
                <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto</class>
                <string>VEHICULOS</string>
               </object>
@@ -75,7 +75,7 @@
               <string>P2</string>
              </void>
              <void property="descripcion">
-              <string>Es un gato</string>
+              <string>Es un gatico</string>
              </void>
              <void property="image">
               <string>file:/C:/ArchivosSubastasUQ/Images/Otag.jpg</string>
@@ -84,10 +84,7 @@
               <string>Otag</string>
              </void>
              <void property="tipoProducto">
-              <object class="java.lang.Enum" method="valueOf">
-               <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto</class>
-               <string>HOGAR</string>
-              </object>
+              <object idref="TipoProducto0"/>
              </void>
              <void property="valorInicial">
               <double>150000.0</double>

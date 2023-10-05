@@ -498,6 +498,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         LOGGER.log(Level.WARNING, "Excepcion lanzada: " + e.getMessage());
     }
 
+    //Metodos para escribir la información de la clase general Subasta (miSubasta) en archivos .txt -------------------------------------------------------------------------------------
+
     //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Producto"
     public static void writeBackupProduct(){
         BackupProducto.writeBackup(getInstance().miSubasta.getListaProductos());

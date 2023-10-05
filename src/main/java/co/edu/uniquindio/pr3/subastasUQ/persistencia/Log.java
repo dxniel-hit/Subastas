@@ -15,7 +15,7 @@ public class Log {
     public static void configurarLogger() {
         try {
 
-            archivo = new FileHandler("src/main/resources/persistencia/log/SubastasUQ_Log.txt", false); // Reemplaza "ruta" con la ruta real
+            archivo = new FileHandler("src/main/resources/persistencia/log/SubastasUQ_Log.txt", true); // Reemplaza "ruta" con la ruta real
             archivo.setFormatter(new SimpleFormatter());
             LOGGER.addHandler(archivo);
 

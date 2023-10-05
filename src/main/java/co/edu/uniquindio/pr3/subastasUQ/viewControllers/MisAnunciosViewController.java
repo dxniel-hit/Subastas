@@ -206,9 +206,9 @@ public class MisAnunciosViewController implements Initializable {
 
                     //Se registra la accion en SubastasUQ_Log.txt
                     ModelFactoryController.registrarAccion(anunciante.getUsuario(), "eliminación anuncio");
-                    //Se registra la informacion de los Anuncioa en anuncios.txt
+                    //Se registra la informacion de los Anuncios en anuncios.txt
                     ModelFactoryController.writeBackupAdvertisement();
-                    //Se registra la informacion de los productos en productos.txt
+                    //Se registra la informacion de las pujas en pujas_Transaccion.txt
                     ModelFactoryController.writeBackupBid();
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
@@ -259,6 +259,10 @@ public class MisAnunciosViewController implements Initializable {
 
                         //Se registra la informacion de la Compra en compras_Transaccion.txt
                         ModelFactoryController.appendToBackupBuys(c);
+                        //Se registra la informacion de los Anuncioa en anuncios.txt
+                        ModelFactoryController.writeBackupAdvertisement();
+                        //Se registra la informacion de las pujas en pujas_Transaccion.txt
+                        ModelFactoryController.writeBackupBid();
 
                         //Limpiamos la seleccion
                         this.anuncioSeleccionado = null;

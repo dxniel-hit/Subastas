@@ -112,6 +112,10 @@ public class Anunciante extends Usuario implements IAnunciante, Serializable {
         if (p.isAnunciado() && !a.getProducto().getCodigo().equals(codigoProducto))
             throw new ProductoException("El Producto con codigo: " + codigoProducto + " " + "ya se encuentra anunciado");
 
+        //Se verifica el anuncio no tenga pujas asociadas
+        if (a.getListaPujas().size()>0)
+            throw new ProductoException("El anuncio no puede ser modificado, ya que tiene pujas asociadas");
+
         //Se intenta obtener la compra en el anuncio
         Compra compraAnuncio = null;
         try{
