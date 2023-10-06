@@ -2,7 +2,7 @@
 
 Programada construido en JavaFX que va a servir para subastar y pujar.
 
-## ¿Qué falta para la primera entrega?
+## ¿Qué falta para la segunda entrega?
 
 Nada.
 
