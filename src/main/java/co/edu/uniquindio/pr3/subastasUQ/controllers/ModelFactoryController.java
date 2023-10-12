@@ -570,4 +570,18 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Metodos para exportar archivos .csv ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Metodo para exportar los anuncios en formato .csv
+    public void convertAnunciosTxtToCsv(String outputFolderPath){
+        Persistencia.convertAnunciosTxtToCsv(outputFolderPath);
+    }
+
+    //Metodo para exportar las compras en formato .csv
+    public void convertComprasTxtToCsv(String outputFolderPath){
+        Persistencia.convertComprasTxtToCsv(outputFolderPath);
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 }

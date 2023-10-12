@@ -4,6 +4,7 @@ import co.edu.uniquindio.pr3.subastasUQ.exceptions.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 
+import javax.swing.*;
 import java.io.*;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
@@ -233,4 +234,62 @@ public class Persistencia {
         copiarArchivoConFechaHoraTXT(RUTA_ARCHIVO_COMPRAS, "src/main/resources/persistencia/respaldo");
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Metdos para exportar archivos .csv ----------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Inicializamos las rutas de los archivos .txt (Anuncios y Compras)
+    static String RUTA_ANUNCIOS = "src/main/resources/persistencia/archivos/anuncios.txt";
+    static String RUTA_COMPRAS = "src/main/resources/persistencia/archivos/compras_Transaccion.txt";
+
+    //Metodo para exportar la informacion de anuncios.txt a un archivo .csv
+    public static void convertAnunciosTxtToCsv(String outputFolderPath) {
+        if (outputFolderPath == null) {
+            System.out.println("La operación fue cancelada por el usuario.");
+            return;
+        }
+
+        String outputFileName = outputFolderPath + File.separator + "anuncios.csv";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(RUTA_ANUNCIOS));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Reemplaza "@@" por ","
+                line = line.replace("@@", ",");
+                // Escribe la línea en el archivo .csv
+                writer.write(line);
+                writer.newLine();
+            }
+            System.out.println("Conversión completada. Archivo .csv creado en: " + outputFileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Metodo para exportar la informacion de compras_Transaccion.txt a un archivo .csv
+    public static void convertComprasTxtToCsv(String outputFolderPath) {
+        if (outputFolderPath == null) {
+            System.out.println("La operación fue cancelada por el usuario.");
+            return;
+        }
+
+        String outputFileName = outputFolderPath + File.separator + "compras.csv";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(RUTA_COMPRAS));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Reemplaza "@@" por ","
+                line = line.replace("@@", ",");
+                // Escribe la línea en el archivo .csv
+                writer.write(line);
+                writer.newLine();
+            }
+            System.out.println("Conversión completada. Archivo .csv creado en: " + outputFileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+//------------------------------------------------------------------------------------------------------------------------------------------------
 }

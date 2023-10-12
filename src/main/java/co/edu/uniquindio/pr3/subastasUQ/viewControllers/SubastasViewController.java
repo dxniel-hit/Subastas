@@ -7,12 +7,17 @@ import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,6 +61,38 @@ public class SubastasViewController implements Initializable {
 
     @FXML
     private Hyperlink hplIniciarSesion;
+
+    @FXML
+    private Button btnExportarAnuncios;
+
+    @FXML
+    private Button btnExportarCompras;
+
+    @FXML
+    void exportarAnunciosEvent(ActionEvent event) {
+        String outputFolderPath = getFolderPath();
+        subastasControllerService.convertAnunciosTxtToCsv(outputFolderPath);
+    }
+
+    @FXML
+    void exportarComprasEvent(ActionEvent event) {
+        String outputFolderPath = getFolderPath();
+        subastasControllerService.convertComprasTxtToCsv(outputFolderPath);
+    }
+
+    //Metodo para obtener la direccion de una carpeta elegida por el usuario
+    public static String getFolderPath() {
+        Stage stage = new Stage();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Selecciona una carpeta para guardar el archivo CSV");
+        File selectedDirectory = directoryChooser.showDialog(stage);
+
+        if (selectedDirectory != null) {
+            return selectedDirectory.getAbsolutePath();
+        } else {
+            return null; // El usuario canceló la selección
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
