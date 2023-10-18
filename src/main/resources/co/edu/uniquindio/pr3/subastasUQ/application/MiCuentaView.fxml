@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -17,42 +16,83 @@
     <bottom>
         <AnchorPane prefHeight="750.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="459.0" layoutY="241.0" prefHeight="30.0" prefWidth="84.0" text="Nombres:" />
-                <TextField fx:id="inputNombres" layoutX="551.0" layoutY="244.0" prefHeight="25.0" prefWidth="319.0" />
-                <Label layoutX="459.0" layoutY="274.0" prefHeight="30.0" prefWidth="84.0" text="Apellidos:" />
-                <Button layoutX="449.0" layoutY="543.0" mnemonicParsing="false" onAction="#actualizarInformacionEvent" prefHeight="25.0" prefWidth="224.0" text="ACTUALIZAR INFORMACIÓN GENERAL" />
-                <ImageView fitHeight="81.0" fitWidth="97.0" layoutX="449.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+                <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="258.0" prefHeight="30.0" prefWidth="84.0" text="Nombres :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <TextField fx:id="inputNombres" layoutX="450.0" layoutY="262.0" prefHeight="25.0" prefWidth="319.0" />
+                <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="291.0" prefHeight="30.0" prefWidth="84.0" text="Apellidos :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <Button layoutX="988.0" layoutY="262.0" mnemonicParsing="false" onAction="#actualizarInformacionEvent" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #669966;" text="ACTUALIZAR INFORMACIÓN GENERAL" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Button>
+                <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="293.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/usuario.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="459.0" layoutY="312.0" prefHeight="30.0" prefWidth="84.0" text="Identificacion:" />
-                <Label layoutX="459.0" layoutY="348.0" prefHeight="30.0" prefWidth="84.0" text="Edad:" />
-                <Label layoutX="459.0" layoutY="382.0" prefHeight="30.0" prefWidth="84.0" text="Usuario:" />
-                <Label layoutX="459.0" layoutY="416.0" prefHeight="30.0" prefWidth="84.0" text="Constraseña:" />
-                <PasswordField fx:id="inputContrasenia" layoutX="551.0" layoutY="419.0" prefHeight="25.0" prefWidth="325.0" />
-                <Label layoutX="459.0" layoutY="487.0" prefHeight="30.0" prefWidth="100.0" text="Tipo de Usuario:" />
-                <TextField fx:id="inputIdentificacion" layoutX="551.0" layoutY="314.0" prefHeight="25.0" prefWidth="322.0" />
-                <TextField fx:id="inputApellidos" layoutX="551.0" layoutY="278.0" prefHeight="25.0" prefWidth="320.0" />
-                <TextField fx:id="inputEdad" layoutX="551.0" layoutY="350.0" prefHeight="25.0" prefWidth="323.0" />
-                <TextField fx:id="inputUsuario" layoutX="551.0" layoutY="384.0" prefHeight="25.0" prefWidth="324.0" />
-                <ComboBox fx:id="comboTipoUsuario" layoutX="551.0" layoutY="489.0" prefHeight="25.0" prefWidth="326.0" />
-                <Label layoutX="551.0" layoutY="138.0" prefHeight="50.0" prefWidth="240.0" text="Información de la Cuenta">
+                <Label alignment="CENTER_RIGHT" layoutX="324.0" layoutY="329.0" prefHeight="30.0" prefWidth="107.0" text="Identificación :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="365.0" prefHeight="30.0" prefWidth="84.0" text="Edad :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="399.0" prefHeight="30.0" prefWidth="84.0" text="Usuario :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="433.0" prefHeight="30.0" prefWidth="84.0" text="Contraseña :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <PasswordField fx:id="inputContrasenia" layoutX="450.0" layoutY="437.0" prefHeight="25.0" prefWidth="325.0" />
+                <Label alignment="CENTER_RIGHT" layoutX="312.0" layoutY="503.0" prefHeight="30.0" prefWidth="116.0" text="Tipo de usuario :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <TextField fx:id="inputIdentificacion" layoutX="450.0" layoutY="332.0" prefHeight="25.0" prefWidth="322.0" />
+                <TextField fx:id="inputApellidos" layoutX="450.0" layoutY="296.0" prefHeight="25.0" prefWidth="320.0" />
+                <TextField fx:id="inputEdad" layoutX="450.0" layoutY="368.0" prefHeight="25.0" prefWidth="63.0" />
+                <TextField fx:id="inputUsuario" layoutX="450.0" layoutY="402.0" prefHeight="25.0" prefWidth="324.0" />
+                <ComboBox fx:id="comboTipoUsuario" layoutX="450.0" layoutY="507.0" prefHeight="25.0" prefWidth="248.0" />
+                <Label layoutX="467.0" layoutY="156.0" prefWidth="240.0" text="Información de la Cuenta">
                     <font>
-                        <Font size="20.0" />
+                        <Font name="Rockwell" size="14.0" />
                     </font>
                     <effect>
                         <Glow />
                     </effect>
                 </Label>
-                <Label layoutX="552.0" layoutY="176.0" prefHeight="25.0" prefWidth="253.0" text="Puede modificar la información de su cuenta" />
-                <Separator layoutX="442.0" layoutY="530.0" prefHeight="4.0" prefWidth="483.0" />
-                <Button layoutX="448.0" layoutY="575.0" mnemonicParsing="false" onAction="#cambiarUsuarioEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR USUARIO" />
-                <Button layoutX="692.0" layoutY="543.0" mnemonicParsing="false" onAction="#cambiarContraseniaEvent" prefHeight="25.0" prefWidth="226.0" text="CAMBIAR CONTRASEÑA" />
-                <Button layoutX="693.0" layoutY="575.0" mnemonicParsing="false" onAction="#cerrarSesionEvent" prefHeight="25.0" prefWidth="226.0" text="CERRAR SESIÓN" />
-                <Button layoutX="694.0" layoutY="607.0" mnemonicParsing="false" onAction="#eliminarCuentaEvent" prefHeight="25.0" prefWidth="225.0" text="ELIMINAR CUENTA" />
-                <Label layoutX="459.0" layoutY="453.0" prefHeight="30.0" prefWidth="100.0" text="Email:" />
-                <TextField fx:id="inputEmail" layoutX="552.0" layoutY="454.0" prefHeight="25.0" prefWidth="324.0" />
+                <Label layoutX="467.0" layoutY="172.0" prefHeight="25.0" text="Puede modificar la información de su cuenta">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <Button layoutX="989.0" layoutY="296.0" mnemonicParsing="false" onAction="#cambiarUsuarioEvent" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #669966;" text="CAMBIAR USUARIO" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Button>
+                <Button layoutX="987.0" layoutY="331.0" mnemonicParsing="false" onAction="#cambiarContraseniaEvent" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #669966;" text="CAMBIAR CONTRASEÑA" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Button>
+                <Button layoutX="988.0" layoutY="366.0" mnemonicParsing="false" onAction="#cerrarSesionEvent" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #669966;" text="CERRAR SESIÓN" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Button>
+                <Button layoutX="989.0" layoutY="401.0" mnemonicParsing="false" onAction="#eliminarCuentaEvent" prefHeight="25.0" prefWidth="275.0" style="-fx-background-color: #FFCCCC;" text="ELIMINAR CUENTA" textFill="#f50000">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Button>
+                <Label alignment="CENTER_RIGHT" layoutX="341.0" layoutY="473.0" prefHeight="30.0" prefWidth="87.0" text="Email :">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
+                <TextField fx:id="inputEmail" layoutX="451.0" layoutY="472.0" prefHeight="25.0" prefWidth="324.0" />
             </children>
         </AnchorPane>
     </bottom>

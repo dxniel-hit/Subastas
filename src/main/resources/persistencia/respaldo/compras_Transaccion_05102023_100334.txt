@@ -1,0 +1,1 @@
+Producto{codigo='P1', nombre='Mazda 6', descripcion='Mazda 6 modelo 2023', imagen='C:/Users/Daniel/Desktop/raro.jpg', valorInicial=2.0E7, tipoProducto=VEHICULOS, isAnunciado=true}@@2.2E7@@02.10.2023@@false@@1092455966@@1092851015

@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MisAnunciosViewController">
+<AnchorPane prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MisAnunciosViewController">
     <children>
         <SplitPane dividerPositions="0.31496062992125984" orientation="VERTICAL" prefHeight="750.0" prefWidth="1300.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="179.0" prefWidth="634.0">
                     <children>
-                        <Pane prefHeight="50.0" prefWidth="1341.0" style="-fx-background-color: #6699FF;">
+                        <Pane prefHeight="50.0" prefWidth="1341.0" style="-fx-background-color: #669966;">
                             <children>
-                                <Label layoutX="539.0" layoutY="11.0" text="Información del Anuncio">
+                                <Label layoutX="539.0" layoutY="11.0" text="Información del Anuncio" textAlignment="CENTER">
                                     <font>
-                                        <Font name="Rockwell Italic" size="24.0" />
+                                        <Font name="Rockwell" size="21.0" />
                                     </font>
                                 </Label>
                             </children>
@@ -42,17 +42,17 @@
                         <Separator layoutX="12.0" layoutY="182.0" prefHeight="5.0" prefWidth="1318.0" />
                         <Button fx:id="btnNuevo" layoutX="768.0" layoutY="193.0" mnemonicParsing="false" onAction="#nuevoAnuncioEvent" prefHeight="33.0" style="-fx-background-color: #669966;" text="Limpiar casillas" textFill="WHITE">
                             <font>
-                                <Font name="Rockwell Bold" size="14.0" />
+                                <Font name="Rockwell" size="14.0" />
                             </font>
                         </Button>
                         <Button fx:id="btnAgregar" layoutX="439.0" layoutY="193.0" mnemonicParsing="false" onAction="#agregarAnuncioEvent" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #669966;" text="Agregar anuncio" textFill="WHITE">
                             <font>
-                                <Font name="Rockwell Bold" size="14.0" />
+                                <Font name="Rockwell" size="14.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btnActualizar" layoutX="605.0" layoutY="193.0" mnemonicParsing="false" onAction="#actualizarAnuncioEvent" prefHeight="33.0" style="-fx-background-color: #3399CC;" text="Actualizar anuncio" textFill="WHITE">
+                        <Button fx:id="btnActualizar" layoutX="597.0" layoutY="193.0" mnemonicParsing="false" onAction="#actualizarAnuncioEvent" prefHeight="33.0" style="-fx-background-color: #669966;" text="Actualizar anuncio" textFill="WHITE">
                             <font>
-                                <Font name="Rockwell Bold" size="14.0" />
+                                <Font name="Rockwell" size="14.0" />
                             </font>
                         </Button>
                         <DatePicker fx:id="dateFechaFinalizacion" layoutX="959.0" layoutY="112.0" onAction="#getFechaFinalizacion" prefHeight="40.0" prefWidth="190.0" promptText="Fecha final del anuncio" />
@@ -67,7 +67,7 @@
                                 <Font name="Rockwell" size="21.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="inputNombreAnunciante" layoutX="439.0" layoutY="112.0" prefHeight="40.0" prefWidth="190.0" promptText="Ingrese el nombre del anunciante" />
+                        <TextField fx:id="inputNombreAnunciante" layoutX="439.0" layoutY="112.0" prefHeight="40.0" prefWidth="201.0" promptText="Ingrese el nombre del anunciante" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="193.0" prefWidth="623.0">
@@ -84,7 +84,7 @@
                         </TableView>
                         <Button fx:id="btnEliminar" layoutX="248.0" layoutY="223.0" mnemonicParsing="false" onAction="#eliminarAnuncioEvent" prefHeight="33.0" style="-fx-background-color: #FFCCCC;" text="Eliminar anuncio" textFill="#f50000">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="Rockwell" size="14.0" />
                             </font>
                         </Button>
                         <Label layoutX="12.0" layoutY="14.0" text="Lista de mis anuncios">
@@ -108,9 +108,9 @@
                                 <TableColumn fx:id="columnValorPuja" prefWidth="199.0" text="Valor" />
                             </columns>
                         </TableView>
-                        <Button layoutX="941.0" layoutY="222.0" mnemonicParsing="false" onAction="#venderAccion" prefHeight="35.0" style="-fx-background-color: #3399CC;" text="Dar puja seleccionada" textFill="WHITE">
+                        <Button layoutX="941.0" layoutY="222.0" mnemonicParsing="false" onAction="#venderAccion" prefHeight="35.0" style="-fx-background-color: #669966;" text="Dar puja seleccionada" textFill="WHITE">
                             <font>
-                                <Font name="Rockwell Bold" size="14.0" />
+                                <Font name="Rockwell" size="14.0" />
                             </font>
                         </Button>
                         <Label layoutX="17.0" layoutY="265.0" text="Lista de mis productos">

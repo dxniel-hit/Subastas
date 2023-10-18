@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.8" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.pr3.subastasUQ.model.Subasta" id="Subasta0">
+  <void property="direccion">
+   <string>Carrera 15 #12N, Armenia, Quindío</string>
+  </void>
+  <void property="listaAnuncios">
+   <void method="add">
+    <object class="co.edu.uniquindio.pr3.subastasUQ.model.Anuncio" id="Anuncio0">
+     <void property="codigo">
+      <string>1</string>
+     </void>
+     <void property="compra">
+      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Compra" id="Compra0">
+       <void property="anunciante">
+        <object class="co.edu.uniquindio.pr3.subastasUQ.model.Anunciante" id="Anunciante0">
+         <void property="apellidos">
+          <string>Arce Aristizabal</string>
+         </void>
+         <void property="autenticado">
+          <boolean>false</boolean>
+         </void>
+         <void property="contrasenia">
+          <string>juanjarce</string>
+         </void>
+         <void property="edad">
+          <int>18</int>
+         </void>
+         <void property="email">
+          <string>juanjtete2004@gmail.com</string>
+         </void>
+         <void property="identificacion">
+          <string>1092851015</string>
+         </void>
+         <void property="listaAnuncios">
+          <object class="java.util.ArrayList">
+           <void method="add">
+            <object idref="Anuncio0"/>
+           </void>
+          </object>
+         </void>
+         <void property="listaProductos">
+          <object class="java.util.ArrayList">
+           <void method="add">
+            <object class="co.edu.uniquindio.pr3.subastasUQ.model.Producto" id="Producto0">
+             <void property="anunciado">
+              <boolean>true</boolean>
+             </void>
+             <void property="codigo">
+              <string>P1</string>
+             </void>
+             <void property="descripcion">
+              <string>Mazda 6 modelo 2023</string>
+             </void>
+             <void property="image">
+              <string>C:/Users/Daniel/Desktop/raro.jpg</string>
+             </void>
+             <void property="nombre">
+              <string>Mazda 6</string>
+             </void>
+             <void property="tipoProducto">
+              <object class="java.lang.Enum" method="valueOf">
+               <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto</class>
+               <string>VEHICULOS</string>
+              </object>
+             </void>
+             <void property="valorInicial">
+              <double>2.0E7</double>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="nombres">
+          <string>Juan José</string>
+         </void>
+         <void property="subastasQuindio">
+          <object idref="Subasta0"/>
+         </void>
+         <void property="tipoUsuario">
+          <object class="java.lang.Enum" method="valueOf">
+           <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario</class>
+           <string>ANUNCIANTE</string>
+          </object>
+         </void>
+         <void property="usuario">
+          <string>juanjarce</string>
+         </void>
+        </object>
+       </void>
+       <void property="comprador">
+        <object class="co.edu.uniquindio.pr3.subastasUQ.model.Comprador" id="Comprador0">
+         <void property="apellidos">
+          <string>Correa de la Espriella</string>
+         </void>
+         <void property="autenticado">
+          <boolean>false</boolean>
+         </void>
+         <void property="cantidadDeVecesPujada">
+          <object class="java.util.ArrayList"/>
+         </void>
+         <void property="contrasenia">
+          <string>danielcorrea</string>
+         </void>
+         <void property="edad">
+          <int>18</int>
+         </void>
+         <void property="email">
+          <string>danielf.corread@uqvirtual.edu.co</string>
+         </void>
+         <void property="identificacion">
+          <string>1092455966</string>
+         </void>
+         <void property="listaCompras">
+          <object class="java.util.ArrayList">
+           <void method="add">
+            <object idref="Compra0"/>
+           </void>
+          </object>
+         </void>
+         <void property="listaPujas">
+          <object class="java.util.ArrayList">
+           <void method="add">
+            <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja0">
+             <void property="anuncio">
+              <object idref="Anuncio0"/>
+             </void>
+             <void property="comprador">
+              <object idref="Comprador0"/>
+             </void>
+             <void property="fecha">
+              <string>02.10.2023</string>
+             </void>
+             <void property="valor">
+              <double>2.2E7</double>
+             </void>
+            </object>
+           </void>
+          </object>
+         </void>
+         <void property="nombres">
+          <string>Daniel Felipe</string>
+         </void>
+         <void property="subastasQuindio">
+          <object idref="Subasta0"/>
+         </void>
+         <void property="tipoUsuario">
+          <object class="java.lang.Enum" method="valueOf">
+           <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario</class>
+           <string>COMPRADOR</string>
+          </object>
+         </void>
+         <void property="usuario">
+          <string>danielcorrea</string>
+         </void>
+        </object>
+       </void>
+       <void property="fecha">
+        <string>02.10.2023</string>
+       </void>
+       <void property="pago">
+        <boolean>false</boolean>
+       </void>
+       <void property="producto">
+        <object idref="Producto0"/>
+       </void>
+       <void property="valor">
+        <double>2.2E7</double>
+       </void>
+      </object>
+     </void>
+     <void property="fechaFinal">
+      <string>03.10.2023</string>
+     </void>
+     <void property="fechaInicio">
+      <string>02.10.2023</string>
+     </void>
+     <void property="listaPujas">
+      <object class="java.util.ArrayList">
+       <void method="add">
+        <object idref="Puja0"/>
+       </void>
+      </object>
+     </void>
+     <void property="nombreAnunciante">
+      <string>Juan José</string>
+     </void>
+     <void property="producto">
+      <object idref="Producto0"/>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="listaCompras">
+   <void method="add">
+    <object idref="Compra0"/>
+   </void>
+  </void>
+  <void property="listaProductos">
+   <void method="add">
+    <object idref="Producto0"/>
+   </void>
+  </void>
+  <void property="listaPujas">
+   <void method="add">
+    <object idref="Puja0"/>
+   </void>
+  </void>
+  <void property="listaUsuarios">
+   <void method="add">
+    <object idref="Anunciante0"/>
+   </void>
+   <void method="add">
+    <object idref="Comprador0"/>
+   </void>
+  </void>
+  <void property="nombre">
+   <string>Subastas UQ</string>
+  </void>
+ </object>
+</java>
