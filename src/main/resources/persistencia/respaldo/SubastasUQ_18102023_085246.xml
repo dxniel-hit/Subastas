@@ -49,7 +49,91 @@
               <string>10.10.2023</string>
              </void>
              <void property="listaPujas">
-              <object class="java.util.ArrayList"/>
+              <object class="java.util.ArrayList">
+               <void method="add">
+                <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja0">
+                 <void property="anuncio">
+                  <object idref="Anuncio1"/>
+                 </void>
+                 <void property="comprador">
+                  <object class="co.edu.uniquindio.pr3.subastasUQ.model.Comprador" id="Comprador0">
+                   <void property="apellidos">
+                    <string>Correa de la Espriella</string>
+                   </void>
+                   <void property="autenticado">
+                    <boolean>false</boolean>
+                   </void>
+                   <void property="cantidadDeVecesPujada">
+                    <object class="java.util.ArrayList"/>
+                   </void>
+                   <void property="contrasenia">
+                    <string>danielcorrea</string>
+                   </void>
+                   <void property="edad">
+                    <int>18</int>
+                   </void>
+                   <void property="email">
+                    <string>danielf.corread@uqvirtual.edu.co</string>
+                   </void>
+                   <void property="identificacion">
+                    <string>1092455966</string>
+                   </void>
+                   <void property="listaCompras">
+                    <object class="java.util.ArrayList">
+                     <void method="add">
+                      <object idref="Compra0"/>
+                     </void>
+                    </object>
+                   </void>
+                   <void property="listaPujas">
+                    <object class="java.util.ArrayList">
+                     <void method="add">
+                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja1">
+                       <void property="anuncio">
+                        <object idref="Anuncio0"/>
+                       </void>
+                       <void property="comprador">
+                        <object idref="Comprador0"/>
+                       </void>
+                       <void property="fecha">
+                        <string>02.10.2023</string>
+                       </void>
+                       <void property="valor">
+                        <double>2.2E7</double>
+                       </void>
+                      </object>
+                     </void>
+                     <void method="add">
+                      <object idref="Puja0"/>
+                     </void>
+                    </object>
+                   </void>
+                   <void property="nombres">
+                    <string>Daniel Felipe</string>
+                   </void>
+                   <void property="subastasQuindio">
+                    <object idref="Subasta0"/>
+                   </void>
+                   <void property="tipoUsuario">
+                    <object class="java.lang.Enum" method="valueOf">
+                     <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario</class>
+                     <string>COMPRADOR</string>
+                    </object>
+                   </void>
+                   <void property="usuario">
+                    <string>danielcorrea</string>
+                   </void>
+                  </object>
+                 </void>
+                 <void property="fecha">
+                  <string>18.10.2023</string>
+                 </void>
+                 <void property="valor">
+                  <double>155000.0</double>
+                 </void>
+                </object>
+               </void>
+              </object>
              </void>
              <void property="nombreAnunciante">
               <string>Juan José</string>
@@ -139,71 +223,7 @@
         </object>
        </void>
        <void property="comprador">
-        <object class="co.edu.uniquindio.pr3.subastasUQ.model.Comprador" id="Comprador0">
-         <void property="apellidos">
-          <string>Correa de la Espriella</string>
-         </void>
-         <void property="autenticado">
-          <boolean>false</boolean>
-         </void>
-         <void property="cantidadDeVecesPujada">
-          <object class="java.util.ArrayList"/>
-         </void>
-         <void property="contrasenia">
-          <string>danielcorrea</string>
-         </void>
-         <void property="edad">
-          <int>18</int>
-         </void>
-         <void property="email">
-          <string>danielf.corread@uqvirtual.edu.co</string>
-         </void>
-         <void property="identificacion">
-          <string>1092455966</string>
-         </void>
-         <void property="listaCompras">
-          <object class="java.util.ArrayList">
-           <void method="add">
-            <object idref="Compra0"/>
-           </void>
-          </object>
-         </void>
-         <void property="listaPujas">
-          <object class="java.util.ArrayList">
-           <void method="add">
-            <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja0">
-             <void property="anuncio">
-              <object idref="Anuncio0"/>
-             </void>
-             <void property="comprador">
-              <object idref="Comprador0"/>
-             </void>
-             <void property="fecha">
-              <string>02.10.2023</string>
-             </void>
-             <void property="valor">
-              <double>2.2E7</double>
-             </void>
-            </object>
-           </void>
-          </object>
-         </void>
-         <void property="nombres">
-          <string>Daniel Felipe</string>
-         </void>
-         <void property="subastasQuindio">
-          <object idref="Subasta0"/>
-         </void>
-         <void property="tipoUsuario">
-          <object class="java.lang.Enum" method="valueOf">
-           <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario</class>
-           <string>COMPRADOR</string>
-          </object>
-         </void>
-         <void property="usuario">
-          <string>danielcorrea</string>
-         </void>
-        </object>
+        <object idref="Comprador0"/>
        </void>
        <void property="fecha">
         <string>02.10.2023</string>
@@ -228,7 +248,7 @@
      <void property="listaPujas">
       <object class="java.util.ArrayList">
        <void method="add">
-        <object idref="Puja0"/>
+        <object idref="Puja1"/>
        </void>
       </object>
      </void>
@@ -258,6 +278,9 @@
    </void>
   </void>
   <void property="listaPujas">
+   <void method="add">
+    <object idref="Puja1"/>
+   </void>
    <void method="add">
     <object idref="Puja0"/>
    </void>

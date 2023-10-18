@@ -1,1 +1,2 @@
 Anuncio{codigo='1', fechaInicio='02.10.2023', fechaFinal='03.10.2023', nombreAnunciante='Juan José', producto=P1, compra=Compra{producto=P1, valor=2.2E7, fecha='02.10.2023', isPago=false, comprador=1092455966, anunciante=1092851015}}@@1092455966@@2.2E7@@02.10.2023
+Anuncio{codigo='2', fechaInicio='10.10.2023', fechaFinal='18.10.2023', nombreAnunciante='Juan José', producto=P2, compra=null}@@1092455966@@155000.0@@18.10.2023
