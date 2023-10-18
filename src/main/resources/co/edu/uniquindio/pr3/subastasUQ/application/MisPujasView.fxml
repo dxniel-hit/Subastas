@@ -11,49 +11,49 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MisPujasViewController">
+<AnchorPane prefHeight="659.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.pr3.subastasUQ.viewControllers.MisPujasViewController">
     <children>
-        <SplitPane dividerPositions="0.38235294117647056" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="1280.0">
+        <SplitPane dividerPositions="0.32868217054263565" layoutX="-12.0" layoutY="27.0" orientation="VERTICAL" prefHeight="624.0" prefWidth="1280.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="179.0" prefWidth="700.0">
                     <children>
                         <Separator layoutX="14.0" layoutY="42.0" prefHeight="1.0" prefWidth="1251.0" />
-                        <Label alignment="CENTER_RIGHT" layoutX="362.0" layoutY="89.0" prefHeight="31.0" prefWidth="252.0" text="Anuncio :" textAlignment="JUSTIFY">
+                        <Label alignment="CENTER_RIGHT" layoutX="362.0" layoutY="59.0" prefHeight="31.0" prefWidth="252.0" text="Anuncio :" textAlignment="JUSTIFY">
                             <font>
                                 <Font name="Rockwell" size="21.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="inputAnuncio" layoutX="663.0" layoutY="90.0" prefHeight="25.0" prefWidth="254.0" promptText="Ingrese el código del anuncio">
+                        <TextField fx:id="inputAnuncio" layoutX="663.0" layoutY="59.0" prefHeight="25.0" prefWidth="254.0" promptText="Ingrese el código del anuncio">
                      <font>
                         <Font name="Rockwell" size="16.0" />
                      </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="362.0" layoutY="121.0" prefHeight="31.0" prefWidth="252.0" text="Comprador :" textAlignment="RIGHT">
+                        <Label alignment="CENTER_RIGHT" layoutX="362.0" layoutY="93.0" prefHeight="31.0" prefWidth="252.0" text="Comprador :" textAlignment="RIGHT">
                             <font>
                                 <Font name="Rockwell" size="21.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="inputComprador" layoutX="663.0" layoutY="122.0" prefHeight="25.0" prefWidth="254.0" promptText="Identificación del comprador">
+                        <TextField fx:id="inputComprador" layoutX="663.0" layoutY="93.0" prefHeight="25.0" prefWidth="254.0" promptText="Identificación del comprador">
                      <font>
                         <Font name="Rockwell" size="16.0" />
                      </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="362.0" layoutY="154.0" prefHeight="31.0" prefWidth="252.0" text="Valor :" textAlignment="JUSTIFY">
+                        <Label alignment="CENTER_RIGHT" layoutX="362.0" layoutY="128.0" prefHeight="31.0" prefWidth="252.0" text="Valor :" textAlignment="JUSTIFY">
                             <font>
                                 <Font name="Rockwell" size="21.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="inputValor" layoutX="663.0" layoutY="155.0" prefHeight="25.0" prefWidth="254.0" promptText="Ingrese el valor de la puja">
+                        <TextField fx:id="inputValor" layoutX="663.0" layoutY="128.0" prefHeight="25.0" prefWidth="254.0" promptText="Ingrese el valor de la puja">
                      <font>
                         <Font name="Rockwell" size="16.0" />
                      </font>
                         </TextField>
-                        <TextField fx:id="inputNumPujasEnAnuncio" layoutX="663.0" layoutY="188.0" prefHeight="25.0" prefWidth="254.0" promptText="Número de pujas en anuncio">
+                        <TextField fx:id="inputNumPujasEnAnuncio" layoutX="663.0" layoutY="162.0" prefHeight="25.0" prefWidth="254.0" promptText="Número de pujas en anuncio">
                      <font>
                         <Font name="Rockwell" size="16.0" />
                      </font>
                         </TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="354.0" layoutY="190.0" text="Número Pujas en Anuncio :" textAlignment="RIGHT">
+                        <Label alignment="CENTER_RIGHT" layoutX="354.0" layoutY="165.0" text="Número Pujas en Anuncio :" textAlignment="RIGHT">
                             <font>
                                 <Font name="Rockwell" size="21.0" />
                             </font>
@@ -67,19 +67,19 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <TableView fx:id="tablePujas" layoutX="372.0" layoutY="39.0" prefHeight="336.0" prefWidth="537.0">
+                        <TableView fx:id="tablePujas" layoutX="276.0" layoutY="43.0" prefHeight="325.0" prefWidth="727.0">
                             <columns>
-                                <TableColumn fx:id="columnAnuncio" prefWidth="160.0" text="Anuncio" />
-                                <TableColumn fx:id="columnComprador" prefWidth="229.0" text="Comprador" />
-                                <TableColumn fx:id="columnValor" prefWidth="149.0" text="Valor" />
+                                <TableColumn fx:id="columnAnuncio" prefWidth="237.0" text="Anuncio" />
+                                <TableColumn fx:id="columnComprador" prefWidth="265.0" text="Comprador" />
+                                <TableColumn fx:id="columnValor" prefWidth="224.0" text="Valor" />
                             </columns>
                         </TableView>
-                        <Button fx:id="btnLimpiar" layoutX="566.0" layoutY="379.0" mnemonicParsing="false" onAction="#limpiarEvent" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: #669966;" text="Limpiar" textFill="WHITE">
+                        <Button fx:id="btnLimpiar" layoutX="865.0" layoutY="370.0" mnemonicParsing="false" onAction="#limpiarEvent" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: #669966;" text="Limpiar" textFill="WHITE">
                             <font>
                                 <Font name="Rockwell" size="13.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btnPujas" layoutX="651.0" layoutY="379.0" mnemonicParsing="false" onAction="#limpiarEvent" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: #669966;" text="Pujar" textFill="WHITE">
+                        <Button fx:id="btnPujas" layoutX="938.0" layoutY="370.0" mnemonicParsing="false" onAction="#pujarEvent" prefHeight="35.0" prefWidth="65.0" style="-fx-background-color: #669966;" text="Pujar" textFill="WHITE">
                             <font>
                                 <Font name="Rockwell" size="14.0" />
                             </font>

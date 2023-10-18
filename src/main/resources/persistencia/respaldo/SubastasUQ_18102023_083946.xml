@@ -37,12 +37,59 @@
            <void method="add">
             <object idref="Anuncio0"/>
            </void>
+           <void method="add">
+            <object class="co.edu.uniquindio.pr3.subastasUQ.model.Anuncio" id="Anuncio1">
+             <void property="codigo">
+              <string>2</string>
+             </void>
+             <void property="fechaFinal">
+              <string>18.10.2023</string>
+             </void>
+             <void property="fechaInicio">
+              <string>10.10.2023</string>
+             </void>
+             <void property="listaPujas">
+              <object class="java.util.ArrayList"/>
+             </void>
+             <void property="nombreAnunciante">
+              <string>Juan José</string>
+             </void>
+             <void property="producto">
+              <object class="co.edu.uniquindio.pr3.subastasUQ.model.Producto" id="Producto0">
+               <void property="anunciado">
+                <boolean>true</boolean>
+               </void>
+               <void property="codigo">
+                <string>P2</string>
+               </void>
+               <void property="descripcion">
+                <string>Es un gatico</string>
+               </void>
+               <void property="image">
+                <string>file:/C:/ArchivosSubastasUQ/Images/Otag.jpg</string>
+               </void>
+               <void property="nombre">
+                <string>Otag</string>
+               </void>
+               <void property="tipoProducto">
+                <object class="java.lang.Enum" method="valueOf">
+                 <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto</class>
+                 <string>HOGAR</string>
+                </object>
+               </void>
+               <void property="valorInicial">
+                <double>150000.0</double>
+               </void>
+              </object>
+             </void>
+            </object>
+           </void>
           </object>
          </void>
          <void property="listaProductos">
           <object class="java.util.ArrayList">
            <void method="add">
-            <object class="co.edu.uniquindio.pr3.subastasUQ.model.Producto" id="Producto0">
+            <object class="co.edu.uniquindio.pr3.subastasUQ.model.Producto" id="Producto1">
              <void property="anunciado">
               <boolean>true</boolean>
              </void>
@@ -53,7 +100,7 @@
               <string>Mazda 6 modelo 2023</string>
              </void>
              <void property="image">
-              <string>C:/Users/Daniel/Desktop/raro.jpg</string>
+              <string>C:/ArchivosSubastasUQ/Images/Sedan1.png</string>
              </void>
              <void property="nombre">
               <string>Mazda 6</string>
@@ -68,6 +115,9 @@
               <double>2.0E7</double>
              </void>
             </object>
+           </void>
+           <void method="add">
+            <object idref="Producto0"/>
            </void>
           </object>
          </void>
@@ -162,7 +212,7 @@
         <boolean>false</boolean>
        </void>
        <void property="producto">
-        <object idref="Producto0"/>
+        <object idref="Producto1"/>
        </void>
        <void property="valor">
         <double>2.2E7</double>
@@ -186,9 +236,12 @@
       <string>Juan José</string>
      </void>
      <void property="producto">
-      <object idref="Producto0"/>
+      <object idref="Producto1"/>
      </void>
     </object>
+   </void>
+   <void method="add">
+    <object idref="Anuncio1"/>
    </void>
   </void>
   <void property="listaCompras">
@@ -197,6 +250,9 @@
    </void>
   </void>
   <void property="listaProductos">
+   <void method="add">
+    <object idref="Producto1"/>
+   </void>
    <void method="add">
     <object idref="Producto0"/>
    </void>
