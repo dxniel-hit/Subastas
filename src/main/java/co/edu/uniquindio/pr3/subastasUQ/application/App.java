@@ -1,6 +1,9 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
-import co.edu.uniquindio.pr3.subastasUQ.controllers.*;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.CopiasRespaldoThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarBinarioThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.WriteBackupObjectsThread;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.application.Application;
@@ -27,14 +30,12 @@ public class App extends Application {
         Log.configurarLogger();
 
         //Se realiza la copia de respaldo para los archivos
-        Persistencia.realizarCopiasRespaldo();
+        CopiasRespaldoThread copiasRespaldoThread = new CopiasRespaldoThread();
+        copiasRespaldoThread.start();
 
         //Se inicializa la informacion de los objetos en "objeto_xxx.txt"
-        ModelFactoryController.writeBackupProduct();
-        ModelFactoryController.writeBackupUser();
-        ModelFactoryController.writeBackupAdvertisement();
-        ModelFactoryController.writeBackupBid();
-        ModelFactoryController.writeBackupBuys();
+        WriteBackupObjectsThread objectsThread = new WriteBackupObjectsThread();
+        objectsThread.start();
     }
 
     public static void main(String[] args) {
@@ -42,15 +43,19 @@ public class App extends Application {
     }
 
     @Override
-    public void stop() {
+    public void stop() throws InterruptedException {
         // Este método se llama al finalizar la aplicación
         // Coloca aquí cualquier limpieza o acciones de cierre que necesites
         Log.cerrarLogger();
 
         //Se serializa la informacion ingresada durante la ejecucion
         //guardarResourceBinario()
-        ModelFactoryController.serializarBinario();
+        GuardarBinarioThread guardarbinarioThread = new GuardarBinarioThread();
+        guardarbinarioThread.start();
+        guardarbinarioThread.join();
         //guardarResourceXML()
-        ModelFactoryController.serializarXML();
+        GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+        guardarXMLThread.start();
+        guardarXMLThread.join();
     }
 }

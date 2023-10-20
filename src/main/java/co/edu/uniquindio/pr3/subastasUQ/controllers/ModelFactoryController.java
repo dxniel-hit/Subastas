@@ -1,5 +1,8 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
+import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarDatosArchivosThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarXMLThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.IniciarYSalvarDatosPruebaThread;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.mappers.*;
@@ -7,7 +10,6 @@ import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IModelFactoryCont
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
-import co.edu.uniquindio.pr3.subastasUQ.utils.SubastaUtils;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +31,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private MisPujasViewController misPujasViewController;
 
     //Clase Subasta global
-    Subasta miSubasta;
+    static Subasta miSubasta;
 
     //Datos para el manejo de usuarios segun la verificacion de usuario
     private Anunciante miAnunciante;
@@ -52,7 +54,12 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
-        inicializarDatos();
+        //Se inicializan los datos
+        try {
+            inicializarDatos();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //Singleton (Garantiza instancia unica)
@@ -68,24 +75,28 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return SingletonHolder.eINSTANCE;
     }
 
-    private void inicializarDatos() {
+    private void inicializarDatos() throws InterruptedException {
         miSubasta = new Subasta("Subastas UQ", "Carrera 15 #12N, Armenia, Quindío");
 
         //iniciarYSalvarDatosPrueba()
-        Subasta s1 = SubastaUtils.inicializarDatos();
+        IniciarYSalvarDatosPruebaThread initThread = new IniciarYSalvarDatosPruebaThread();
+        initThread.start();
+        initThread.join();
         //cargarDatosDesdeArchivos()
-        Persistencia.cargarDatosDesdeArchivos(miSubasta);
+        CargarDatosArchivosThread cargarArchivosThread = new CargarDatosArchivosThread();
+        cargarArchivosThread.start();
+        cargarArchivosThread.join();
 
         //Se obtiene la informacion de los archivos serializados
         //cargarResourceXML()
-        if(Persistencia.deserializarXML(RUTA_ARCHIVO_SUBASTAUQXML) != null) {
-            this.miSubasta = Persistencia.deserializarXML(RUTA_ARCHIVO_SUBASTAUQXML);
-        }
+        CargarXMLThread cargarXMLThread = new CargarXMLThread();
+        cargarXMLThread.start();
+        cargarXMLThread.join();
 
         //cargarResourceBinario()
-        /*if(Persistencia.deserializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT) != null) {
-            this.miSubasta = Persistencia.deserializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT);
-        }*/
+        /*CargarBinarioThread cargarBinarioThread = new CargarBinarioThread();
+        cargarBinarioThread.start();
+        cargarBinarioThread.join();*/
     }
 
     //Getters y setters del subastero
@@ -107,10 +118,6 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     public Subasta getMiSubastasQuindio() {
         return miSubasta;
-    }
-
-    public void setMiSubastasQuindio(Subasta miSubasta) {
-        this.miSubasta = miSubasta;
     }
 
     //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -155,32 +162,32 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public boolean crearAnunciante(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, AnuncianteException {
-        return this.miSubasta.crearAnunciante(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
+        return miSubasta.crearAnunciante(nombres, apellidos, identificacion, edad, miSubasta, usuario, contrasenia, email, false);
     }
 
     @Override
     public boolean crearComprador(String nombres, String apellidos, String identificacion, int edad, String usuario, String contrasenia, String email) throws UsuarioEnUsoException, CompradorException {
-        return this.miSubasta.crearComprador(nombres, apellidos, identificacion, edad, this.miSubasta, usuario, contrasenia, email, false);
+        return miSubasta.crearComprador(nombres, apellidos, identificacion, edad, miSubasta, usuario, contrasenia, email, false);
     }
 
     @Override
     public int encontrarPosUsuario(String usuario) {
-        return this.miSubasta.encontrarPosUsuario(usuario);
+        return miSubasta.encontrarPosUsuario(usuario);
     }
 
     @Override
     public Usuario obtenerUsuario(int pos) {
-        return this.miSubasta.getListaUsuarios().get(pos);
+        return miSubasta.getListaUsuarios().get(pos);
     }
 
     @Override
     public Anunciante obtenerAnunciante(String identificacion) {
-        return this.miSubasta.obtenerAnunciante(identificacion);
+        return miSubasta.obtenerAnunciante(identificacion);
     }
 
     @Override
     public Comprador obtenerComprador(String identificacion) {
-        return this.miSubasta.obtenerComprador(identificacion);
+        return miSubasta.obtenerComprador(identificacion);
     }
 
     @Override
@@ -191,7 +198,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         //se setea la informacion para CuentaViewController
         this.miCuentaViewController.setAnunciante(miAnunciante);
         this.miCuentaViewController.setMiAnucianteInformation();
-        this.miSubasta.autenticarUsuario(miAnunciante.getUsuario());
+        miSubasta.autenticarUsuario(miAnunciante.getUsuario());
 
         //se setea el anunciante en ProductosViewController
         this.productosViewController.setAnunciante(miAnunciante);
@@ -225,7 +232,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         //se setea la informacion para CuentaViewController
         this.miCuentaViewController.setComprador(miComprador);
         this.miCuentaViewController.setMiCompradorInformation();
-        this.miSubasta.autenticarUsuario(miComprador.getUsuario());
+        miSubasta.autenticarUsuario(miComprador.getUsuario());
 
         //se setean los anuncios en SubastasViewController
         ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
@@ -263,7 +270,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.misPujasViewController.limpiarInformacion();
 
         //se desautentica el usuario y se dehabilitan las pestaññas
-        this.miSubasta.desAutenticarUsuario(usuario);
+        miSubasta.desAutenticarUsuario(usuario);
         this.ventanaPrincipalViewController.dehabilitarPestanias();
     }
 
@@ -502,7 +509,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Producto"
     public static void writeBackupProduct(){
-        BackupProducto.writeBackup(getInstance().miSubasta.getListaProductos());
+        BackupProducto.writeBackup(miSubasta.getListaProductos());
     }
 
     //Metodo para adicionar la informacion de 1 objeto con CRUD "Producto" a su txt "productos.txt"
@@ -512,7 +519,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Usuario"
     public static void writeBackupUser(){
-        BackupUsuario.writeBackup(getInstance().miSubasta.getListaUsuarios());
+        BackupUsuario.writeBackup(miSubasta.getListaUsuarios());
     }
 
     //Metodo para adicionar la informacion de 1 objeto con CRUD "Usuario" a su txt "usuarios.txt"
@@ -522,7 +529,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Metodo para cargar y guardad la informacion de 1 objeto con CRUD "Usuario"
     public static void writeBackupAdvertisement(){
-        BackupAnuncio.writeBackup(getInstance().miSubasta.getListaAnuncios());
+        BackupAnuncio.writeBackup(miSubasta.getListaAnuncios());
     }
 
     //Metodo para adicionar la informacion de 1 objeto con CRUD "Usuario" a su txt "usuarios.txt"
@@ -532,7 +539,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Metodo para cargar y guardad la informacion de Transaccion "Puja"
     public static void writeBackupBid(){
-        BackupPuja.writeBackup(getInstance().miSubasta.getListaPujas());
+        BackupPuja.writeBackup(miSubasta.getListaPujas());
     }
 
     //Metodo para adicionar la informacion de Transaccion "Pujas" a su txt "pujas_Transaccion.txt"
@@ -542,7 +549,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Metodo para cargar y guardad la informacion de Transaccion "Compra"
     public static void writeBackupBuys(){
-        BackupCompra.writeBackup(getInstance().miSubasta.getListaCompras());
+        BackupCompra.writeBackup(miSubasta.getListaCompras());
     }
 
     //Metodo para adicionar la informacion de Transaccion "Compra" a su txt "compras_Transaccion.txt"
@@ -550,23 +557,42 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         BackupCompra.appendToBackup(c);
     }
 
-    //Metodos para serializar la informacion de la clase global miSubastas ----------------------------------------------------------------------------------------------------------------------
+    //Metodos para serializar y deserializar la informacion de la clase global miSubastas ----------------------------------------------------------------------------------------------------------------------
 
     //guardarResourceBinario()
     public static void serializarBinario() {
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------
         //Se almacenan los datos en archivos
-        Persistencia.serializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT, getInstance().miSubasta);
+        Persistencia.serializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT, miSubasta);
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    }
+
+    //cargarResourceBinario()
+    public static void deserializarBinario(){
+        if(Persistencia.deserializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT) != null) {
+            miSubasta = Persistencia.deserializarBinario(RUTA_ARCHIVO_SUBASTAUQDAT);
+        }
     }
 
     //guardarResourceXML()
     public static void serializarXML() {
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------
         //Se almacenan los datos en archivos
-        Persistencia.serializarXML(RUTA_ARCHIVO_SUBASTAUQXML, getInstance().miSubasta);
-        Persistencia.serializarXML("C:/ArchivosSubastasUQ/SubastasUQ.xml", getInstance().miSubasta);
+        Persistencia.serializarXML(RUTA_ARCHIVO_SUBASTAUQXML, miSubasta);
+        Persistencia.serializarXML("C:/ArchivosSubastasUQ/SubastasUQ.xml", miSubasta);
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    }
+
+    //cargarResourceXML()
+    public static void deserializarXML(){
+        if(Persistencia.deserializarXML(RUTA_ARCHIVO_SUBASTAUQXML) != null) {
+            miSubasta = Persistencia.deserializarXML(RUTA_ARCHIVO_SUBASTAUQXML);
+        }
+    }
+
+    //cargarDatosDesdeArchivos()
+    public static void cargarDatosDesdeArchivos(){
+        Persistencia.cargarDatosDesdeArchivos(miSubasta);
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

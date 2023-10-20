@@ -43,10 +43,10 @@
               <string>2</string>
              </void>
              <void property="fechaFinal">
-              <string>18.10.2023</string>
+              <string>20.10.2023</string>
              </void>
              <void property="fechaInicio">
-              <string>10.10.2023</string>
+              <string>11.10.2023</string>
              </void>
              <void property="listaPujas">
               <object class="java.util.ArrayList">
@@ -106,6 +106,38 @@
                      <void method="add">
                       <object idref="Puja0"/>
                      </void>
+                     <void method="add">
+                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja2">
+                       <void property="anuncio">
+                        <object idref="Anuncio1"/>
+                       </void>
+                       <void property="comprador">
+                        <object idref="Comprador0"/>
+                       </void>
+                       <void property="fecha">
+                        <string>20.10.2023</string>
+                       </void>
+                       <void property="valor">
+                        <double>160000.0</double>
+                       </void>
+                      </object>
+                     </void>
+                     <void method="add">
+                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja3">
+                       <void property="anuncio">
+                        <object idref="Anuncio1"/>
+                       </void>
+                       <void property="comprador">
+                        <object idref="Comprador0"/>
+                       </void>
+                       <void property="fecha">
+                        <string>20.10.2023</string>
+                       </void>
+                       <void property="valor">
+                        <double>170000.0</double>
+                       </void>
+                      </object>
+                     </void>
                     </object>
                    </void>
                    <void property="nombres">
@@ -115,7 +147,7 @@
                     <object idref="Subasta0"/>
                    </void>
                    <void property="tipoUsuario">
-                    <object class="java.lang.Enum" method="valueOf">
+                    <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">
                      <class>co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario</class>
                      <string>COMPRADOR</string>
                     </object>
@@ -126,10 +158,76 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>18.10.2023</string>
+                  <string>20.10.2023</string>
                  </void>
                  <void property="valor">
                   <double>155000.0</double>
+                 </void>
+                </object>
+               </void>
+               <void method="add">
+                <object idref="Puja2"/>
+               </void>
+               <void method="add">
+                <object idref="Puja3"/>
+               </void>
+               <void method="add">
+                <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja4">
+                 <void property="anuncio">
+                  <object idref="Anuncio1"/>
+                 </void>
+                 <void property="comprador">
+                  <object class="co.edu.uniquindio.pr3.subastasUQ.model.Comprador" id="Comprador1">
+                   <void property="apellidos">
+                    <string>Arce Vargas</string>
+                   </void>
+                   <void property="autenticado">
+                    <boolean>false</boolean>
+                   </void>
+                   <void property="cantidadDeVecesPujada">
+                    <object class="java.util.ArrayList"/>
+                   </void>
+                   <void property="contrasenia">
+                    <string>caarce</string>
+                   </void>
+                   <void property="edad">
+                    <int>51</int>
+                   </void>
+                   <void property="email">
+                    <string>caarce@uniquindio.edu.co</string>
+                   </void>
+                   <void property="identificacion">
+                    <string>18494175</string>
+                   </void>
+                   <void property="listaCompras">
+                    <object class="java.util.ArrayList"/>
+                   </void>
+                   <void property="listaPujas">
+                    <object class="java.util.ArrayList">
+                     <void method="add">
+                      <object idref="Puja4"/>
+                     </void>
+                    </object>
+                   </void>
+                   <void property="nombres">
+                    <string>Cesar Augusto</string>
+                   </void>
+                   <void property="subastasQuindio">
+                    <object idref="Subasta0"/>
+                   </void>
+                   <void property="tipoUsuario">
+                    <object idref="TipoUsuario0"/>
+                   </void>
+                   <void property="usuario">
+                    <string>caarce</string>
+                   </void>
+                  </object>
+                 </void>
+                 <void property="fecha">
+                  <string>20.10.2023</string>
+                 </void>
+                 <void property="valor">
+                  <double>180000.0</double>
                  </void>
                 </object>
                </void>
@@ -284,6 +382,15 @@
    <void method="add">
     <object idref="Puja0"/>
    </void>
+   <void method="add">
+    <object idref="Puja2"/>
+   </void>
+   <void method="add">
+    <object idref="Puja3"/>
+   </void>
+   <void method="add">
+    <object idref="Puja4"/>
+   </void>
   </void>
   <void property="listaUsuarios">
    <void method="add">
@@ -291,6 +398,9 @@
    </void>
    <void method="add">
     <object idref="Comprador0"/>
+   </void>
+   <void method="add">
+    <object idref="Comprador1"/>
    </void>
   </void>
   <void property="nombre">
