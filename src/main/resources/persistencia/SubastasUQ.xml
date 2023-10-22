@@ -43,10 +43,10 @@
               <string>2</string>
              </void>
              <void property="fechaFinal">
-              <string>20.10.2023</string>
+              <string>22.10.2023</string>
              </void>
              <void property="fechaInicio">
-              <string>11.10.2023</string>
+              <string>03.10.2023</string>
              </void>
              <void property="listaPujas">
               <object class="java.util.ArrayList">
@@ -106,38 +106,6 @@
                      <void method="add">
                       <object idref="Puja0"/>
                      </void>
-                     <void method="add">
-                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja2">
-                       <void property="anuncio">
-                        <object idref="Anuncio1"/>
-                       </void>
-                       <void property="comprador">
-                        <object idref="Comprador0"/>
-                       </void>
-                       <void property="fecha">
-                        <string>20.10.2023</string>
-                       </void>
-                       <void property="valor">
-                        <double>160000.0</double>
-                       </void>
-                      </object>
-                     </void>
-                     <void method="add">
-                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja3">
-                       <void property="anuncio">
-                        <object idref="Anuncio1"/>
-                       </void>
-                       <void property="comprador">
-                        <object idref="Comprador0"/>
-                       </void>
-                       <void property="fecha">
-                        <string>20.10.2023</string>
-                       </void>
-                       <void property="valor">
-                        <double>170000.0</double>
-                       </void>
-                      </object>
-                     </void>
                     </object>
                    </void>
                    <void property="nombres">
@@ -158,21 +126,15 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>20.10.2023</string>
+                  <string>22.10.2023</string>
                  </void>
                  <void property="valor">
-                  <double>155000.0</double>
+                  <double>60000.0</double>
                  </void>
                 </object>
                </void>
                <void method="add">
-                <object idref="Puja2"/>
-               </void>
-               <void method="add">
-                <object idref="Puja3"/>
-               </void>
-               <void method="add">
-                <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja4">
+                <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja2">
                  <void property="anuncio">
                   <object idref="Anuncio1"/>
                  </void>
@@ -205,7 +167,39 @@
                    <void property="listaPujas">
                     <object class="java.util.ArrayList">
                      <void method="add">
-                      <object idref="Puja4"/>
+                      <object idref="Puja2"/>
+                     </void>
+                     <void method="add">
+                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja3">
+                       <void property="anuncio">
+                        <object idref="Anuncio1"/>
+                       </void>
+                       <void property="comprador">
+                        <object idref="Comprador1"/>
+                       </void>
+                       <void property="fecha">
+                        <string>22.10.2023</string>
+                       </void>
+                       <void property="valor">
+                        <double>80000.0</double>
+                       </void>
+                      </object>
+                     </void>
+                     <void method="add">
+                      <object class="co.edu.uniquindio.pr3.subastasUQ.model.Puja" id="Puja4">
+                       <void property="anuncio">
+                        <object idref="Anuncio1"/>
+                       </void>
+                       <void property="comprador">
+                        <object idref="Comprador1"/>
+                       </void>
+                       <void property="fecha">
+                        <string>22.10.2023</string>
+                       </void>
+                       <void property="valor">
+                        <double>90000.0</double>
+                       </void>
+                      </object>
                      </void>
                     </object>
                    </void>
@@ -224,12 +218,18 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>20.10.2023</string>
+                  <string>22.10.2023</string>
                  </void>
                  <void property="valor">
-                  <double>180000.0</double>
+                  <double>70000.0</double>
                  </void>
                 </object>
+               </void>
+               <void method="add">
+                <object idref="Puja3"/>
+               </void>
+               <void method="add">
+                <object idref="Puja4"/>
                </void>
               </object>
              </void>
@@ -260,7 +260,7 @@
                 </object>
                </void>
                <void property="valorInicial">
-                <double>150000.0</double>
+                <double>55000.0</double>
                </void>
               </object>
              </void>

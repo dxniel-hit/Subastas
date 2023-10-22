@@ -1,2 +1,2 @@
 P1@@Mazda 6@@Mazda 6 modelo 2023@@C:/ArchivosSubastasUQ/Images/Sedan1.png@@2.0E7@@VEHICULOS@@true
-P2@@Otag@@Es un gatico@@file:/C:/ArchivosSubastasUQ/Images/Otag.jpg@@150000.0@@HOGAR@@true
+P2@@Otag@@Es un gatico@@file:/C:/ArchivosSubastasUQ/Images/Otag.jpg@@55000.0@@HOGAR@@true

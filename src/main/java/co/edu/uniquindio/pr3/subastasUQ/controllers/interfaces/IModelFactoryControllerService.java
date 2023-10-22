@@ -38,11 +38,21 @@ public interface IModelFactoryControllerService {
     public String cambiarUsuario(String identifiacion, TipoUsuario tipoUsuario, String nuevoUsuario) throws UsuarioEnUsoException, CompradorException, AnuncianteException;
     public boolean eliminarAnunciante(String identificacion) throws AnuncianteException;
     public boolean eliminarComprador(String identificacion) throws CompradorException;
+    public List<ProductoDTO> obtenerProductosAnunciante();
+    public boolean agregarProducto(ProductoDTO productoDTO);
+    public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO);
+    public boolean expelerProducto(String codigo);
     public ProductoDTO obtenerProductoDto(String codigoProducto);
     public Anuncio obtenerAnuncio(String codigoAnuncio);
     public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO productoDTO);
     public boolean eliminarAnuncio(String codigo);
+    public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas);
+    public boolean agregarAnuncio(AnuncioDTO anuncioDTO);
+    public void refrescarTablaSubastas();
     public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado);
     public void resetSeleccionAnuncio();
+    public boolean agregarPuja(PujaDTO pujaDto);
+    public void convertAnunciosTxtToCsv(String outputFolderPath);
+    public void convertComprasTxtToCsv(String outputFolderPath);
 
 }

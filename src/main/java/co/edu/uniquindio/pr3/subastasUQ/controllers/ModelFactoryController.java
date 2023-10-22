@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
+import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarBinarioThread;
 import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarDatosArchivosThread;
 import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarXMLThread;
 import co.edu.uniquindio.pr3.subastasUQ.hilos.IniciarYSalvarDatosPruebaThread;
@@ -332,11 +333,13 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     //Métodos para manejar los productos -------------------------------------------------------------------------------
 
+    @Override
     public List<ProductoDTO> obtenerProductosAnunciante() {
         if (miAnunciante != null) return mapper.getProductosDTO(miAnunciante.getListaProductos());
         return new ArrayList<ProductoDTO>();
     }
 
+    @Override
     public boolean agregarProducto(ProductoDTO productoDTO) {
         Producto p = mapper.productoDTOtoProducto(productoDTO);
         try {
@@ -350,6 +353,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
     }
 
+    @Override
     public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO) {
         Producto p = mapper.productoDTOtoProducto(productoDTO);
         try {
@@ -363,6 +367,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
     }
 
+    @Override
     public boolean expelerProducto(String codigo) {
 
         boolean aux = false;
@@ -421,10 +426,12 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
     }
 
+    @Override
     public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas) {
         return mapperPuja.getPujasDTO(listaPujas);
     }
 
+    @Override
     public boolean agregarAnuncio(AnuncioDTO anuncioDTO) {
         Anuncio a = mapperAnuncio.anuncioDTOtoAnuncio(anuncioDTO);
         try {
@@ -445,6 +452,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return new ArrayList<AnuncioDTO>();
     }
 
+    @Override
     public void refrescarTablaSubastas() {
         //se setean los anuncios en SubastasViewComtroller
         ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
@@ -466,12 +474,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         ModelFactoryController.registrarAccion(usuario, "selección de anuncio");
     }
 
+    @Override
     public void resetSeleccionAnuncio() {
         this.subastasViewController.resetSeleccionAnuncio();
     }
 
     //Métodos para manejar los la ventana de MisPujas -------------------------------------------------------------------------------
 
+    @Override
     public boolean agregarPuja(PujaDTO pujaDto) {
         Puja p = mapperPuja.PujaDTOtoPuja(pujaDto);
         try {
@@ -599,11 +609,13 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     // Metodos para exportar archivos .csv ------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //Metodo para exportar los anuncios en formato .csv
+    @Override
     public void convertAnunciosTxtToCsv(String outputFolderPath){
         Persistencia.convertAnunciosTxtToCsv(outputFolderPath);
     }
 
     //Metodo para exportar las compras en formato .csv
+    @Override
     public void convertComprasTxtToCsv(String outputFolderPath){
         Persistencia.convertComprasTxtToCsv(outputFolderPath);
     }
