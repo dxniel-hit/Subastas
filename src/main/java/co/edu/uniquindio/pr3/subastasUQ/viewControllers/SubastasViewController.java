@@ -10,14 +10,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -117,7 +120,38 @@ public class SubastasViewController implements Initializable {
         columnCodigoProducto.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().producto().getCodigo()));
         columnValorProducto.setCellValueFactory(celldata -> new SimpleStringProperty(String.valueOf(celldata.getValue().producto().getValorInicial())));
         columnDescripcionProducto.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().producto().getDescripcion()));
-        columnImagenProducto.setCellValueFactory(celldata -> new SimpleStringProperty(celldata.getValue().producto().getImage()));
+        columnImagenProducto.setCellFactory(tc -> new TableCell<AnuncioDTO, String>() {
+            private final Button button = new Button("Ver Imagen");
+
+            {
+                button.setOnAction((ActionEvent event) -> {
+                    AnuncioDTO anuncio = getTableView().getItems().get(getIndex());
+                    String imageUrl = anuncio.producto().getImage();
+                    // Abre la URL en el navegador o realiza la acción requerida
+                    // Verificar si Desktop es compatible (puede lanzar excepciones)
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop desktop = Desktop.getDesktop();
+
+                        try {
+                            // Abre la URL en el navegador predeterminado o la aplicación asociada
+                            desktop.browse(new URI(imageUrl));
+                        } catch (IOException | URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(button);
+                }
+            }
+        });
     }
 
     private void listenerSelection() {

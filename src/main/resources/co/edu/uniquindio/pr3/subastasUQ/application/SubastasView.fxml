@@ -18,8 +18,8 @@
                 <TableColumn fx:id="columnNombreAnuncianteAnuncio" prefWidth="173.0" text="Nombre Anunciante" />
             <TableColumn fx:id="columnCodigoProducto" prefWidth="178.0" text="Producto" />
             <TableColumn fx:id="columnValorProducto" prefWidth="133.0" text="Valor Inicial" />
-            <TableColumn fx:id="columnDescripcionProducto" prefWidth="244.0" text="Descripcion" />
-            <TableColumn fx:id="columnImagenProducto" prefWidth="188.0" text="Imagen" />
+            <TableColumn fx:id="columnDescripcionProducto" prefWidth="342.0" text="Descripcion" />
+            <TableColumn fx:id="columnImagenProducto" prefWidth="90.0" text="Imagen" />
             </columns>
         </TableView>
         <Pane prefHeight="63.0" prefWidth="1300.0" style="-fx-background-color: #6699FF;">

@@ -43,7 +43,7 @@
               <string>2</string>
              </void>
              <void property="fechaFinal">
-              <string>22.10.2023</string>
+              <string>23.10.2023</string>
              </void>
              <void property="fechaInicio">
               <string>03.10.2023</string>
@@ -126,10 +126,10 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>22.10.2023</string>
+                  <string>23.10.2023</string>
                  </void>
                  <void property="valor">
-                  <double>60000.0</double>
+                  <double>155000.0</double>
                  </void>
                 </object>
                </void>
@@ -178,10 +178,10 @@
                         <object idref="Comprador1"/>
                        </void>
                        <void property="fecha">
-                        <string>22.10.2023</string>
+                        <string>23.10.2023</string>
                        </void>
                        <void property="valor">
-                        <double>80000.0</double>
+                        <double>170000.0</double>
                        </void>
                       </object>
                      </void>
@@ -194,10 +194,10 @@
                         <object idref="Comprador1"/>
                        </void>
                        <void property="fecha">
-                        <string>22.10.2023</string>
+                        <string>23.10.2023</string>
                        </void>
                        <void property="valor">
-                        <double>90000.0</double>
+                        <double>180000.0</double>
                        </void>
                       </object>
                      </void>
@@ -218,10 +218,10 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>22.10.2023</string>
+                  <string>23.10.2023</string>
                  </void>
                  <void property="valor">
-                  <double>70000.0</double>
+                  <double>160000.0</double>
                  </void>
                 </object>
                </void>
@@ -260,7 +260,7 @@
                 </object>
                </void>
                <void property="valorInicial">
-                <double>55000.0</double>
+                <double>150000.0</double>
                </void>
               </object>
              </void>
