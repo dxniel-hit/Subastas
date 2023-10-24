@@ -49,7 +49,7 @@ public interface IModelFactoryControllerService {
     public List<PujaDTO> obtenerPujasDto(List<Puja> listaPujas);
     public boolean agregarAnuncio(AnuncioDTO anuncioDTO);
     public void refrescarTablaSubastas();
-    public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado);
+    public void initAnuncioSeleccionado(AnuncioDTO anuncioSeleccionado);
     public void resetSeleccionAnuncio();
     public boolean agregarPuja(PujaDTO pujaDto);
     public void convertAnunciosTxtToCsv(String outputFolderPath);

@@ -19,7 +19,7 @@ public class SubastasController implements ISubastasControllerService {
     }
 
     public void initAnuncioSeleccionado(AnuncioDTO anuncioSeleccionado) {
-        mfm.initAnuncioSelcionado(anuncioSeleccionado);
+        mfm.initAnuncioSeleccionado(anuncioSeleccionado);
     }
 
     //Metodo para exportar los anuncios en formato .csv

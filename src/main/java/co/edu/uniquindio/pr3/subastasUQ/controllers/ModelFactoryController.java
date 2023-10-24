@@ -463,7 +463,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     //Métodos para manejar los la ventana de seleccion de anuncio -------------------------------------------------------------------------------
 
     @Override
-    public void initAnuncioSelcionado(AnuncioDTO anuncioSeleccionado) {
+    public void initAnuncioSeleccionado(AnuncioDTO anuncioSeleccionado) {
         this.anuncioSeleccionado = mapperAnuncio.anuncioDTOtoAnuncio(anuncioSeleccionado);
         this.misPujasViewController.setAnuncio(this.anuncioSeleccionado);
 
@@ -612,12 +612,24 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public void convertAnunciosTxtToCsv(String outputFolderPath){
         Persistencia.convertAnunciosTxtToCsv(outputFolderPath);
+
+        //Se registra la accion en SubastasUQ_Log.txt
+        String usuario = "SubastasUQ";
+        if (miAnunciante != null) usuario = miAnunciante.getUsuario();
+        if (miComprador != null) usuario = miComprador.getUsuario();
+        ModelFactoryController.registrarAccion(usuario, "Exportación CSV Anuncios");
     }
 
     //Metodo para exportar las compras en formato .csv
     @Override
     public void convertComprasTxtToCsv(String outputFolderPath){
         Persistencia.convertComprasTxtToCsv(outputFolderPath);
+
+        //Se registra la accion en SubastasUQ_Log.txt
+        String usuario = "SubastasUQ";
+        if (miAnunciante != null) usuario = miAnunciante.getUsuario();
+        if (miComprador != null) usuario = miComprador.getUsuario();
+        ModelFactoryController.registrarAccion(usuario, "Exportación CSV Compras");
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
