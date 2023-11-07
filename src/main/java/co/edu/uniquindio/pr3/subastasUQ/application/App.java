@@ -1,9 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
-import co.edu.uniquindio.pr3.subastasUQ.hilos.CopiasRespaldoThread;
-import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarBinarioThread;
-import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
-import co.edu.uniquindio.pr3.subastasUQ.hilos.WriteBackupObjectsThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.*;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
 import javafx.application.Application;
@@ -47,6 +44,11 @@ public class App extends Application {
         // Este método se llama al finalizar la aplicación
         // Coloca aquí cualquier limpieza o acciones de cierre que necesites
         Log.cerrarLogger();
+
+        //Se copian los archivos manipulados en el disco del PC
+        ArchivosPcThread archivosPcThread = new ArchivosPcThread();
+        archivosPcThread.start();
+        archivosPcThread.join();
 
         //Se serializa la informacion ingresada durante la ejecucion
         //guardarResourceBinario()

@@ -632,6 +632,34 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         ModelFactoryController.registrarAccion(usuario, "Exportación CSV Compras");
     }
 
+    //Metodo para manejo de archivos en disco del PC
+    public static void exportarArchivosEnPC(){
+
+        //Rutas de acceso a archivos en el proyecto
+        String RUTA_ANUNCIOSPROYECTO = "src/main/resources/persistencia/archivos/anuncios.txt";
+        String RUTA_COMPRASPROYECTO = "src/main/resources/persistencia/archivos/compras_Transaccion.txt";
+        String RUTA_PRODUCTOSPROYECTO = "src/main/resources/persistencia/archivos/productos.txt";
+        String RUTA_PUJASPROYECTO = "src/main/resources/persistencia/archivos/pujas_Transaccion.txt";
+        String RUTA_USUARIOSPROYECTO = "src/main/resources/persistencia/archivos/usuarios.txt";
+        String RUTA_LOGPROYECTO = "src/main/resources/persistencia/log/SubastasUQ_Log.txt";
+
+        //Rutas de acceso a archivos en el disco del pc
+        String RUTA_ANUNCIOSPC = "C:/ArchivosSubastasUQ/archivos/anuncios.txt";
+        String RUTA_COMPRASPC = "C:/ArchivosSubastasUQ/archivos/compras_Transaccion.txt";
+        String RUTA_PRODUCTOSPC = "C:/ArchivosSubastasUQ/archivos/productos.txt";
+        String RUTA_PUJASPC = "C:/ArchivosSubastasUQ/archivos/pujas_Transaccion.txt";
+        String RUTA_USUARIOSPC = "C:/ArchivosSubastasUQ/archivos/usuarios.txt";
+        String RUTA_LOGPC = "C:/ArchivosSubastasUQ/log/SubastasUQ_Log.txt";
+
+        //Realizar copias de cada archivo en las direcciones del disco del PC
+        Persistencia.copyFile(RUTA_ANUNCIOSPROYECTO, RUTA_ANUNCIOSPC);
+        Persistencia.copyFile(RUTA_COMPRASPROYECTO, RUTA_COMPRASPC);
+        Persistencia.copyFile(RUTA_PRODUCTOSPROYECTO, RUTA_PRODUCTOSPC);
+        Persistencia.copyFile(RUTA_PUJASPROYECTO, RUTA_PUJASPC);
+        Persistencia.copyFile(RUTA_USUARIOSPROYECTO, RUTA_USUARIOSPC);
+        Persistencia.copyFile(RUTA_LOGPROYECTO, RUTA_LOGPC);
+
+    }
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }

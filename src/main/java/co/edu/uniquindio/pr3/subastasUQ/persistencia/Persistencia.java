@@ -291,5 +291,24 @@ public class Persistencia {
             e.printStackTrace();
         }
     }
-//------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Manejo de archivos en disco del PC ---------------------------------------------------------------------------------------------------------
+    public static void copyFile(String sourcePath, String destinationPath) {
+        try {
+            File sourceFile = new File(sourcePath);
+            File destinationFile = new File(destinationPath);
+
+            // Comprueba si el archivo de origen existe
+            if (sourceFile.exists() && sourceFile.isFile()) {
+                // Copia el archivo al destino especificado
+                Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Archivo copiado exitosamente a " + destinationPath);
+            } else {
+                System.err.println("El archivo de origen no existe o no es un archivo válido.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al copiar el archivo: " + e.getMessage());
+        }
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------
 }
