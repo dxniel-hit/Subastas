@@ -1,5 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.application;
 
+import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.hilos.*;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
@@ -33,6 +34,9 @@ public class App extends Application {
         //Se inicializa la informacion de los objetos en "objeto_xxx.txt"
         WriteBackupObjectsThread objectsThread = new WriteBackupObjectsThread();
         objectsThread.start();
+
+        //Se inicializa el hilo consumidor de rabbitmq
+        ModelFactoryController.getInstance().consumirMensajes();
     }
 
     public static void main(String[] args) {
@@ -59,5 +63,8 @@ public class App extends Application {
         GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
         guardarXMLThread.start();
         guardarXMLThread.join();
+
+        //Se detiene el hilo consumidor
+        ModelFactoryController.getInstance().detenerConsumidor();
     }
 }

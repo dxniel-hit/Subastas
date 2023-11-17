@@ -34,6 +34,10 @@ public class ProductoController implements IProductoControllerService {
         return mfm.expelerProducto(codigo);
     }
 
+    @Override
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
 
     public List<ProductoDTO> obtenerProductosAnunciante() {
         return mfm.obtenerProductosAnunciante();

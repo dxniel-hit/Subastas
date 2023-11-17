@@ -54,5 +54,6 @@ public interface IModelFactoryControllerService {
     public boolean agregarPuja(PujaDTO pujaDto);
     public void convertAnunciosTxtToCsv(String outputFolderPath);
     public void convertComprasTxtToCsv(String outputFolderPath);
+    public void producirMensaje(String message);
 
 }

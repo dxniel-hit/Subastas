@@ -4,6 +4,7 @@ import co.edu.uniquindio.pr3.subastasUQ.controllers.MisAnunciosController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ProductoController;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.AnuncioDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.ProductoDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.PujaDTO;
@@ -11,6 +12,7 @@ import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
 import co.edu.uniquindio.pr3.subastasUQ.model.Compra;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -139,6 +141,22 @@ public class MisAnunciosViewController implements Initializable {
                 ModelFactoryController.writeBackupProduct();
 
                 limpiarCamposAnuncio();
+
+                //---------------------------------------------------------------------------------------------------------------
+                //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                //guardarResourceXML()
+                GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                guardarXMLThread.start();
+                try {
+                    guardarXMLThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                //Se obtiene el mensaje que se va a enviar a la cola
+                String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                //Se manda el mensaje a la cola
+                misAnunciosControllerService.producirMensaje(mensajeProductor);
+                //---------------------------------------------------------------------------------------------------------------
             } else {
                 mostrarMensaje("Notificación Anuncio", "Anuncio no creado", "El anuncio no se ha creado con éxito", Alert.AlertType.ERROR);
             }
@@ -175,6 +193,22 @@ public class MisAnunciosViewController implements Initializable {
                     ModelFactoryController.writeBackupAdvertisement();
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
+
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    misAnunciosControllerService.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
 
                 }else {
                     mostrarMensaje("Proceso No exitoso", "Anuncio no actualizado", "El anuncio no se puede actualizar", Alert.AlertType.WARNING);
@@ -213,6 +247,21 @@ public class MisAnunciosViewController implements Initializable {
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
 
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    misAnunciosControllerService.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 }else {
                     mostrarMensaje("Eliminación", "Anuncio no eliminado", "El anuncio no se ha podido eliminar", Alert.AlertType.WARNING);
                 }
@@ -270,6 +319,21 @@ public class MisAnunciosViewController implements Initializable {
                         this.pujaSeleccionada = null;
                         tablePujas.getSelectionModel().clearSelection();
 
+                        //---------------------------------------------------------------------------------------------------------------
+                        //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                        //guardarResourceXML()
+                        GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                        guardarXMLThread.start();
+                        try {
+                            guardarXMLThread.join();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        //Se obtiene el mensaje que se va a enviar a la cola
+                        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                        //Se manda el mensaje a la cola
+                        misAnunciosControllerService.producirMensaje(mensajeProductor);
+                        //---------------------------------------------------------------------------------------------------------------
                     } catch (AnuncianteException e) {
                         mostrarMensaje("Error de Venta", "No se puede realizar la venta", e.getMessage(), Alert.AlertType.WARNING);
                         //Se registra la excepcion en SubastasUQ_Log.txt

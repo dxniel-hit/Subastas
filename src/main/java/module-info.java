@@ -8,6 +8,7 @@ module co.edu.uniquindio.pr3.subastasUQ {
     requires org.mapstruct;
     requires java.logging;
     requires java.desktop;
+    requires com.rabbitmq.client;
 
     opens co.edu.uniquindio.pr3.subastasUQ.application to javafx.graphics, javafx.fxml;
     opens co.edu.uniquindio.pr3.subastasUQ.model to javafx.base;

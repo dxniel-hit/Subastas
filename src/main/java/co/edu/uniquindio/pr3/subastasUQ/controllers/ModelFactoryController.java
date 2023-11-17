@@ -1,9 +1,6 @@
 package co.edu.uniquindio.pr3.subastasUQ.controllers;
 
-import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarBinarioThread;
-import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarDatosArchivosThread;
-import co.edu.uniquindio.pr3.subastasUQ.hilos.CargarXMLThread;
-import co.edu.uniquindio.pr3.subastasUQ.hilos.IniciarYSalvarDatosPruebaThread;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.*;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.mappers.*;
@@ -11,15 +8,24 @@ import co.edu.uniquindio.pr3.subastasUQ.controllers.interfaces.IModelFactoryCont
 import co.edu.uniquindio.pr3.subastasUQ.model.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
 import co.edu.uniquindio.pr3.subastasUQ.persistencia.*;
+import co.edu.uniquindio.pr3.subastasUQ.rabbitmq.config.RabbitFactory;
 import co.edu.uniquindio.pr3.subastasUQ.viewControllers.*;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.nio.charset.StandardCharsets;
 
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ModelFactoryController implements IModelFactoryControllerService {
+import static co.edu.uniquindio.pr3.subastasUQ.rabbitmq.utils.Constantes.QUEUE_CONSUMIDOR;
+import static co.edu.uniquindio.pr3.subastasUQ.rabbitmq.utils.Constantes.QUEUE_PRODUCTOR;
+
+public class ModelFactoryController implements IModelFactoryControllerService, Runnable {
 
     //Datos para el manejo de controladores segun la ventana
     private VentanaPrincipalViewController ventanaPrincipalViewController;
@@ -52,6 +58,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public static final String RUTA_ARCHIVO_SUBASTAUQXML = "src/main/resources/persistencia/SubastasUQ.xml";
     public static final String RUTA_ARCHIVO_SUBASTAUQDAT = "src/main/resources/persistencia/SubastasUQ.dat";
 
+    //Manejo de rabbit mq
+    RabbitFactory rabbitFactory;
+    ConnectionFactory connectionFactory;
+    //Hilos para consumidor
+    Thread hiloServicioConsumer;
 
     public ModelFactoryController() {
         System.out.println("invocacion clase singleton");
@@ -61,6 +72,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        //Se inicializa la conexion con rabbitmq
+        initRabbitConnection();
     }
 
     //Singleton (Garantiza instancia unica)
@@ -74,6 +87,12 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eINSTANCE;
+    }
+
+    private void initRabbitConnection() {
+        rabbitFactory = new RabbitFactory();
+        connectionFactory = rabbitFactory.getConnectionFactory();
+        System.out.println("conexion establecidad");
     }
 
     private void inicializarDatos() throws InterruptedException {
@@ -662,4 +681,104 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //Funciones necesarias para el manejo de rabbirt
+    @Override
+    public void producirMensaje(String message) {
+        String queue = QUEUE_PRODUCTOR;
+        try (Connection connection = connectionFactory.newConnection();
+             Channel channel = connection.createChannel()) {
+            channel.queueDeclare(queue, false, false, false, null);
+            channel.basicPublish("", queue, null, message.getBytes(StandardCharsets.UTF_8));
+            System.out.println(" [x] Message Sent ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void consumirMensajes(){
+        hiloServicioConsumer = new Thread(this);
+        hiloServicioConsumer.start();
+    }
+
+    public void detenerConsumidor(){
+        try {
+            hiloServicioConsumer.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void run() {
+        Thread currentThread = Thread.currentThread();
+        if(currentThread == hiloServicioConsumer){
+            consumirXML();
+        }
+    }
+
+    private void consumirXML() {
+        try {
+            Connection connection = connectionFactory.newConnection();
+            Channel channel = connection.createChannel();
+            channel.queueDeclare(QUEUE_CONSUMIDOR, false, false, false, null);
+
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                String message = new String(delivery.getBody());
+                System.out.println("Mensaje recibido");
+                //actualizarEstado(message);
+
+                //Se carga la informacion XML en el archivo SubastasUQ.xml
+                //Se escribe la informacion obtenida desde rabbitmq en el archivo (.xml)
+                Persistencia.escribirArchivoXML(message, "src/main/resources/persistencia/SubastasUQ.xml");
+                //Se carga la informacion del nuevo archivo SubastasUQ.xml
+                CargarXMLThread cargarXMLThread = new CargarXMLThread();
+                cargarXMLThread.start();
+                try {
+                    cargarXMLThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                //Se carga la informacion del modelo en los respectivos archivos (.txt)
+                WriteBackupObjectsThread objectsThread = new WriteBackupObjectsThread();
+                objectsThread.start();
+
+                //Se refresca la informacion de la interfaz de usuario
+                //se setean los anuncios en SubastasViewController
+                ObservableList<AnuncioDTO> listaSubastasDTO = FXCollections.observableArrayList();
+                listaSubastasDTO.addAll(mapperAnuncio.getAnunciosDTO(miSubasta.getListaAnuncios()));
+                this.subastasViewController.setListaAnunciosDTO(listaSubastasDTO);
+
+                //Caso Anunciante autenticado: Se carga la informacion del anunciante
+                if(this.miAnunciante!=null){
+                    //se añaden los productos segun el anunciante
+                    ObservableList<ProductoDTO> listaProductosDTO = FXCollections.observableArrayList();
+                    listaProductosDTO.addAll(obtenerProductosAnunciante());
+                    this.productosViewController.setListaProductosDTO(listaProductosDTO);
+
+                    //se añaden los anuncios segun el anunciante
+                    ObservableList<AnuncioDTO> listaAnunciosDTO = FXCollections.observableArrayList();
+                    listaAnunciosDTO.addAll(obtenerAnunciosAnunciante());
+                    this.misAnunciosViewController.setListaAnunciosDTO(listaAnunciosDTO);
+                    //se añaden los productos segun el anunciante
+                    this.misAnunciosViewController.setListaProductosDTO(listaProductosDTO);
+                    //se añaden las pujas segun el anunciante
+                    this.misAnunciosViewController.setListaPujasDTO(FXCollections.observableArrayList());
+                }
+                //Caso Comprador autenticado: Se carga la informacion del comprador
+                if(this.miComprador!=null){
+                    //se setean las Pujas en misPujasViewController
+                    ObservableList<PujaDTO> listaPujasDTO = FXCollections.observableArrayList();
+                    listaPujasDTO.addAll(mapperPuja.getPujasDTO(miComprador.getListaPujas()));
+                    this.misPujasViewController.setListaPujasDTO(listaPujasDTO);
+                }
+            };
+            while (true) {
+                channel.basicConsume(QUEUE_CONSUMIDOR, true, deliverCallback, consumerTag -> { });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

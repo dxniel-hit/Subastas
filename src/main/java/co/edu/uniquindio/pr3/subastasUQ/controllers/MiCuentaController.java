@@ -11,4 +11,9 @@ public class MiCuentaController implements IMiCuentaControllerService {
         mfm = ModelFactoryController.getInstance();
     }
 
+    @Override
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
+
 }

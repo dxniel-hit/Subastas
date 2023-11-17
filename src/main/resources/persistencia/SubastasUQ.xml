@@ -43,10 +43,10 @@
               <string>2</string>
              </void>
              <void property="fechaFinal">
-              <string>24.10.2023</string>
+              <string>15.11.2023</string>
              </void>
              <void property="fechaInicio">
-              <string>03.10.2023</string>
+              <string>08.11.2023</string>
              </void>
              <void property="listaPujas">
               <object class="java.util.ArrayList">
@@ -126,10 +126,10 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>24.10.2023</string>
+                  <string>15.11.2023</string>
                  </void>
                  <void property="valor">
-                  <double>155000.0</double>
+                  <double>150000.0</double>
                  </void>
                 </object>
                </void>
@@ -178,7 +178,7 @@
                         <object idref="Comprador1"/>
                        </void>
                        <void property="fecha">
-                        <string>24.10.2023</string>
+                        <string>15.11.2023</string>
                        </void>
                        <void property="valor">
                         <double>170000.0</double>
@@ -194,7 +194,7 @@
                         <object idref="Comprador1"/>
                        </void>
                        <void property="fecha">
-                        <string>24.10.2023</string>
+                        <string>15.11.2023</string>
                        </void>
                        <void property="valor">
                         <double>180000.0</double>
@@ -218,7 +218,7 @@
                   </object>
                  </void>
                  <void property="fecha">
-                  <string>24.10.2023</string>
+                  <string>15.11.2023</string>
                  </void>
                  <void property="valor">
                   <double>160000.0</double>
@@ -260,7 +260,7 @@
                 </object>
                </void>
                <void property="valorInicial">
-                <double>150000.0</double>
+                <double>145000.0</double>
                </void>
               </object>
              </void>

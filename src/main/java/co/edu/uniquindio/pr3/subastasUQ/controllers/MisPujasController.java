@@ -26,4 +26,9 @@ public class MisPujasController implements IMisPujasControllerService {
         return mfm.agregarPuja(pujaDto);
     }
 
+    @Override
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
+
 }

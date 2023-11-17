@@ -5,9 +5,11 @@ import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.CompradorException;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.UsuarioEnUsoException;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,6 +73,22 @@ public class MiCuentaViewController implements Initializable {
                     ModelFactoryController.writeBackupUser();
 
                     setMiAnucianteInformation();
+
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    miCuentaController.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 } catch (AnuncianteException e) {
                     mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de anunciante", e.getMessage(), Alert.AlertType.WARNING);
                     //Se registra la excepcion en SubastasUQ_Log.txt
@@ -88,6 +106,22 @@ public class MiCuentaViewController implements Initializable {
                     ModelFactoryController.writeBackupUser();
 
                     setMiCompradorInformation();
+
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    miCuentaController.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 } catch (CompradorException e) {
                     mostrarMensaje("Error de Actualizacion", "No se puede actualizar la cuenta de comprador", e.getMessage(), Alert.AlertType.WARNING);
                     //Se registra la excepcion en SubastasUQ_Log.txt
@@ -114,6 +148,21 @@ public class MiCuentaViewController implements Initializable {
             //Se registra la informacion de los usuarios en usuarios.txt
             ModelFactoryController.writeBackupUser();
 
+            //---------------------------------------------------------------------------------------------------------------
+            //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+            //guardarResourceXML()
+            GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+            guardarXMLThread.start();
+            try {
+                guardarXMLThread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            //Se obtiene el mensaje que se va a enviar a la cola
+            String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+            //Se manda el mensaje a la cola
+            miCuentaController.producirMensaje(mensajeProductor);
+            //---------------------------------------------------------------------------------------------------------------
         } catch (CompradorException | AnuncianteException e) {
             mostrarMensaje("Error de Actualizacion", "No se puedo actualizar la contraseña", e.getMessage(), Alert.AlertType.WARNING);
             //Se registra la excepcion en SubastasUQ_Log.txt
@@ -135,6 +184,21 @@ public class MiCuentaViewController implements Initializable {
             //Se registra la informacion de los usuarios en usuarios.txt
             ModelFactoryController.writeBackupUser();
 
+            //---------------------------------------------------------------------------------------------------------------
+            //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+            //guardarResourceXML()
+            GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+            guardarXMLThread.start();
+            try {
+                guardarXMLThread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            //Se obtiene el mensaje que se va a enviar a la cola
+            String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+            //Se manda el mensaje a la cola
+            miCuentaController.producirMensaje(mensajeProductor);
+            //---------------------------------------------------------------------------------------------------------------
         } catch (CompradorException | AnuncianteException e) {
             mostrarMensaje("Error de Actualizacion", "No se puedo actualizar el usuario", e.getMessage(), Alert.AlertType.WARNING);
             //Se registra la excepcion en SubastasUQ_Log.txt
@@ -160,6 +224,22 @@ public class MiCuentaViewController implements Initializable {
 
         //Se registra la informacion de los usuarios en usuarios.txt
         ModelFactoryController.writeBackupUser();
+
+        //---------------------------------------------------------------------------------------------------------------
+        //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+        //guardarResourceXML()
+        GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+        guardarXMLThread.start();
+        try {
+            guardarXMLThread.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //Se obtiene el mensaje que se va a enviar a la cola
+        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+        //Se manda el mensaje a la cola
+        miCuentaController.producirMensaje(mensajeProductor);
+        //---------------------------------------------------------------------------------------------------------------
     }
 
     public void resetCuenta() {
@@ -184,6 +264,22 @@ public class MiCuentaViewController implements Initializable {
                 vaciarCasillas();
                 miCuentaController.mfm.resetCuenta();
                 resetCuenta();
+
+                //---------------------------------------------------------------------------------------------------------------
+                //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                //guardarResourceXML()
+                GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                guardarXMLThread.start();
+                try {
+                    guardarXMLThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                //Se obtiene el mensaje que se va a enviar a la cola
+                String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                //Se manda el mensaje a la cola
+                miCuentaController.producirMensaje(mensajeProductor);
+                //---------------------------------------------------------------------------------------------------------------
             } catch (AnuncianteException e) {
                 mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
                 //Se registra la excepcion en SubastasUQ_Log.txt
@@ -203,6 +299,22 @@ public class MiCuentaViewController implements Initializable {
                 vaciarCasillas();
                 miCuentaController.mfm.resetCuenta();
                 resetCuenta();
+
+                //---------------------------------------------------------------------------------------------------------------
+                //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                //guardarResourceXML()
+                GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                guardarXMLThread.start();
+                try {
+                    guardarXMLThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                //Se obtiene el mensaje que se va a enviar a la cola
+                String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                //Se manda el mensaje a la cola
+                miCuentaController.producirMensaje(mensajeProductor);
+                //---------------------------------------------------------------------------------------------------------------
             } catch (CompradorException e) {
                 mostrarMensaje("Error de Eliminación", "No se puedo eliminar la cuenta", e.getMessage(), Alert.AlertType.WARNING);
                 //Se registra la excepcion en SubastasUQ_Log.txt

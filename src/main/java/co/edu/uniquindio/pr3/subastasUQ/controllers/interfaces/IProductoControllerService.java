@@ -14,5 +14,6 @@ public interface IProductoControllerService {
     public boolean renovarProducto(String codigoProducto, ProductoDTO productoDTO);
     public boolean expelerProducto(String codigo);
     public List<ProductoDTO> obtenerProductosAnunciante();
+    public void producirMensaje(String message);
 
 }

@@ -3,12 +3,14 @@ package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MisAnunciosController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.MisPujasController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.AnuncioDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.ProductoDTO;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.PujaDTO;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anuncio;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
 import co.edu.uniquindio.pr3.subastasUQ.model.Puja;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Persistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -112,6 +114,22 @@ public class MisPujasViewController implements Initializable {
                         ModelFactoryController.writeBackupAdvertisement();
 
                         limpiarInformacion();
+
+                        //---------------------------------------------------------------------------------------------------------------
+                        //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                        //guardarResourceXML()
+                        GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                        guardarXMLThread.start();
+                        try {
+                            guardarXMLThread.join();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        //Se obtiene el mensaje que se va a enviar a la cola
+                        String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                        //Se manda el mensaje a la cola
+                        misPujasControllerService.producirMensaje(mensajeProductor);
+                        //---------------------------------------------------------------------------------------------------------------
                     } else {
                         mostrarMensaje("Notificación Puja", "Puja no creada", "La puja no se ha creado con éxito", Alert.AlertType.ERROR);
                     }

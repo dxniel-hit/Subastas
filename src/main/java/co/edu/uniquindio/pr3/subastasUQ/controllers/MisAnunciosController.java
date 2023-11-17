@@ -51,6 +51,11 @@ public class MisAnunciosController implements IMisAnunciosControllerService {
         return mfm.eliminarAnuncio(codigo);
     }
 
+    @Override
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
+
     public Producto poductoDTOtoPRoducto(ProductoDTO productoSeleccionado) {
         return mfm.mapper.productoDTOtoProducto(productoSeleccionado);
     }

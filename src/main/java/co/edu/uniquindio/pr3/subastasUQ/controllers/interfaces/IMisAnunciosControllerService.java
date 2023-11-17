@@ -21,5 +21,6 @@ public interface IMisAnunciosControllerService {
     public boolean actualizarAnuncio(String codigoAnuncio, AnuncioDTO anuncioDTO);
     public boolean eliminarAnuncio(String codigoAnuncio);
     public Producto poductoDTOtoPRoducto(ProductoDTO productoSeleccionado);
+    public void producirMensaje(String message);
 
 }

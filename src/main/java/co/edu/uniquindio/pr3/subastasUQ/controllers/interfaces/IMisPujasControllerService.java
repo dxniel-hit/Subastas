@@ -8,5 +8,6 @@ public interface IMisPujasControllerService {
     public void initMisPujasViewController(MisPujasViewController misPujasViewController);
     public void resetSeleccionAnuncio();
     public boolean agregarPuja(PujaDTO pujaDto);
+    public void producirMensaje(String message);
 
 }

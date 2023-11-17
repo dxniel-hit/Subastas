@@ -11,4 +11,9 @@ public class LoginController implements ILoginControllerService {
         mfm = ModelFactoryController.getInstance();
     }
 
+    @Override
+    public void producirMensaje(String message) {
+        mfm.producirMensaje(message);
+    }
+
 }

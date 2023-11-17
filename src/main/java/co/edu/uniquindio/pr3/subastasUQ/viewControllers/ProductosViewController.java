@@ -2,11 +2,13 @@ package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.*;
 import co.edu.uniquindio.pr3.subastasUQ.exceptions.AnuncianteException;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
 import co.edu.uniquindio.pr3.subastasUQ.mapping.dto.*;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Producto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoProducto;
 import co.edu.uniquindio.pr3.subastasUQ.model.enumerations.TipoUsuario;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Persistencia;
 import javafx.beans.property.*;
 import javafx.collections.*;
 import javafx.event.*;
@@ -263,6 +265,21 @@ public class ProductosViewController implements Initializable {
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
 
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    productoControllerService.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 } else {
                     mostrarMensaje("Eliminación", "Producto no eliminado", "El producto no se ha podido eliminar", Alert.AlertType.ERROR);
                 }
@@ -330,6 +347,22 @@ public class ProductosViewController implements Initializable {
                 ModelFactoryController.appendToBackupProduct(productoDto);
 
                 limpiarCamposProducto();
+
+                //---------------------------------------------------------------------------------------------------------------
+                //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                //guardarResourceXML()
+                GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                guardarXMLThread.start();
+                try {
+                    guardarXMLThread.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                //Se obtiene el mensaje que se va a enviar a la cola
+                String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                //Se manda el mensaje a la cola
+                productoControllerService.producirMensaje(mensajeProductor);
+                //---------------------------------------------------------------------------------------------------------------
             } else {
                 mostrarMensaje("Notificación producto", "Producto no creado", "El producto no se ha creado con éxito", Alert.AlertType.ERROR);
             }
@@ -359,6 +392,21 @@ public class ProductosViewController implements Initializable {
                     //Se registra la informacion de los productos en productos.txt
                     ModelFactoryController.writeBackupProduct();
 
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    productoControllerService.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 } else {
                     mostrarMensaje("Proceso Sin Exito", "Producto no actualizado", "El producto no se puede actualizar", Alert.AlertType.WARNING);
                 }

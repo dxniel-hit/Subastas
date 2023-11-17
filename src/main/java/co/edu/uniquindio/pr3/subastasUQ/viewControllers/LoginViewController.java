@@ -2,8 +2,10 @@ package co.edu.uniquindio.pr3.subastasUQ.viewControllers;
 
 import co.edu.uniquindio.pr3.subastasUQ.controllers.LoginController;
 import co.edu.uniquindio.pr3.subastasUQ.controllers.ModelFactoryController;
+import co.edu.uniquindio.pr3.subastasUQ.hilos.GuardarXMLThread;
 import co.edu.uniquindio.pr3.subastasUQ.model.Anunciante;
 import co.edu.uniquindio.pr3.subastasUQ.model.Comprador;
+import co.edu.uniquindio.pr3.subastasUQ.persistencia.Persistencia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +48,22 @@ public class LoginViewController implements Initializable {
                     ModelFactoryController.registrarIngresoUsuario(miAnunciante.getUsuario());
                     //Se registra la informacion de los usuarios en usuarios.txt
                     ModelFactoryController.writeBackupUser();
+
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    loginController.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 }
                 if(miComprador!=null) {
                     vaciarCasillas();
@@ -54,6 +72,22 @@ public class LoginViewController implements Initializable {
                     ModelFactoryController.registrarIngresoUsuario(miComprador.getUsuario());
                     //Se registra la informacion de los usuarios en usuarios.txt
                     ModelFactoryController.writeBackupUser();
+
+                    //---------------------------------------------------------------------------------------------------------------
+                    //Acciones necesarias para el manejo multi-aplicacion con rabbitmq
+                    //guardarResourceXML()
+                    GuardarXMLThread guardarXMLThread = new GuardarXMLThread();
+                    guardarXMLThread.start();
+                    try {
+                        guardarXMLThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //Se obtiene el mensaje que se va a enviar a la cola
+                    String mensajeProductor = Persistencia.leerArchivoXML("src/main/resources/persistencia/SubastasUQ.xml");
+                    //Se manda el mensaje a la cola
+                    loginController.producirMensaje(mensajeProductor);
+                    //---------------------------------------------------------------------------------------------------------------
                 }
             }
             else {
